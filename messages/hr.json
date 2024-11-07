@@ -1,6 +1,7 @@
 {
   "HomePage": {
     "title": "Pozdrav svijete!",
-    "about": "Idemo na about stranicu"
+    "organisation-go-to": "Idemo na organizacijsku stranicu",
+    "welcome": "Dobrodosli u organizaciju"
   }
 }

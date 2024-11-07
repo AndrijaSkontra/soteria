@@ -1,3 +1,3 @@
-type User = {
-  name: string;
+type PageProps = {
+  params: Promise<{ locale: string; organisationId: string }>;
 };
