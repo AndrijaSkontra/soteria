@@ -15,14 +15,14 @@ model User {
 
 model Organisation {
   id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String  // name is required
+  name String  
 }
 
 model OrganisationUser {
   id             String @id @default(auto()) @map("_id") @db.ObjectId
-  userId         String // userId is required
-  organisationId String // organisationId is required
-  role           Role[]   // role is now a single enum value
+  userId         String
+  organisationId String 
+  role           Role[] 
 }
 
 enum Role {
