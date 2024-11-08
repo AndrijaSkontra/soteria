@@ -18,7 +18,6 @@ export default function OrganisationSelect({
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     setSelectedOrganisation(event.target.value);
-    console.log(event.target.value);
   }
 
   return (

@@ -8,24 +8,31 @@ datasource db {
 }
 
 model User {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
-  email String
-  password String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  active    Boolean
 }
 
 model Organisation {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String  
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  createdAt DateTime @default(now())
+  active    Boolean
 }
 
 model OrganisationUser {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  userId         String
-  organisationId String 
-  role           Role[] 
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String   @db.ObjectId
+  organisationId String   @db.ObjectId
+  role           Role[]
+  joinedAt       DateTime @default(now())
+  active         Boolean
 }
 
 enum Role {
-  admin
-  user
+  ADMIN
+  USER
 }
+

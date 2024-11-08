@@ -1,4 +1,4 @@
-export default async function SomeLayout({
+export default async function OrganisationLayout({
   children,
 }: {
   children: React.ReactNode;

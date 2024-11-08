@@ -1,20 +1,22 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import prisma from "@/index";
+import { User } from "@/types/user";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
       credentials: {
         email: {},
         password: {},
       },
       authorize: async (credentials) => {
-        let user = null;
+        const user: User = await getUserFromDb(
+          credentials.email as string,
+          credentials.password as string,
+        );
 
-        user = await getUserFromDb(credentials.email, credentials.password);
+        console.log(user, "user 😀");
 
         if (!user) {
           throw new Error("Invalid credentials.");
@@ -24,15 +26,38 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  callbacks: {
+    authorized: async ({ auth }) => {
+      return !!auth;
+    },
+    async session({ session, token }) {
+      const newSesion = {
+        user: {
+          email: session.user.email,
+          createdAt: token.createdAt,
+          active: token.active,
+        },
+        expires: session.expires,
+      };
+      return newSesion;
+    },
+  },
+  pages: {
+    signIn: "/",
+  },
 });
 
-async function getUserFromDb(email, password) {
+async function getUserFromDb(email: string, password: string): Promise<User> {
   const user = await prisma.user.findFirst({
     where: {
       email: email,
       password: password,
     },
+    select: {
+      email: true,
+      createdAt: true,
+      active: true,
+    },
   });
-  console.log(user, "😎");
-  return user;
+  return user as User;
 }

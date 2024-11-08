@@ -5,7 +5,5 @@ export default createMiddleware(routing);
 
 export const config = {
   // Match only internationalized pathnames
-  matcher: ["/", "/(hr|en)/:path*", "/:organisationId"],
+  matcher: ["/", "/(hr|en)/:path*", "/:organisationId", "/profile"],
 };
-
-export { auth as middleware } from "@/auth";
