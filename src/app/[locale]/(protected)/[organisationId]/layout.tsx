@@ -48,7 +48,6 @@ async function isUserInOrganisation(
       organisationId: organisationId,
     },
   });
-  console.log(org, "📝");
   if (!org) {
     return false;
   } else {

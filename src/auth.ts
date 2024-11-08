@@ -16,8 +16,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           credentials.password as string,
         );
 
-        console.log(user, "user 😀");
-
         if (!user) {
           throw new Error("Invalid credentials.");
         }
