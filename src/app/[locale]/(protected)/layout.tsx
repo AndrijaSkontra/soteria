@@ -9,7 +9,6 @@ export default async function ProtectedLayout({
 }) {
   const session = await auth();
   const activeUser: User = session?.user as User;
-  console.log(activeUser, "useer");
   if (!activeUser) {
     redirect("/");
   }

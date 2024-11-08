@@ -30,12 +30,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     authorized: async ({ auth }) => {
       return !!auth;
     },
+    async jwt({ token, user }: any) {
+      if (user) {
+        token.email = user.email;
+        token.createdAt = user.createdAt;
+        token.active = user.active;
+        token.id = user.id;
+      }
+      return token;
+    },
     async session({ session, token }) {
       const newSesion = {
         user: {
           email: session.user.email,
           createdAt: token.createdAt,
           active: token.active,
+          userId: token.id,
         },
         expires: session.expires,
       };
@@ -54,10 +64,17 @@ async function getUserFromDb(email: string, password: string): Promise<User> {
       password: password,
     },
     select: {
+      id: true,
       email: true,
       createdAt: true,
       active: true,
     },
   });
-  return user as User;
+
+  if (!user) {
+    throw Error("No user");
+  }
+
+  const newUser: User = { ...user, userId: user.id };
+  return newUser;
 }

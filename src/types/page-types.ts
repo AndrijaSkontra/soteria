@@ -1,3 +1,1 @@
-export type PageProps = {
-  params: Promise<{ locale: string; organisationId: string }>;
-};
+export type RouteParams = Promise<{ locale: string; organisationId: string }>;
