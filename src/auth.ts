@@ -1,7 +1,19 @@
-import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import prisma from "@/index";
 import { User } from "@/types/user";
+import NextAuth, { type DefaultSession } from "next-auth";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      address: string;
+      email: string;
+      createdAt: Date;
+      active: boolean;
+      userId: string;
+    } & DefaultSession["user"];
+  }
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -28,7 +40,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     authorized: async ({ auth }) => {
       return !!auth;
     },
-    async jwt({ token, user }: any) {
+    async jwt({ token, user }) {
       if (user) {
         token.email = user.email;
         token.createdAt = user.createdAt;

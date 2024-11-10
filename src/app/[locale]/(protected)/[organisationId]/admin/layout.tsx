@@ -12,7 +12,7 @@ export default async function AdminLayout({
 }) {
   const session = await auth();
   const organisationId = (await params).organisationId;
-  const isAdmin = await isUserAdmin(organisationId, session!.user!.userId);
+  const isAdmin = await isUserAdmin(organisationId, session!.user.userId);
   if (!isAdmin) {
     redirect("/not-found");
   }

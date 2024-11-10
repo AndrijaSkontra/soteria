@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import prisma from "@/index";
 import { RouteParams } from "@/types/page-types";
+import { User } from "@/types/user";
 import { redirect } from "next/navigation";
 
 export default async function OrganisationLayout({
@@ -17,7 +18,7 @@ export default async function OrganisationLayout({
     (await doesOrganisationExist(organisationId)) &&
     (await isUserInOrganisation(
       organisationId,
-      session!.user!.userId as string,
+      session!.user.userId as string,
     ));
 
   if (!isOrganisationPageValid) {
