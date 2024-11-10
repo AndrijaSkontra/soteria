@@ -51,13 +51,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async session({ session, token }) {
       const newSesion = {
+        ...session,
         user: {
           email: session.user.email,
           createdAt: token.createdAt,
           active: token.active,
           userId: token.id,
         },
-        expires: session.expires,
       };
       return newSesion;
     },

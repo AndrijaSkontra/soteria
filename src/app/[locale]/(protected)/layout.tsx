@@ -3,7 +3,6 @@ import OrganisationSelect from "@/components/organisation-select";
 import { Button } from "@/components/ui/button";
 import prisma from "@/index";
 import { Organisation } from "@/types/organisation";
-import { User } from "@/types/user";
 import { redirect } from "next/navigation";
 
 export default async function ProtectedLayout({
