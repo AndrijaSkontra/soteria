@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
-import { loginAction } from "@/serverActions/login-action";
+import { loginAction } from "@/lib/serverActions/login-action";
 
 const initialState = {
   message: "",

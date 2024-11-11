@@ -1,47 +1,7 @@
 import Credentials from "next-auth/providers/credentials";
-import NextAuth, { type DefaultSession } from "next-auth";
+import NextAuth from "next-auth";
 import { getUserFromDb } from "@/lib/data_access";
 import { User } from "@/types";
-
-declare module "next-auth" {
-  interface User {
-    createdAt: Date;
-    active: boolean;
-  }
-
-  interface Session {
-    user: {
-      address: string;
-      email: string;
-      createdAt: Date;
-      active: boolean;
-      userId: string;
-    } & DefaultSession["user"];
-  }
-}
-declare module "@auth/core/types" {
-  interface User {
-    createdAt: Date;
-    active: boolean;
-  }
-
-  interface Session {
-    user: {
-      address: string;
-      email: string;
-      createdAt: Date;
-      active: boolean;
-      userId: string;
-    } & DefaultSession["user"];
-  }
-
-  interface JWT {
-    email?: string | null;
-    createdAt?: Date;
-    active?: boolean;
-    id?: string;
-  }
-}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
