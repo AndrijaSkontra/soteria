@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import prisma from "@/index";
+import { isUserAdmin } from "@/lib/data_access";
 import { RouteParams } from "@/types/page-types";
 import { redirect } from "next/navigation";
 
@@ -17,21 +17,4 @@ export default async function AdminLayout({
     redirect("/not-found");
   }
   return <div>{children}</div>;
-}
-
-async function isUserAdmin(
-  organisationId: string,
-  userId: string,
-): Promise<boolean> {
-  const userRoles = await prisma.organisationUser.findFirst({
-    where: {
-      userId: userId,
-      organisationId: organisationId,
-      role: {
-        has: "ADMIN",
-      },
-    },
-    select: { role: true },
-  });
-  return userRoles !== null;
 }

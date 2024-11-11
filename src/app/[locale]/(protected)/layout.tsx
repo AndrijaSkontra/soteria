@@ -1,7 +1,7 @@
 import { auth, signOut } from "@/auth";
 import OrganisationSelect from "@/components/organisation-select";
 import { Button } from "@/components/ui/button";
-import prisma from "@/index";
+import { getUserOrganisations } from "@/lib/data_access";
 import { Organisation } from "@/types/organisation";
 import { redirect } from "next/navigation";
 
@@ -36,23 +36,4 @@ export default async function ProtectedLayout({
       </form>
     </div>
   );
-}
-
-async function getUserOrganisations(userId: string): Promise<Organisation[]> {
-  const organisationUserRecords = await prisma.organisationUser.findMany({
-    where: { userId },
-    select: { organisationId: true },
-  });
-
-  const organisationIds = organisationUserRecords.map(
-    (record) => record.organisationId,
-  );
-
-  const organisations = await prisma.organisation.findMany({
-    where: {
-      id: { in: organisationIds },
-    },
-  });
-
-  return organisations;
 }

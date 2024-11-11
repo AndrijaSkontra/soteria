@@ -1,7 +1,7 @@
 import Credentials from "next-auth/providers/credentials";
-import prisma from "@/index";
 import { User } from "@/types/user";
 import NextAuth, { type DefaultSession } from "next-auth";
+import { getUserFromDb } from "@/lib/data_access";
 
 declare module "next-auth" {
   interface User {
@@ -96,25 +96,3 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/",
   },
 });
-
-async function getUserFromDb(email: string, password: string): Promise<User> {
-  const user = await prisma.user.findFirst({
-    where: {
-      email: email,
-      password: password,
-    },
-    select: {
-      id: true,
-      email: true,
-      createdAt: true,
-      active: true,
-    },
-  });
-
-  if (!user) {
-    throw Error("No user");
-  }
-
-  const newUser: User = { ...user, userId: user.id };
-  return newUser;
-}

@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
-import prisma from "@/index";
+import { doesOrganisationExist, isUserInOrganisation } from "@/lib/data_access";
 import { RouteParams } from "@/types/page-types";
-import { User } from "@/types/user";
 import { redirect } from "next/navigation";
 
 export default async function OrganisationLayout({
@@ -26,32 +25,4 @@ export default async function OrganisationLayout({
   }
 
   return <div>{children}</div>;
-}
-
-async function doesOrganisationExist(organisationId: string): Promise<boolean> {
-  try {
-    await prisma.organisation.findUnique({
-      where: { id: organisationId },
-    });
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function isUserInOrganisation(
-  organisationId: string,
-  userId: string,
-): Promise<boolean> {
-  const org = await prisma.organisationUser.findFirst({
-    where: {
-      userId: userId,
-      organisationId: organisationId,
-    },
-  });
-  if (!org) {
-    return false;
-  } else {
-    return true;
-  }
 }
