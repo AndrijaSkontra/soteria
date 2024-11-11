@@ -1,7 +1,7 @@
 import Credentials from "next-auth/providers/credentials";
-import { User } from "@/types/user";
 import NextAuth, { type DefaultSession } from "next-auth";
 import { getUserFromDb } from "@/lib/data_access";
+import { User } from "@/types";
 
 declare module "next-auth" {
   interface User {

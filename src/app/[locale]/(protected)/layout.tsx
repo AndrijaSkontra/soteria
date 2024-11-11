@@ -2,7 +2,7 @@ import { auth, signOut } from "@/auth";
 import OrganisationSelect from "@/components/organisation-select";
 import { Button } from "@/components/ui/button";
 import { getUserOrganisations } from "@/lib/data_access";
-import { Organisation } from "@/types/organisation";
+import { Organisation } from "@/types";
 import { redirect } from "next/navigation";
 
 export default async function ProtectedLayout({

@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { doesOrganisationExist, isUserInOrganisation } from "@/lib/data_access";
-import { RouteParams } from "@/types/page-types";
+import { RouteParams } from "@/types";
 import { redirect } from "next/navigation";
 
 export default async function OrganisationLayout({

@@ -1,6 +1,5 @@
-import { User } from "@/types/user";
 import prisma from "@/index";
-import { Organisation } from "@/types/organisation";
+import { Organisation, User } from "@/types";
 
 export async function getUserFromDb(
   email: string,

@@ -1,6 +1,5 @@
 "use client";
 
-import { Organisation } from "@/types/organisation";
 import { useTranslations } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
@@ -12,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "./ui/button";
+import { Organisation } from "@/types";
 
 export default function OrganisationSelect({
   organisations,
