@@ -4,6 +4,11 @@ import { User } from "@/types/user";
 import NextAuth, { type DefaultSession } from "next-auth";
 
 declare module "next-auth" {
+  interface User {
+    createdAt: Date;
+    active: boolean;
+  }
+
   interface Session {
     user: {
       address: string;
@@ -12,6 +17,29 @@ declare module "next-auth" {
       active: boolean;
       userId: string;
     } & DefaultSession["user"];
+  }
+}
+declare module "@auth/core/types" {
+  interface User {
+    createdAt: Date;
+    active: boolean;
+  }
+
+  interface Session {
+    user: {
+      address: string;
+      email: string;
+      createdAt: Date;
+      active: boolean;
+      userId: string;
+    } & DefaultSession["user"];
+  }
+
+  interface JWT {
+    email?: string | null;
+    createdAt?: Date;
+    active?: boolean;
+    id?: string;
   }
 }
 
@@ -50,16 +78,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      const newSesion = {
+      const newSession = {
         ...session,
         user: {
+          ...session.user,
           email: session.user.email,
-          createdAt: token.createdAt,
-          active: token.active,
-          userId: token.id,
+          address: session.user.address || "",
+          createdAt: new Date(token.createdAt as Date),
+          active: Boolean(token.active),
+          userId: String(token.id),
         },
       };
-      return newSesion;
+      return newSession;
     },
   },
   pages: {
