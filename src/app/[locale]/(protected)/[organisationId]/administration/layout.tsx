@@ -10,11 +10,11 @@ export default async function AdminLayout({
   children: React.ReactNode;
   params: RouteParams;
 }) {
-  const session = await auth();
-  const organisationId = (await params).organisationId;
-  const isAdmin = await isUserAdmin(organisationId, session!.user.userId);
-  if (!isAdmin) {
-    redirect("/not-found");
-  }
+  // const session = await auth();
+  // const organisationId = (await params).organisationId;
+  // const isAdmin = await isUserAdmin(organisationId, session!.user.userId);
+  // if (!isAdmin) {
+  //   redirect("/not-found");
+  // }
   return <div>{children}</div>;
 }

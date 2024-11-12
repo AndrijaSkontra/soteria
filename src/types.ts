@@ -37,3 +37,9 @@ export type Session = {
   user: User;
   expires: Date;
 };
+
+export type NavigationLinkType = {
+  title: string;
+  url: string;
+  icon: any;
+};

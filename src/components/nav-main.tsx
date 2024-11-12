@@ -1,99 +1,99 @@
 "use client";
 
-import { ChevronRight, type LucideIcon } from "lucide-react";
-
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import {
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-} from "@/components/ui/sidebar";
-import Link from "next/link";
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { MdOutlineTask } from "react-icons/md";
+import { GrTask } from "react-icons/gr";
+import { FaRegNewspaper } from "react-icons/fa";
+import { RxDashboard } from "react-icons/rx";
+import { MdOutlineSimCardAlert } from "react-icons/md";
+import { IoBasketballOutline } from "react-icons/io5";
+import { MdOutlineSubject } from "react-icons/md";
+import { BsPeople } from "react-icons/bs";
+import { SidebarMenu } from "@/components/ui/sidebar";
+import AdministrationLinks from "@/components/administration-links";
+import AdministrationLink from "./administration-link";
+import { NavigationLinkType } from "@/types";
+import NavigationLink from "./navigation-link";
+import { useParams } from "next/navigation";
 
 export function MainNavigation() {
+  const { organisationId } = useParams();
+
   return (
-    <>
-      <SidebarGroup>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="idk">Dashboard</Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
-      <SidebarGroup>
-        <SidebarGroupLabel>Admin</SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="idk">New Group</Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
-      <SidebarGroup>
-        <SidebarGroupLabel>Inspektor</SidebarGroupLabel>
-        <SidebarMenu>
-          <Collapsible
-            asChild
-            defaultOpen={false}
-            className="group/collapsible"
-          >
-            <SidebarMenuItem>
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={"Administration"}>
-                  <span>Administration</span>
-                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild>
-                      <Link href="/hello">
-                        <span>hello</span>
-                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                </SidebarMenuSub>
-              </CollapsibleContent>
-            </SidebarMenuItem>
-          </Collapsible>
-        </SidebarMenu>
-      </SidebarGroup>
-    </>
+    <SidebarMenu>
+      {basicLinks.map((basicLink, index) => {
+        return (
+          <NavigationLink
+            key={index}
+            icon={basicLink.icon}
+            title={basicLink.title}
+            url={`/${organisationId}/${basicLink.url}`}
+          />
+        );
+      })}
+      <AdministrationLinks>
+        {administrationLinks.map((admLink, index) => {
+          return (
+            <AdministrationLink
+              key={index}
+              icon={admLink.icon}
+              title={admLink.title}
+              url={`/${organisationId}/administration/${admLink.url}`}
+            />
+          );
+        })}
+      </AdministrationLinks>
+    </SidebarMenu>
   );
 }
-const administrationLinks = [
+
+const administrationLinks: NavigationLinkType[] = [
   {
     title: "Personel",
-    url: "/personel",
+    url: `personnel`,
+    icon: <BsPeople className="max-h-3" />,
   },
   {
     title: "Subjects",
-    url: "/Subjects",
+    url: "subject",
+    icon: <MdOutlineSubject className="max-h-3" />,
   },
   {
     title: "Playgrounds",
-    url: "/playgrounds",
+    url: "playground",
+    icon: <IoBasketballOutline className="max-h-3" />,
   },
   {
     title: "Non complience",
-    url: "/non-complience",
+    url: "non-complience",
+    icon: <MdOutlineSimCardAlert className="max-h-3" />,
+  },
+];
+
+const basicLinks: NavigationLinkType[] = [
+  {
+    title: "Dashboard",
+    url: "dashboard",
+    icon: <RxDashboard />,
+  },
+  {
+    title: "Orders",
+    url: "orders",
+    icon: <FaRegNewspaper />,
+  },
+  {
+    title: "Tasks",
+    url: "tasks",
+    icon: <MdOutlineTask />,
+  },
+  {
+    title: "My Tasks",
+    url: "my-tasks",
+    icon: <GrTask />,
+  },
+  {
+    title: "Documentation",
+    url: "documentation",
+    icon: <IoDocumentTextOutline />,
   },
 ];

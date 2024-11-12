@@ -16,5 +16,5 @@ export default function DarkModeButton() {
       }
     }
   }
-  return <Button onClick={switchThemeMode}>Toggle</Button>;
+  return <Button onClick={switchThemeMode}>toggle</Button>;
 }

@@ -18,17 +18,21 @@ import {
 } from "@/components/ui/sidebar";
 import { useState } from "react";
 import { Organisation } from "@/types";
+import { useRouter } from "@/i18n/routing";
 
 export function OrganizationSwitcher({
   organisations,
 }: {
   organisations: Organisation[];
 }) {
-  console.log(organisations[0].name, "💡");
   const { isMobile } = useSidebar();
+
+  //  TODO: what if the user doesn't have a organisation?
   const [activeOrganisation, setActiveOrganisation] = useState(
     organisations[0],
   );
+
+  const router = useRouter();
 
   return (
     <SidebarMenu>
@@ -59,7 +63,10 @@ export function OrganizationSwitcher({
             {organisations.map((organisation) => (
               <DropdownMenuItem
                 key={organisation.name}
-                onClick={() => setActiveOrganisation(organisation)}
+                onClick={() => {
+                  router.push(`/${organisation.id}`);
+                  setActiveOrganisation(organisation);
+                }}
                 className="gap-2 p-2"
               >
                 {organisation.name}
