@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
-import { doesOrganisationExist } from "@/lib/organisation-service";
-import { isUserInOrganisation } from "@/lib/user-service";
+import { doesOrganisationExist } from "@/lib/services/organisation-service";
+import { isUserInOrganisation } from "@/lib/services/user-service";
 import { redirect } from "next/navigation";
 
 export default async function OrganisationLayout({

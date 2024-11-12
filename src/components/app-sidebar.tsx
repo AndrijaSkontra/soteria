@@ -13,8 +13,10 @@ import {
 
 export function AppSidebar({
   organisations,
+  activeOrganisationId,
 }: {
   organisations: Organisation[];
+  activeOrganisationId;
 }) {
   return (
     <Sidebar collapsible="icon">
@@ -22,7 +24,7 @@ export function AppSidebar({
         <OrganizationSwitcher organisations={organisations} />
       </SidebarHeader>
       <SidebarContent>
-        <MainNavigation />
+        <MainNavigation organisationId={activeOrganisationId} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />

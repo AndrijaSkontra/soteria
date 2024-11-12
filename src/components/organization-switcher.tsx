@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
+import { createCookie } from "@/lib/serverActions/create-cookie";
 
 export function OrganizationSwitcher({
   organisations,
@@ -64,6 +65,7 @@ export function OrganizationSwitcher({
                 key={organisation.name}
                 onClick={() => {
                   router.push(`/${organisation.id}`);
+                  createCookie("active-organisation", organisation.id);
                   setActiveOrganisation(organisation);
                 }}
                 className="gap-2 p-2"

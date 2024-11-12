@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { isUserAdmin } from "@/lib/user-service";
+import { isUserAdmin } from "@/lib/services/user-service";
 import { redirect } from "next/navigation";
 
 export default async function AdminLayout({

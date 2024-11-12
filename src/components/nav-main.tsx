@@ -13,11 +13,8 @@ import { SidebarMenu } from "@/components/ui/sidebar";
 import AdministrationLinks from "@/components/administration-links";
 import AdministrationLink from "./administration-link";
 import NavigationLink from "./navigation-link";
-import { useParams } from "next/navigation";
 
-export function MainNavigation() {
-  const { organisationId } = useParams();
-
+export function MainNavigation({ organisationId }) {
   return (
     <SidebarMenu>
       {basicLinks.map((basicLink, index) => {
