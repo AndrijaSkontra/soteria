@@ -1,7 +1,16 @@
+import { SidebarProvider } from "@/components/ui/sidebar";
+import {
+  doesOrganisationExist,
+  getOrganisationById,
+  getUserOrganisations,
+} from "@/lib/services/organisation-service";
+import { AppSidebar } from "@/components/app-sidebar";
+import SidebarTriggerMobile from "@/components/sidebar-trigger-mobile";
+import { cookies } from "next/headers";
 import { auth } from "@/auth";
-import { doesOrganisationExist } from "@/lib/services/organisation-service";
 import { isUserInOrganisation } from "@/lib/services/user-service";
-import { redirect } from "next/navigation";
+import { redirect } from "@/i18n/routing";
+import { getLocale } from "next-intl/server";
 
 export default async function OrganisationLayout({
   children,
@@ -15,14 +24,33 @@ export default async function OrganisationLayout({
 
   const isOrganisationPageValid =
     (await doesOrganisationExist(organisationId)) &&
-    (await isUserInOrganisation(
-      organisationId,
-      session!.user.userId as string,
-    ));
+    (await isUserInOrganisation(organisationId, session!.user.userId));
 
   if (!isOrganisationPageValid) {
-    redirect("/not-found");
+    const locale = await getLocale();
+    redirect({ href: "select-organisation", locale: locale });
   }
 
-  return <div>{children}</div>;
+  const userOrganisations: Organisation[] = await getUserOrganisations(
+    session!.user.userId,
+  );
+
+  const activeOrganisationId: string =
+    (await cookies()).get("active-organisation")?.value ||
+    userOrganisations[0]?.id;
+
+  const activeOrganisation = await getOrganisationById(activeOrganisationId);
+
+  return (
+    <SidebarProvider>
+      <AppSidebar
+        organisations={userOrganisations}
+        activeOrganisation={activeOrganisation}
+      />
+      <main>
+        <SidebarTriggerMobile />
+        {children}
+      </main>
+    </SidebarProvider>
+  );
 }
