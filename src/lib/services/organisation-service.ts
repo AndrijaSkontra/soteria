@@ -33,3 +33,15 @@ export async function getUserOrganisations(
 
   return organisations;
 }
+
+export async function getOrganisationById(id: string): Promise<Organisation> {
+  const organisation: Organisation | null =
+    await prisma.organisation.findUnique({
+      where: { id: id },
+    });
+  if (organisation) {
+    return organisation;
+  }
+
+  throw new Error("No organisation with this id");
+}

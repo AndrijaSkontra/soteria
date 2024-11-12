@@ -45,7 +45,7 @@ export function MainNavigation({ organisationId }) {
 
 const administrationLinks: NavigationLinkType[] = [
   {
-    title: "Personel",
+    title: "Personnel",
     url: `personnel`,
     icon: <BsPeople className="max-h-3" />,
   },

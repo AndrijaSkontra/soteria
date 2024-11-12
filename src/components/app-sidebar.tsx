@@ -13,18 +13,21 @@ import {
 
 export function AppSidebar({
   organisations,
-  activeOrganisationId,
+  activeOrganisation,
 }: {
   organisations: Organisation[];
-  activeOrganisationId;
+  activeOrganisation: Organisation;
 }) {
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar>
       <SidebarHeader>
-        <OrganizationSwitcher organisations={organisations} />
+        <OrganizationSwitcher
+          organisations={organisations}
+          activeOrganisationFromCookie={activeOrganisation}
+        />
       </SidebarHeader>
       <SidebarContent>
-        <MainNavigation organisationId={activeOrganisationId} />
+        <MainNavigation organisationId={activeOrganisation.id} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />

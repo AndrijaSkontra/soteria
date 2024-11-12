@@ -22,14 +22,15 @@ import { createCookie } from "@/lib/serverActions/create-cookie";
 
 export function OrganizationSwitcher({
   organisations,
+  activeOrganisationFromCookie,
 }: {
   organisations: Organisation[];
+  activeOrganisationFromCookie: Organisation;
 }) {
   const { isMobile } = useSidebar();
 
-  //  TODO: what if the user doesn't have a organisation?
   const [activeOrganisation, setActiveOrganisation] = useState(
-    organisations[0],
+    activeOrganisationFromCookie || organisations[0],
   );
 
   const router = useRouter();
