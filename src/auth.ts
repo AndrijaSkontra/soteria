@@ -1,7 +1,6 @@
 import Credentials from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
-import { getUserFromDb } from "@/lib/data_access";
-import { User } from "@/types";
+import { getUserFromDb } from "@/lib/user-service";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [

@@ -1,4 +1,3 @@
-import { RouteParams } from "@/types";
 import { getTranslations } from "next-intl/server";
 
 export default async function OrganisationPage({

@@ -17,7 +17,6 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useState } from "react";
-import { Organisation } from "@/types";
 import { useRouter } from "@/i18n/routing";
 
 export function OrganizationSwitcher({

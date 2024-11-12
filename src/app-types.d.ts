@@ -17,28 +17,28 @@ declare module "next-auth" {
   }
 }
 
-export type Organisation = {
+type Organisation = {
   id: string;
   name: string;
   createdAt: Date;
   active: boolean;
 };
 
-export type RouteParams = Promise<{ locale: string; organisationId: string }>;
+type RouteParams = Promise<{ locale: string; organisationId: string }>;
 
-export type User = {
+type User = {
   email: string;
   createdAt: Date;
   active: boolean;
   userId: string;
 };
 
-export type Session = {
+type Session = {
   user: User;
   expires: Date;
 };
 
-export type NavigationLinkType = {
+type NavigationLinkType = {
   title: string;
   url: string;
   icon: any;

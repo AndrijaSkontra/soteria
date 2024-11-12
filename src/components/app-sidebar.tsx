@@ -10,7 +10,6 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import { Organisation } from "@/types";
 
 export function AppSidebar({
   organisations,

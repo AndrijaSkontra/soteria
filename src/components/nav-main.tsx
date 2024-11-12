@@ -12,7 +12,6 @@ import { BsPeople } from "react-icons/bs";
 import { SidebarMenu } from "@/components/ui/sidebar";
 import AdministrationLinks from "@/components/administration-links";
 import AdministrationLink from "./administration-link";
-import { NavigationLinkType } from "@/types";
 import NavigationLink from "./navigation-link";
 import { useParams } from "next/navigation";
 

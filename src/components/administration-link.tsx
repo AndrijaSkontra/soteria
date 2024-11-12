@@ -1,6 +1,5 @@
 import { Link } from "@/i18n/routing";
 import { SidebarMenuSubButton, SidebarMenuSubItem } from "./ui/sidebar";
-import { NavigationLinkType } from "@/types";
 
 export default function AdministrationLink({
   icon,

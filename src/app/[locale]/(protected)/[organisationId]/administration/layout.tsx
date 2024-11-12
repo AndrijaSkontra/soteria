@@ -1,6 +1,5 @@
 import { auth } from "@/auth";
-import { isUserAdmin } from "@/lib/data_access";
-import { RouteParams } from "@/types";
+import { isUserAdmin } from "@/lib/user-service";
 import { redirect } from "next/navigation";
 
 export default async function AdminLayout({
