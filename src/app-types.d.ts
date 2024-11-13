@@ -22,6 +22,7 @@ type Organisation = {
   name: string;
   createdAt: Date;
   active: boolean;
+  url: string;
 };
 
 type RouteParams = Promise<{ locale: string; organisationId: string }>;

@@ -19,19 +19,20 @@ import {
 import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import { createCookie } from "@/lib/serverActions/create-cookie";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Organisation } from "@/app-types";
 
 export function OrganizationSwitcher({
   organisations,
-  activeOrganisationFromCookie,
+  activeOrganisation,
 }: {
   organisations: Organisation[];
-  activeOrganisationFromCookie: Organisation;
+  activeOrganisation: Organisation;
 }) {
   const { isMobile } = useSidebar();
 
-  const [activeOrganisation, setActiveOrganisation] = useState(
-    activeOrganisationFromCookie || organisations[0],
-  );
+  const [activeOrganisationState, setActiveOrganisationState] =
+    useState(activeOrganisation);
 
   const router = useRouter();
 
@@ -44,9 +45,16 @@ export function OrganizationSwitcher({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">
-                  {activeOrganisation.name}
+              <div className="flex items-center flex-1 text-left text-sm leading-tight">
+                <Avatar>
+                  <AvatarImage
+                    src={activeOrganisationState.url}
+                    className="rounded-full object-scale-down"
+                  />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <span className="truncate font-semibold ml-2">
+                  {activeOrganisationState.name}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto" />
@@ -65,9 +73,9 @@ export function OrganizationSwitcher({
               <DropdownMenuItem
                 key={organisation.name}
                 onClick={() => {
-                  router.push(`/${organisation.id}`);
+                  router.push(`/${organisation.id}/dashboard`);
                   createCookie("active-organisation", organisation.id);
-                  setActiveOrganisation(organisation);
+                  setActiveOrganisationState(organisation);
                 }}
                 className="gap-2 p-2"
               >

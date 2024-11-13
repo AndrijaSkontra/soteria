@@ -23,7 +23,7 @@ export function AppSidebar({
       <SidebarHeader>
         <OrganizationSwitcher
           organisations={organisations}
-          activeOrganisationFromCookie={activeOrganisation}
+          activeOrganisation={activeOrganisation}
         />
       </SidebarHeader>
       <SidebarContent>

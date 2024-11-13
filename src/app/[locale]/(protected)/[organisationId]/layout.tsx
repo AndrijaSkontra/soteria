@@ -31,9 +31,7 @@ export default async function OrganisationLayout({
     redirect({ href: "select-organisation", locale: locale });
   }
 
-  const userOrganisations: Organisation[] = await getUserOrganisations(
-    session!.user.userId,
-  );
+  const userOrganisations: Organisation[] = await getUserOrganisations();
 
   const activeOrganisationId: string =
     (await cookies()).get("active-organisation")?.value ||

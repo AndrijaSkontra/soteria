@@ -12,8 +12,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActionState } from "react";
-import { useRouter } from "next/navigation";
 import { loginAction } from "@/lib/serverActions/login-action";
+import { useRouter } from "@/i18n/routing";
 
 const initialState = {
   message: "",
@@ -25,7 +25,7 @@ export function LoginForm() {
 
   if (state.message === "Login successful! Please wait a few seconds.") {
     setTimeout(() => {
-      router.push("/profile");
+      router.push("/select-organisation");
     }, 500);
   }
 

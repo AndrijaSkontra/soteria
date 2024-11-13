@@ -1,11 +1,7 @@
 "use client";
 
 import { signOut } from "next-auth/react";
-import {
-  BadgeCheck,
-  ChevronsUpDown,
-  LogOut,
-} from "lucide-react";
+import { BadgeCheck, ChevronsUpDown, LogOut } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -25,10 +21,12 @@ import {
 import { useRouter } from "@/i18n/routing";
 import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
 import { switchThemeMode } from "@/lib/switch-theme";
+import { useParams } from "next/navigation";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
   const router = useRouter();
+  const params = useParams<{ organisationId: string }>();
 
   return (
     <SidebarMenu>
@@ -39,7 +37,7 @@ export function NavUser() {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <a className="font-semibold">Ime Prezime</a>
+              <a className="font-semibold">Settings</a>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
@@ -52,7 +50,7 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <a className="font-semibold">Ime Prezime</a>
+                  <a className="font-semibold">Bob Smith</a>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -60,7 +58,7 @@ export function NavUser() {
             <DropdownMenuGroup>
               <DropdownMenuItem
                 onClick={() => {
-                  router.push("/profile");
+                  router.push(`/profile?callbackUrl=${params.organisationId}`);
                 }}
               >
                 <BadgeCheck />
