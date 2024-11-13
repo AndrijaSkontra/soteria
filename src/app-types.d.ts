@@ -1,3 +1,4 @@
+import { Role } from "@prisma/client";
 import { type DefaultSession } from "next-auth";
 
 declare module "next-auth" {
@@ -24,6 +25,17 @@ type Organisation = {
   active: boolean;
   url: string;
 };
+
+type OrganisationWithRoles = {
+  organisation: Organisation;
+  role: Role[];
+};
+//
+// enum Role {
+//   ADMIN,
+//   MANAGER,
+//   INSPECTOR,
+// }
 
 type RouteParams = Promise<{ locale: string; organisationId: string }>;
 

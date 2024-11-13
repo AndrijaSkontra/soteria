@@ -1,3 +1,5 @@
+import { OrganisationWithRoles } from "@/app-types";
+import { auth } from "@/auth";
 import prisma from "@/index";
 
 export async function doesOrganisationExist(
@@ -13,25 +15,24 @@ export async function doesOrganisationExist(
   }
 }
 
-export async function getUserOrganisations(
-  userId: string,
-): Promise<Organisation[]> {
-  const organisationUserRecords = await prisma.organisationUser.findMany({
-    where: { userId },
-    select: { organisationId: true },
-  });
+export async function getUserOrganisations(): Promise<OrganisationWithRoles[]> {
+  const session = await auth();
+  const userId = session!.user.userId;
 
-  const organisationIds = organisationUserRecords.map(
-    (record) => record.organisationId,
-  );
+  console.log(userId);
 
-  const organisations = await prisma.organisation.findMany({
-    where: {
-      id: { in: organisationIds },
-    },
-  });
+  const userOrganisationsWithRoles: OrganisationWithRoles[] =
+    await prisma.organisationUser.findMany({
+      where: {
+        userId: userId,
+      },
+      select: {
+        organisation: true,
+        role: true,
+      },
+    });
 
-  return organisations;
+  return userOrganisationsWithRoles;
 }
 
 export async function getOrganisationById(id: string): Promise<Organisation> {

@@ -15,15 +15,16 @@ model User {
   lastName      String
   createdAt     DateTime            @default(now())
   active        Boolean             @default(true)
-  organisations OrganisationUser[]  
+  organisations OrganisationUser[] 
 }
 
 model Organisation {
-  id        String              @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  createdAt DateTime            @default(now())
-  active    Boolean             @default(true)
-  users     OrganisationUser[]  
+  id     String              @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  url    String
+  createdAt DateTime         @default(now())
+  active  Boolean            @default(true)
+  users   OrganisationUser[]
 }
 
 model OrganisationUser {
@@ -35,11 +36,8 @@ model OrganisationUser {
   role           Role[]
   joinedAt       DateTime       @default(now())
   active         Boolean        @default(true)
-
-  @@index([userId])
-  @@index([organisationId])
-  @@unique([userId, organisationId])
 }
+
 
 enum Role {
   INSPECTOR

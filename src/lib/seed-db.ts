@@ -62,6 +62,7 @@ async function main() {
         data: {
           name: org.name,
           active: true,
+          url: org.logoUrl,
         },
       }),
     ),
