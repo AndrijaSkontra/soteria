@@ -10,19 +10,20 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar";
+import { Organisation, OrganisationWithRoles } from "@/app-types";
 
 export function AppSidebar({
-  organisations,
+  organisationsWithRoles,
   activeOrganisation,
 }: {
-  organisations: Organisation[];
+  organisationsWithRoles: OrganisationWithRoles[];
   activeOrganisation: Organisation;
 }) {
   return (
     <Sidebar>
       <SidebarHeader>
         <OrganizationSwitcher
-          organisations={organisations}
+          organisationsWithRoles={organisationsWithRoles}
           activeOrganisation={activeOrganisation}
         />
       </SidebarHeader>

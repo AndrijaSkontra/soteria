@@ -20,7 +20,6 @@ export default function SelectOrganisation({
     setSelectedOrganisationId(orgWithRoles.organisation.id);
   }
 
-  console.log(selectedOrganisationId, "🤣");
   return (
     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 max-w-xl w-full">
       <h1 className="text-l font-semibold">Select Your Organization</h1>

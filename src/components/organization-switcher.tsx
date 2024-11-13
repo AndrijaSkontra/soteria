@@ -18,15 +18,14 @@ import {
 } from "@/components/ui/sidebar";
 import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
-import { createCookie } from "@/lib/serverActions/create-cookie";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Organisation } from "@/app-types";
+import { Organisation, OrganisationWithRoles } from "@/app-types";
 
 export function OrganizationSwitcher({
-  organisations,
+  organisationsWithRoles,
   activeOrganisation,
 }: {
-  organisations: Organisation[];
+  organisationsWithRoles: OrganisationWithRoles[];
   activeOrganisation: Organisation;
 }) {
   const { isMobile } = useSidebar();
@@ -69,17 +68,16 @@ export function OrganizationSwitcher({
             <DropdownMenuLabel className="text-xs text-muted-foreground">
               Organizations
             </DropdownMenuLabel>
-            {organisations.map((organisation) => (
+            {organisationsWithRoles.map((orgWithRoles) => (
               <DropdownMenuItem
-                key={organisation.name}
+                key={orgWithRoles.organisation.name}
                 onClick={() => {
-                  router.push(`/${organisation.id}/dashboard`);
-                  createCookie("active-organisation", organisation.id);
-                  setActiveOrganisationState(organisation);
+                  router.push(`/${orgWithRoles.organisation.id}/dashboard`);
+                  setActiveOrganisationState(orgWithRoles.organisation);
                 }}
                 className="gap-2 p-2"
               >
-                {organisation.name}
+                {orgWithRoles.organisation.name}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
