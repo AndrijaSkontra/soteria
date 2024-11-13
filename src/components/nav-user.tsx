@@ -19,14 +19,28 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useRouter } from "@/i18n/routing";
-import { IoMoonOutline, IoSunnyOutline } from "react-icons/io5";
-import { switchThemeMode } from "@/lib/switch-theme";
+import {
+  IoMoonOutline,
+  IoSettingsOutline,
+  IoSunnyOutline,
+} from "react-icons/io5";
 import { useParams } from "next/navigation";
+import { createCookie } from "@/lib/serverActions/create-cookie";
+import { getCookie } from "@/lib/get-cookie";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
   const router = useRouter();
   const params = useParams<{ organisationId: string }>();
+
+  function switchTheme() {
+    const theme = getCookie("theme");
+    if (theme === "light") {
+      createCookie("theme", "dark");
+    } else {
+      createCookie("theme", "light");
+    }
+  }
 
   return (
     <SidebarMenu>
@@ -37,6 +51,7 @@ export function NavUser() {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
+              <IoSettingsOutline />
               <a className="font-semibold">Settings</a>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -64,7 +79,7 @@ export function NavUser() {
                 <BadgeCheck />
                 Account
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => switchThemeMode()}>
+              <DropdownMenuItem onClick={switchTheme}>
                 <IoMoonOutline />
                 <IoSunnyOutline />
                 Theme

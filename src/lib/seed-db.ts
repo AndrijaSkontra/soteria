@@ -99,6 +99,13 @@ async function main() {
       firstName: "William",
       lastName: "Brown",
     },
+    {
+      email: "mile.radic@gmail.com",
+      password: "password123",
+      active: true,
+      firstName: "Mile",
+      lastName: "Radic",
+    },
   ];
 
   const userData = await Promise.all(

@@ -8,7 +8,7 @@ export default async function OrganisationSelectPage() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-gray-100 dark:bg-[#0a0a0a]">
         <SelectOrganisation
           organisationsWithRoles={userOrganisationsWithRoles}
         />

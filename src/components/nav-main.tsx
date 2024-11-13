@@ -1,5 +1,6 @@
 "use client";
 
+import { CgOrganisation } from "react-icons/cg";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { MdOutlineTask } from "react-icons/md";
 import { GrTask } from "react-icons/gr";
@@ -86,6 +87,11 @@ const basicLinks: NavigationLinkType[] = [
     title: "My Tasks",
     url: "my-tasks",
     icon: <GrTask />,
+  },
+  {
+    title: "Organisation",
+    url: "#",
+    icon: <CgOrganisation />,
   },
   {
     title: "Documentation",
