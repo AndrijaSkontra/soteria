@@ -6,7 +6,6 @@ import {
 } from "@/lib/services/organisation-service";
 import { AppSidebar } from "@/components/app-sidebar";
 import SidebarTriggerMobile from "@/components/sidebar-trigger-mobile";
-import { auth } from "@/auth";
 import { isUserInOrganisation } from "@/lib/services/user-service";
 import { redirect } from "@/i18n/routing";
 import { getLocale } from "next-intl/server";
@@ -21,24 +20,13 @@ export default async function OrganisationLayout({
 }) {
   const { organisationId } = await params;
 
-  const session = await auth();
-
-  const isOrganisationPageValid =
-    (await doesOrganisationExist(organisationId)) &&
-    (await isUserInOrganisation(organisationId, session!.user.userId));
-
-  if (!isOrganisationPageValid) {
-    const locale = await getLocale();
-    redirect({ href: "select-organisation", locale: locale });
-  }
+  await checkIsOrganisationValid(organisationId);
 
   const userOrganisationsWithRoles: OrganisationWithRoles[] =
     await getUserOrganisationsWithRoles();
 
-  const activeOrganisationId: string = organisationId;
-
   const activeOrganisation: Organisation =
-    await getOrganisationById(activeOrganisationId);
+    await getOrganisationById(organisationId);
 
   return (
     <SidebarProvider>
@@ -53,3 +41,14 @@ export default async function OrganisationLayout({
     </SidebarProvider>
   );
 }
+
+async function checkIsOrganisationValid(organisationId: string) {
+  const isOrganisationPageValid = (await doesOrganisationExist(organisationId)) &&
+    (await isUserInOrganisation(organisationId));
+
+  if (!isOrganisationPageValid) {
+    const locale = await getLocale();
+    redirect({ href: "select-organisation", locale: locale });
+  }
+}
+

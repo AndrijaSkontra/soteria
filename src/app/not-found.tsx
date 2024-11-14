@@ -11,7 +11,7 @@ export default function Component() {
             404
           </h1>
           <p className="text-gray-500">
-            Looks like youve ventured into the unknown digital realm.
+            This page does not exist. 
           </p>
         </div>
         <Link

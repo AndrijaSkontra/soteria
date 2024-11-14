@@ -1,12 +1,12 @@
 import prisma from "@/index";
+import { getUserId } from "@/lib/get-user-id";
 
 export async function isUserInOrganisation(
   organisationId: string,
-  userId: string,
 ): Promise<boolean> {
   const org = await prisma.organisationUser.findFirst({
     where: {
-      userId: userId,
+      userId: await getUserId(),
       organisationId: organisationId,
     },
   });
@@ -42,13 +42,10 @@ export async function getUserFromDb(
   return newUser;
 }
 
-export async function isUserAdmin(
-  organisationId: string,
-  userId: string,
-): Promise<boolean> {
+export async function isUserAdmin(organisationId: string): Promise<boolean> {
   const userRoles = await prisma.organisationUser.findFirst({
     where: {
-      userId: userId,
+      userId: await getUserId(),
       organisationId: organisationId,
       role: {
         has: "ADMIN",
