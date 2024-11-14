@@ -79,7 +79,13 @@ export default function SelectOrganisation({
         })}
       </ScrollArea>
       <div className="w-full flex justify-center">
-        <Link href={`/${selectedOrganisationId}/dashboard`}>
+        <Link
+          href={`/${selectedOrganisationId}/dashboard`}
+          className={clsx(
+            "",
+            selectedOrganisationId === "" && "pointer-events-none",
+          )}
+        >
           <Button disabled={selectedOrganisationId === ""}>
             Go To Organisation
           </Button>
