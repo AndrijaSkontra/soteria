@@ -36,6 +36,6 @@ export async function loginAction(
   }
 
   return {
-    message: "Login successful! Please wait a few seconds.",
+    message: "login success",
   };
 }

@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -14,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { useActionState } from "react";
 import { loginAction } from "@/lib/serverActions/login-action";
 import { useRouter } from "@/i18n/routing";
+import { SubmitButton } from "../submit-button-with-spinner";
 
 const initialState = {
   message: "",
@@ -23,10 +23,11 @@ export function LoginForm() {
   const [state, formAction] = useActionState(loginAction, initialState);
   const router = useRouter();
 
-  if (state.message === "Login successful! Please wait a few seconds.") {
+  if (state.message === "login success") {
+    //  INFO: error in console if we remove this timeout
     setTimeout(() => {
       router.push("/select-organisation");
-    }, 500);
+    }, 1);
   }
 
   return (
@@ -63,16 +64,13 @@ export function LoginForm() {
               <Input id="password" name="password" type="password" required />
             </div>
             <div className="flex w-full justify-center items-center">
-              {state.message ===
-              "Login successful! Please wait a few seconds." ? (
-                <p className="text-green-500 text-sm">{state.message}</p>
-              ) : (
+              {state.message !== "login success" && (
                 <p className="text-red-500 text-sm">{state.message}</p>
               )}
             </div>
-            <Button type="submit" className="w-full">
-              Login
-            </Button>
+            <div className="flex justify-center items-center">
+              <SubmitButton innerText="Login" />
+            </div>
           </div>
         </form>
         <div className="mt-4 text-center text-sm">
