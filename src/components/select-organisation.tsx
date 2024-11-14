@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { HiOutlineEmojiSad } from "react-icons/hi";
 
 export default function SelectOrganisation({
   organisationsWithRoles,
@@ -23,8 +24,12 @@ export default function SelectOrganisation({
 
   if (organisationsWithRoles.length === 0) {
     return (
-      <div className="bg-white dark:bg-stone-950 p-6 rounded-lg shadow-md border border-gray-200 max-w-xl w-full">
-        <p className="text-center">No organisation ☹️</p>
+      <div
+        className="bg-white dark:bg-stone-950 p-6 space-x-2
+        rounded-lg shadow-md border border-gray-200 max-w-xl w-full flex justify-center items-center"
+      >
+        <p>No organisation</p>
+        <HiOutlineEmojiSad className="size-8 stroke-yellow-500" />
       </div>
     );
   }

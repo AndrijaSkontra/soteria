@@ -29,12 +29,13 @@ import { createCookie } from "@/lib/serverActions/create-cookie";
 import { getCookie } from "@/lib/get-cookie";
 
 export function NavUser() {
+  const theme = getCookie("theme");
+  // const [themeState, setThemeState] = useState(theme)
   const { isMobile } = useSidebar();
   const router = useRouter();
   const params = useParams<{ organisationId: string }>();
 
   function switchTheme() {
-    const theme = getCookie("theme");
     if (theme === "light") {
       createCookie("theme", "dark");
     } else {
@@ -80,9 +81,8 @@ export function NavUser() {
                 Account
               </DropdownMenuItem>
               <DropdownMenuItem onClick={switchTheme}>
-                <IoMoonOutline />
-                <IoSunnyOutline />
-                Theme
+                {theme === "light" ? <IoSunnyOutline /> : <IoMoonOutline />}
+                Change Theme
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

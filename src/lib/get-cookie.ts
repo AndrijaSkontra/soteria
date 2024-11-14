@@ -1,9 +1,9 @@
 "use client";
-export function getCookie(name) {
-  let cookies = document.cookie.split("; ");
-  for (let cookie of cookies) {
-    let [key, value] = cookie.split("=");
+export function getCookie(name: string): string | null {
+  const cookies = document.cookie.split("; ");
+  for (const cookie of cookies) {
+    const [key, value] = cookie.split("=");
     if (key === name) return value;
   }
-  return null; // return null if not found
+  return null;
 }
