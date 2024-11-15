@@ -1,5 +1,6 @@
 import prisma from "@/index";
 import { getUserId } from "@/lib/get-user-id";
+import { UserInformationType } from "@/types/app-types";
 
 export async function isUserInOrganisation(
   organisationId: string,
@@ -40,6 +41,26 @@ export async function getUserFromDb(
 
   const newUser: User = { ...user, userId: user.id };
   return newUser;
+}
+
+export async function getUserInformation(): Promise<UserInformationType> {
+  const user: UserInformationType | null = await prisma.user.findFirst({
+    where: {
+      id: await getUserId(),
+    },
+    select: {
+      email: true,
+      firstName: true,
+      lastName: true,
+      contactNumber: true,
+    },
+  });
+
+  if (!user) {
+    throw Error("No user");
+  }
+
+  return user;
 }
 
 export async function isUserAdmin(organisationId: string): Promise<boolean> {

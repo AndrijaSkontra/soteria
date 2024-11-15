@@ -77,6 +77,7 @@ async function main() {
       active: true,
       firstName: "John",
       lastName: "Doe",
+      contactNumber: "385 12 345 6789",
     },
     {
       email: "jane.smith@example.com",
@@ -84,6 +85,7 @@ async function main() {
       active: true,
       firstName: "Jane",
       lastName: "Smith",
+      contactNumber: "385 12 345 6789",
     },
     {
       email: "emma.jones@example.com",
@@ -91,6 +93,7 @@ async function main() {
       active: true,
       firstName: "Emma",
       lastName: "Jones",
+      contactNumber: "385 12 345 6789",
     },
     {
       email: "william.brown@example.com",
@@ -98,6 +101,7 @@ async function main() {
       active: true,
       firstName: "William",
       lastName: "Brown",
+      contactNumber: "385 12 345 6789",
     },
     {
       email: "mile.radic@gmail.com",
@@ -105,6 +109,7 @@ async function main() {
       active: true,
       firstName: "Mile",
       lastName: "Radic",
+      contactNumber: "385 12 345 6789",
     },
   ];
 
@@ -117,6 +122,7 @@ async function main() {
           active: user.active,
           firstName: user.firstName,
           lastName: user.lastName,
+          contactNumber: user.contactNumber,
         },
       }),
     ),
@@ -186,7 +192,7 @@ async function main() {
     ),
   );
 
-  console.log("\n\n✔ seeding success✔\n");
+  console.log("✔ seeding success✔\n");
 }
 
 main()

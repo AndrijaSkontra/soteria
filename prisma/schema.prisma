@@ -16,6 +16,7 @@ model User {
   createdAt     DateTime            @default(now())
   active        Boolean             @default(true)
   organisations OrganisationUser[] 
+  contactNumber String
 }
 
 model Organisation {

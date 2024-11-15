@@ -24,16 +24,15 @@ import {
   IoSettingsOutline,
   IoSunnyOutline,
 } from "react-icons/io5";
-import { useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { createCookie } from "@/lib/serverActions/create-cookie";
 import { getCookie } from "@/lib/get-cookie";
 
-export function NavUser() {
+export function NavSettings() {
   const theme = getCookie("theme");
-  // const [themeState, setThemeState] = useState(theme)
   const { isMobile } = useSidebar();
   const router = useRouter();
-  const params = useParams<{ organisationId: string }>();
+  const pathname = usePathname();
 
   function switchTheme() {
     if (theme === "light") {
@@ -74,7 +73,8 @@ export function NavUser() {
             <DropdownMenuGroup>
               <DropdownMenuItem
                 onClick={() => {
-                  router.push(`/profile?callbackUrl=${params.organisationId}`);
+                  console.log(pathname);
+                  router.push(`/profile?callbackUrl=${pathname}`);
                 }}
               >
                 <BadgeCheck />

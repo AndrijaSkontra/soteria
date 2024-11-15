@@ -32,10 +32,12 @@ export async function getUserOrganisationsWithRoles(): Promise<
   return userOrganisationsWithRoles;
 }
 
-export async function getOrganisationById(id: string): Promise<Organisation> {
+export async function getOrganisationById(
+  orgId: string,
+): Promise<Organisation> {
   const organisation: Organisation | null =
     await prisma.organisation.findUnique({
-      where: { id: id },
+      where: { id: orgId },
     });
 
   if (organisation) {

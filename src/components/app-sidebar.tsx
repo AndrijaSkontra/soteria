@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { MainNavigation } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
 import { OrganizationSwitcher } from "@/components/organization-switcher";
 import {
   Sidebar,
@@ -10,14 +9,21 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import { Organisation, OrganisationWithRoles } from "@/app-types";
+import { NavSettings } from "@/components/nav-settings";
+import {
+  NavigationLinkType,
+  Organisation,
+  OrganisationWithRoles,
+} from "@/types/app-types";
 
 export function AppSidebar({
   organisationsWithRoles,
   activeOrganisation,
+  navigationLinks,
 }: {
   organisationsWithRoles: OrganisationWithRoles[];
   activeOrganisation: Organisation;
+  navigationLinks: NavigationLinkType[];
 }) {
   return (
     <Sidebar>
@@ -28,10 +34,13 @@ export function AppSidebar({
         />
       </SidebarHeader>
       <SidebarContent>
-        <MainNavigation organisationId={activeOrganisation.id} />
+        <MainNavigation
+          links={navigationLinks}
+          organisationId={activeOrganisation.id}
+        />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser />
+        <NavSettings />
       </SidebarFooter>
     </Sidebar>
   );
