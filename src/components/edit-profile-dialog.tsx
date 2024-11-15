@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "./submit-button-with-spinner";
 import { useActionState } from "react";
-import { updateUserAction } from "@/lib/serverActions/update-user-action";
+import { updateUserAction } from "@/lib/serverActions/user-actions";
 import { UserInformationType } from "@/types/app-types";
 
 const initialState = {

@@ -25,7 +25,7 @@ import {
   IoSunnyOutline,
 } from "react-icons/io5";
 import { usePathname } from "next/navigation";
-import { createCookie } from "@/lib/serverActions/create-cookie";
+import { createCookie } from "@/lib/serverActions/cookie-actions";
 import { getCookie } from "@/lib/get-cookie";
 
 export function NavSettings() {
