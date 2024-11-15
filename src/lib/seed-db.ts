@@ -17,7 +17,7 @@ async function main() {
     {
       name: "Microsoft",
       logoUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/640px-Microsoft_logo_%282012%29.svg.png",
     },
     {
       name: "Amazon",
@@ -27,12 +27,12 @@ async function main() {
     {
       name: "Facebook",
       logoUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo.png",
+        "https://logos-world.net/wp-content/uploads/2020/04/Facebook-Logo-2015-present.jpg",
     },
     {
       name: "Tesla",
       logoUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Tesla%2C_Inc._-_Logo_%28black_script_version%29.svg/640px-Tesla%2C_Inc._-_Logo_%28black_script_version%29.svg.png",
     },
     {
       name: "IBM",
@@ -42,12 +42,12 @@ async function main() {
     {
       name: "Intel",
       logoUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg",
+        "https://logowik.com/content/uploads/images/intel-2020-new3327.jpg",
     },
     {
       name: "Cisco",
       logoUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/7/70/Cisco_logo_blue_2016.svg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/640px-Cisco_logo_blue_2016.svg.png",
     },
     {
       name: "Oracle",

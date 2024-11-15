@@ -50,7 +50,7 @@ export function OrganizationSwitcher({
                     src={activeOrganisationState.url}
                     className="rounded-full object-scale-down"
                   />
-                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarFallback>ORG</AvatarFallback>
                 </Avatar>
                 <span className="truncate font-semibold ml-2">
                   {activeOrganisationState.name}

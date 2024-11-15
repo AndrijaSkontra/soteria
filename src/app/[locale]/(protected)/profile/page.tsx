@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { RouteParams, UserInformationType } from "@/types/app-types";
 import { getUserInformation } from "@/lib/services/user-service";
 import UserInformation from "@/components/user-information";

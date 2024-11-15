@@ -3,6 +3,8 @@
 import { z } from "zod";
 import { updateUserDataInDatabase } from "../services/user-service";
 import { UserInformationType } from "@/types/app-types";
+import { revalidatePath } from "next/cache";
+import { getLocale } from "next-intl/server";
 
 export async function updateUserAction(
   prevState: {
@@ -35,6 +37,7 @@ export async function updateUserAction(
 
   try {
     await updateUserDataInDatabase(validatedFields.data as UserInformationType);
+    revalidatePath(`/${getLocale()}/profile`);
   } catch {
     return {
       message:
