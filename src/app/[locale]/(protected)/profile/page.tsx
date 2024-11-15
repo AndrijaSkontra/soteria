@@ -29,7 +29,7 @@ export default async function ProfilePage({
       <UserInformation userInfo={userInfo} />
 
       <div className="flex flex-col space-y-4">
-        <EditProfileDialog />
+        <EditProfileDialog userInfo={userInfo} />
         <ChangePasswordDialog />
       </div>
     </div>

@@ -5,7 +5,6 @@ export default function UserInformation({
 }: {
   userInfo: UserInformationType;
 }) {
-  console.log(userInfo);
   return (
     <div className="space-y-2 mb-6">
       <p className="text-lg font-semibold">User Information</p>
