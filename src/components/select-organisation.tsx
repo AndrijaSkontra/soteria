@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { HiOutlineEmojiSad } from "react-icons/hi";
+import RoleBadge from "./role-badge";
 
 export default function SelectOrganisation({
   organisationsWithRoles,
@@ -63,14 +64,16 @@ export default function SelectOrganisation({
                       />
                       <AvatarFallback>ORG</AvatarFallback>
                     </Avatar>
-                    <p>{orgWithRoles.organisation.name}</p>
+                    <p className="font-extrabold text-xl">
+                      {orgWithRoles.organisation.name}
+                    </p>
                   </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-row space-x-2 items-center mt-2">
                   {orgWithRoles.role.map((role, index) => {
-                    return <Badge key={index}>{role}</Badge>;
+                    return <RoleBadge key={index} role={role} />;
                   })}
                 </div>
               </CardContent>

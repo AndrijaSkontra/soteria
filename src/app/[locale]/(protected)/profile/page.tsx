@@ -1,3 +1,4 @@
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { RouteParams, UserInformationType } from "@/types/app-types";
 import { getUserInformation } from "@/lib/services/user-service";
 import UserInformation from "@/components/user-information";
@@ -9,28 +10,36 @@ export default async function ProfilePage({
   searchParams,
   params,
 }: {
-  searchParams: Promise<{ callbackUrl: string }>;
+  searchParams: Promise<{ callbackUrl: string; editModal: string }>;
   params: RouteParams;
 }) {
-  const callbackUrl = (await searchParams).callbackUrl;
+  const searchParamsURL = await searchParams;
   const userInfo: UserInformationType = await getUserInformation();
 
   return (
-    <div className="p-4 max-w-96">
-      <div className="flex items-center space-x-3 mb-6">
-        <GoBackToOrganisationLink
-          callbackUrl={callbackUrl}
-          locale={(await params).locale}
-        />
-        <h1 className="font-semibold text-2xl">Profil</h1>
-      </div>
+    <div className="flex items-center justify-center min-h-screen">
+      <Card className="max-w-md w-full p-4">
+        <CardHeader>
+          <div className="flex items-center space-x-3 mb-6">
+            <GoBackToOrganisationLink
+              callbackUrl={searchParamsURL.callbackUrl}
+              locale={(await params).locale}
+            />
+            <h1 className="font-semibold text-2xl">Profile</h1>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <UserInformation userInfo={userInfo} />
 
-      <UserInformation userInfo={userInfo} />
-
-      <div className="flex flex-col space-y-4">
-        <EditProfileDialog userInfo={userInfo} />
-        <ChangePasswordDialog />
-      </div>
+          <div className="flex flex-col space-y-4 mt-4">
+            <EditProfileDialog
+              userInfo={userInfo}
+              searchParams={searchParamsURL}
+            />
+            <ChangePasswordDialog />
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

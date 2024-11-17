@@ -109,12 +109,12 @@ export function EditProfileDialog({
                     <p className="text-green-500 text-sm">{state.message}</p>
                   )}
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex">
                   <SubmitButton innerText="Update Profile" />
+                  <DialogClose asChild>
+                    <Button variant={"outline"}>Close</Button>
+                  </DialogClose>
                 </div>
-                <DialogClose asChild>
-                  <Button variant={"outline"}>Close</Button>
-                </DialogClose>
               </div>
             </form>
           </div>

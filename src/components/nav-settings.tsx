@@ -78,7 +78,7 @@ export function NavSettings() {
                 }}
               >
                 <BadgeCheck />
-                Account
+                Profile
               </DropdownMenuItem>
               <DropdownMenuItem onClick={switchTheme}>
                 {theme === "light" ? <IoSunnyOutline /> : <IoMoonOutline />}
