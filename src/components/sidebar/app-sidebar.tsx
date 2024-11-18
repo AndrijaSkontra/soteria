@@ -1,15 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { MainNavigation } from "@/components/nav-main";
-import { OrganizationSwitcher } from "@/components/organization-switcher";
+import { MainNavigation } from "@/components/sidebar/nav-main";
+import { OrganizationSwitcher } from "@/components/sidebar/organization-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import { NavSettings } from "@/components/nav-settings";
+import { NavSettings } from "@/components/sidebar/nav-settings";
 import {
   NavigationLinkType,
   Organisation,

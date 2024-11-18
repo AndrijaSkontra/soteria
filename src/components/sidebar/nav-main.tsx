@@ -1,9 +1,9 @@
 "use client";
 
 import { SidebarMenu } from "@/components/ui/sidebar";
-import AdministrationLinks from "@/components/administration-links";
+import AdministrationLinks from "@/components/sidebar/administration-links";
 import AdministrationLink from "./administration-link";
-import NavigationLink from "./navigation-link";
+import NavigationLink from "@/components/sidebar/navigation-link";
 import { NavigationLinkType } from "@/types/app-types";
 
 export function MainNavigation({

@@ -1,6 +1,6 @@
-import { OrganisationWithRoles } from "@/app-types";
-import SelectOrganisation from "@/components/select-organisation";
+import SelectOrganisation from "@/components/selectOrganisation/select-organisation";
 import { getUserOrganisationsWithRoles } from "@/lib/services/organisation-service";
+import { OrganisationWithRoles } from "@/types/app-types";
 
 export default async function OrganisationSelectPage() {
   const userOrganisationsWithRoles: OrganisationWithRoles[] =

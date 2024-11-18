@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SubmitButton } from "./submit-button-with-spinner";
+import { SubmitButton } from "@/components/ui/submit-button-with-spinner";
 import { useActionState } from "react";
 import { updateUserAction } from "@/lib/serverActions/user-actions";
 import { UserInformationType } from "@/types/app-types";

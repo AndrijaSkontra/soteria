@@ -10,9 +10,7 @@ export default function Component() {
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
             404
           </h1>
-          <p className="text-gray-500">
-            This page does not exist. 
-          </p>
+          <p className="text-gray-500">This page does not exist.</p>
         </div>
         <Link
           href="/profile"

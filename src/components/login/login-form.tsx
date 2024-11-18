@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { useActionState } from "react";
 import { loginAction } from "@/lib/serverActions/auth-actions";
 import { useRouter } from "@/i18n/routing";
-import { SubmitButton } from "../submit-button-with-spinner";
+import { SubmitButton } from "../ui/submit-button-with-spinner";
 
 const initialState = {
   message: "",

@@ -1,10 +1,10 @@
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { RouteParams, UserInformationType } from "@/types/app-types";
 import { getUserInformation } from "@/lib/services/user-service";
-import UserInformation from "@/components/user-information";
-import GoBackToOrganisationLink from "@/components/go-back-to-organisation-link";
-import { EditProfileDialog } from "@/components/edit-profile-dialog";
-import { ChangePasswordDialog } from "@/components/change-profile-dialog";
+import UserInformation from "@/components/profile/user-information";
+import GoBackToOrganisationLink from "@/components/profile/go-back-to-organisation-link";
+import { EditProfileDialog } from "@/components/profile/edit-profile-dialog";
+import { ChangePasswordDialog } from "@/components/profile/change-profile-dialog";
 
 export default async function ProfilePage({
   searchParams,

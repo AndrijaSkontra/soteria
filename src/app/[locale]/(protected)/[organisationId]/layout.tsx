@@ -4,8 +4,8 @@ import {
   getOrganisationById,
   getUserOrganisationsWithRoles,
 } from "@/lib/services/organisation-service";
-import { AppSidebar } from "@/components/app-sidebar";
-import SidebarTriggerMobile from "@/components/sidebar-trigger-mobile";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
+import SidebarTriggerMobile from "@/components/sidebar/sidebar-trigger-mobile";
 import { isUserInOrganisation } from "@/lib/services/user-service";
 import { redirect } from "@/i18n/routing";
 import { getLocale } from "next-intl/server";

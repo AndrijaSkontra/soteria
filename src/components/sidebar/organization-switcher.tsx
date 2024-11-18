@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Organisation, OrganisationWithRoles } from "@/app-types";
 
 export function OrganizationSwitcher({
