@@ -35,6 +35,8 @@ export default async function OrganisationLayout({
   const activeOrganisation: Organisation =
     await getOrganisationById(organisationId);
 
+  // maybe this would be better if we were to get roles
+  // from database with userId and organisationId?
   const roles = getActiveOrganisationRoles(
     activeOrganisation,
     userOrganisationsWithRoles,

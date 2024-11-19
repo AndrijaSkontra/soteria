@@ -1,6 +1,7 @@
 import { Organisation, OrganisationWithRoles } from "@/app-types";
 import prisma from "@/index";
 import { getUserId } from "@/lib/get-user-id";
+import { Role } from "@prisma/client";
 
 export async function doesOrganisationExist(
   organisationId: string,
@@ -45,4 +46,25 @@ export async function getOrganisationById(
   }
 
   throw new Error("No organisation with this id");
+}
+
+export async function getUserRolesForOrganisation(
+  orgId: string,
+): Promise<Role[]> {
+  const orgUser = await prisma.organisationUser.findFirst({
+    where: {
+      userId: await getUserId(),
+      organisationId: orgId,
+      active: true,
+    },
+    select: {
+      role: true,
+    },
+  });
+
+  if (!orgUser) {
+    return [];
+  }
+
+  return orgUser.role;
 }
