@@ -2,11 +2,6 @@ import { Role } from "@prisma/client";
 
 type RouteParams = Promise<{ locale: string; organisationId: string }>;
 
-// type Session = {
-//   user: User;
-//   expires: Date;
-// };
-//
 type NavigationLinkType = {
   title: string;
   url: string;
@@ -34,5 +29,3 @@ type UserInformationType = {
   firstName: string;
   lastName: string;
 };
-
-type User = {};
