@@ -4,15 +4,15 @@ import { FaPerson } from "react-icons/fa6";
 import AdminViewCard from "@/components/dashboard/admin-view-card";
 import TasksByStatus from "@/components/dashboard/task-by-status";
 
-export default async function DashboardPage({
-  params,
-}: {
-  params: Promise<{ organisationId: string }>;
-}) {
-  console.log(params);
+export default async function DashboardPage() {
+//   {
+//   params,
+// }: {
+//   params: Promise<{ organisationId: string }>;
+// }
   return (
     <div className="p-4">
-      <div className="flex space-x-4 p-2">
+      <div className="flex space-x-4 mb-2">
         <AdminViewCard
           title="Personnel"
           dataNumber={5}

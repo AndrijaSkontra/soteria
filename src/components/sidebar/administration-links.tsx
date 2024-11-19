@@ -1,5 +1,5 @@
+"use client";
 import { ChevronRight } from "lucide-react";
-
 import { RiAdminLine } from "react-icons/ri";
 import {
   Collapsible,
@@ -13,12 +13,14 @@ import {
   SidebarMenuSub,
 } from "@/components/ui/sidebar";
 import { Fragment } from "react";
+import { useTranslations } from "next-intl";
 
 export default function AdministrationLinks({
   children,
 }: {
   children: React.ReactNode[] | React.ReactNode;
 }) {
+  const t = useTranslations("NavigationLinks");
   return (
     <SidebarMenu>
       <Collapsible asChild defaultOpen={false} className="group/collapsible">
@@ -26,7 +28,7 @@ export default function AdministrationLinks({
           <CollapsibleTrigger asChild>
             <SidebarMenuButton tooltip={"Administration"}>
               <RiAdminLine />
-              <span>Administration</span>
+              <span>{t("administration")}</span>
               <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
             </SidebarMenuButton>
           </CollapsibleTrigger>

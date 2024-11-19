@@ -15,7 +15,7 @@ import {
   Organisation,
   OrganisationWithRoles,
 } from "@/types/app-types";
-
+import LanguageSwitcher from "./language-switcher";
 export function AppSidebar({
   organisationsWithRoles,
   activeOrganisation,
@@ -38,6 +38,9 @@ export function AppSidebar({
           links={navigationLinks}
           organisationId={activeOrganisation.id}
         />
+        <div className="p-2">
+          <LanguageSwitcher />
+        </div>
       </SidebarContent>
       <SidebarFooter>
         <NavSettings />

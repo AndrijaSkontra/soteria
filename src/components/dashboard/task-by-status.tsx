@@ -97,13 +97,13 @@ function RadialChart({ data }: { data: ChartData }) {
 const chartsData: ChartData[] = [
   {
     name: "Created",
-    value: 2500,
+    value: 988,
     fillLight: "hsl(213 100% 40%)",
     fillDark: "hsl(213 100% 40%)",
   },
   {
     name: "In Progress",
-    value: 15000,
+    value: 23,
     fillLight: "hsl(50 100% 40%)",
     fillDark: "hsl(50 100% 40%)",
   },
@@ -115,7 +115,7 @@ const chartsData: ChartData[] = [
   },
   {
     name: "Need Verification",
-    value: 42,
+    value: 8,
     fillLight: "",
     fillDark: "hsl(13 100% 17%)",
   },

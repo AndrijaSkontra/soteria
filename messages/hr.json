@@ -3,5 +3,18 @@
     "title": "Pozdrav svijete!",
     "organisation-go-to": "Organizacija",
     "welcome": "Dobrodosli u organizaciju"
+  },
+  "NavigationLinks": {
+    "personnel": "Osoblje",
+    "subjects": "Subjekti",
+    "playgrounds": "Igrališta",
+    "non complience": "Neusklađenosti",
+    "dashboard": "Upravljačka ploča",
+    "orders": "Nalozi",
+    "tasks": "Zadatci",
+    "my tasks": "Moji Zadatci",
+    "organisation": "Organizacija",
+    "documentation": "Dokumentacija",
+    "administration": "Administracija"
   }
 }

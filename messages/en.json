@@ -3,5 +3,18 @@
     "title": "Hello world!",
     "organisation-go-to": "Organisation",
     "welcome": "Welcome to the organisation"
+  },
+  "NavigationLinks": {
+    "personnel": "Personnel",
+    "subjects": "Subjects",
+    "playgrounds": "Playgrounds",
+    "non complience": "Non complience",
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "tasks": "Tasks",
+    "my tasks": "My Tasks",
+    "organisation": "Organisation",
+    "documentation": "Documentation",
+    "administration": "Administration"
   }
 }

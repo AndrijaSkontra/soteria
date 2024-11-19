@@ -6,8 +6,8 @@ type NavigationLinkType = {
   title: string;
   url: string;
   icon?: any;
-  roles: Role[];
-  type: "BASIC" | "ADMINISTRATION";
+  roles?: Role[];
+  type?: "BASIC" | "ADMINISTRATION";
 };
 
 type Organisation = {
