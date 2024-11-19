@@ -114,7 +114,7 @@ const chartsData: ChartData[] = [
     fillDark: "hsl(0 100% 40%)",
   },
   {
-    name: "Need Verification",
+    name: "Needs Verification",
     value: 8,
     fillLight: "",
     fillDark: "hsl(13 100% 17%)",
@@ -123,17 +123,17 @@ const chartsData: ChartData[] = [
 
 export default function TasksByStatus() {
   return (
-    <Card className="w-full">
+    <Card className="">
       <CardHeader>
         <div className="flex justify-between w-full">
           <div>
             <CardTitle>Tasks based on status</CardTitle>
-            <CardDescription>
+            <CardDescription className="text-wrap">
               Optional description about tasks based on status
             </CardDescription>
           </div>
           <Select>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] ml-2">
               <SelectValue placeholder="This Month" defaultValue="This Month" />
             </SelectTrigger>
             <SelectContent>
@@ -148,7 +148,7 @@ export default function TasksByStatus() {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="flex justify-around">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4 gap-4">
           {chartsData.map((data) => (
             <RadialChart key={data.name} data={data} />
           ))}

@@ -16,5 +16,11 @@
     "organisation": "Organisation",
     "documentation": "Documentation",
     "administration": "Administration"
+  },
+  "Settings": {
+    "settings": "Settings",
+    "profile": "Profile",
+    "change theme": "Change Theme",
+    "log out": "Log Out"
   }
 }

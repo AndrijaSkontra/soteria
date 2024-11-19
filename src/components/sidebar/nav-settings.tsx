@@ -27,12 +27,14 @@ import {
 import { usePathname } from "next/navigation";
 import { createCookie } from "@/lib/serverActions/cookie-actions";
 import { getCookie } from "@/lib/get-cookie";
+import { useTranslations } from "next-intl";
 
 export function NavSettings() {
   const theme = getCookie("theme");
   const { isMobile } = useSidebar();
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("Settings");
 
   function switchTheme() {
     if (theme === "light") {
@@ -52,7 +54,7 @@ export function NavSettings() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <IoSettingsOutline />
-              <a className="font-semibold">Settings</a>
+              <a className="font-semibold">{t("settings")}</a>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
@@ -78,17 +80,17 @@ export function NavSettings() {
                 }}
               >
                 <BadgeCheck />
-                Profile
+                {t("profile")}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={switchTheme}>
                 {theme === "light" ? <IoSunnyOutline /> : <IoMoonOutline />}
-                Change Theme
+                {t("change theme")}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => signOut()}>
               <LogOut />
-              Log out
+              {t("log out")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

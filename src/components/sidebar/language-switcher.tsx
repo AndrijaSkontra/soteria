@@ -10,10 +10,11 @@ import { usePathname, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import { useLocale } from "next-intl";
+import { ChevronsUpDownIcon } from "lucide-react";
 
 export default function LanguageSwitcher() {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const pathname = usePathname();
   const params = useParams();
   const locale = useLocale();
@@ -35,19 +36,26 @@ export default function LanguageSwitcher() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div className="flex items-center w-full hover:cursor-pointer">
-              <div className="flex space-x-2">
-                <Image
-                  src="/croatia.png"
-                  alt="no"
-                  width={20}
-                  height={20}
-                  className="object-scale-down"
-                />
-                <p className="font-medium text-sm">Hrvatski</p>
+              <div className="flex items-center justify-between w-full">
+                <div className="flex space-x-2 items-center">
+                  <Image
+                    src={
+                      locale === "hr" ? "/croatia.png" : "/united-kingdom.png"
+                    }
+                    alt="no"
+                    width={20}
+                    height={20}
+                    className="object-scale-down"
+                  />
+                  <p className="font-medium text-sm">
+                    {locale === "hr" ? "Hrvatski" : "English"}
+                  </p>
+                </div>
+                <ChevronsUpDownIcon className="max-w-4" />
               </div>
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent side={"right"}>
+          <DropdownMenuContent side={"right"} align="start">
             <DropdownMenuItem onClick={() => handleClick("hr")}>
               <div className="flex space-x-2">
                 <Image

@@ -16,5 +16,11 @@
     "organisation": "Organizacija",
     "documentation": "Dokumentacija",
     "administration": "Administracija"
+  },
+  "Settings": {
+    "settings": "Postavke",
+    "profile": "Korisnički profil",
+    "change theme": "Promjeni temu",
+    "log out": "Odjavi se"
   }
 }

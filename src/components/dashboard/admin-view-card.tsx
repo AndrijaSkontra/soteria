@@ -22,7 +22,7 @@ export default function AdminViewCard({
           {icon}
           <CardTitle>{title}</CardTitle>
         </div>
-        <CardDescription>Optional description about the card.</CardDescription>
+        <CardDescription>Optional description about the card</CardDescription>
       </CardHeader>
       <CardContent>
         <p className="text-3xl font-bold text-center">{dataNumber}</p>
