@@ -29,3 +29,10 @@ type UserInformationType = {
   firstName: string;
   lastName: string;
 };
+
+type AdminViewCardDataType = {
+  title: string;
+  dataNumber: number;
+  buttonText: string;
+  icon: React.ReactNode;
+};

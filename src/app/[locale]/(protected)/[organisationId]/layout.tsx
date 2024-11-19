@@ -86,7 +86,7 @@ function linksToShowOnUI(
 ): NavigationLinkType[] {
   let finalLinks: NavigationLinkType[] = [];
 
-  // Keep in mind Object.keys(Role) will return the lenght of Enum Role
+  // Object.keys(Role) will return the lenght of Enum Role
   // If they are the same size just return all links
   if (roles.length === Object.keys(Role).length) {
     return links;
