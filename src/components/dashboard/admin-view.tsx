@@ -5,7 +5,10 @@ import AdminViewCard from "@/components/dashboard/admin-view-card";
 
 export default function AdminView() {
   return (
-    <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0 mb-2 items-center w-full">
+    <div
+      className="flex flex-col lg:flex-row lg:space-x-4 space-y-4
+      lg:space-y-0 mb-2 items-center w-full lg:justify-center"
+    >
       <AdminViewCard
         title="Personnel"
         dataNumber={5}

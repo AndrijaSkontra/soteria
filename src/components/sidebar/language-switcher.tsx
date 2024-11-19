@@ -37,7 +37,7 @@ export default function LanguageSwitcher() {
           <DropdownMenuTrigger asChild>
             <div className="flex items-center w-full hover:cursor-pointer">
               <div className="flex items-center justify-between w-full">
-                <div className="flex space-x-2 items-center">
+                <div className="flex space-x-2">
                   <Image
                     src={
                       locale === "hr" ? "/croatia.png" : "/united-kingdom.png"
@@ -47,7 +47,7 @@ export default function LanguageSwitcher() {
                     height={20}
                     className="object-scale-down"
                   />
-                  <p className="font-medium text-sm">
+                  <p className="font-semibold text-sm">
                     {locale === "hr" ? "Hrvatski" : "English"}
                   </p>
                 </div>
