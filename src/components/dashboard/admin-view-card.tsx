@@ -18,7 +18,7 @@ export default function AdminViewCard({
   return (
     <Card className="w-[350px]">
       <CardHeader>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-1">
           {icon}
           <CardTitle>{title}</CardTitle>
         </div>

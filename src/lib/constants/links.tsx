@@ -1,40 +1,33 @@
-import { FaPerson } from "react-icons/fa6";
 import { CgOrganisation } from "react-icons/cg";
 import { MdOutlineTask } from "react-icons/md";
 import { GrTask } from "react-icons/gr";
 import { FaRegNewspaper } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
-import { MdOutlineSimCardAlert } from "react-icons/md";
-import { IoBasketballOutline, IoDocumentTextOutline } from "react-icons/io5";
-import { BsPeople } from "react-icons/bs";
+import { IoDocumentTextOutline } from "react-icons/io5";
 import { NavigationLinkType } from "@/types/app-types";
 
 export const allLinks: NavigationLinkType[] = [
   {
     title: "Personnel",
     url: `personnel`,
-    icon: <BsPeople className="max-h-3" />,
     roles: ["ADMIN", "MANAGER"],
     type: "ADMINISTRATION",
   },
   {
     title: "Subjects",
     url: "subject",
-    icon: <FaPerson className="max-h-3" />,
     roles: ["ADMIN", "MANAGER"],
     type: "ADMINISTRATION",
   },
   {
     title: "Playgrounds",
     url: "playground",
-    icon: <IoBasketballOutline className="max-h-3" />,
     roles: ["ADMIN", "MANAGER"],
     type: "ADMINISTRATION",
   },
   {
     title: "Non complience",
     url: "non-complience",
-    icon: <MdOutlineSimCardAlert className="max-h-3" />,
     roles: ["ADMIN", "MANAGER"],
     type: "ADMINISTRATION",
   },

@@ -5,7 +5,7 @@ type RouteParams = Promise<{ locale: string; organisationId: string }>;
 type NavigationLinkType = {
   title: string;
   url: string;
-  icon: any;
+  icon?: any;
   roles: Role[];
   type: "BASIC" | "ADMINISTRATION";
 };

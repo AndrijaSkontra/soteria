@@ -35,7 +35,6 @@ export function MainNavigation({
             return (
               <AdministrationLink
                 key={index}
-                icon={admLink.icon}
                 title={admLink.title}
                 url={`/${organisationId}/administration/${admLink.url}`}
               />
