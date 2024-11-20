@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import { cookies } from "next/headers";
+
+export const metadata: Metadata = {
+  title: "Soteria",
+  description: "Soteria web application",
+};
 
 export default async function LocaleLayout({
   children,

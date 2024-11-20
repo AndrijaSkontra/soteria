@@ -32,6 +32,12 @@ export const allLinks: NavigationLinkType[] = [
     type: "ADMINISTRATION",
   },
   {
+    title: "norms",
+    url: "norm",
+    roles: ["ADMIN", "MANAGER"],
+    type: "ADMINISTRATION",
+  },
+  {
     title: "dashboard",
     url: "dashboard",
     icon: <RxDashboard />,

@@ -1,11 +1,14 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import {
   doesOrganisationExist,
   getOrganisationById,
   getUserOrganisationsWithRoles,
 } from "@/lib/services/organisation-service";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import SidebarTriggerMobile from "@/components/sidebar/sidebar-trigger-mobile";
 import { isUserInOrganisation } from "@/lib/services/user-service";
 import { redirect } from "@/i18n/routing";
 import { getLocale } from "next-intl/server";
@@ -49,10 +52,12 @@ export default async function OrganisationLayout({
         activeOrganisation={activeOrganisation}
         navigationLinks={linksToShowOnUI(roles, allLinks)}
       />
-      <main>
-        <SidebarTriggerMobile />
-        {children}
-      </main>
+      <SidebarInset>
+        <main>
+          <SidebarTrigger />
+          {children}
+        </main>
+      </SidebarInset>
     </SidebarProvider>
   );
 }

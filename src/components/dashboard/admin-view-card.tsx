@@ -16,7 +16,7 @@ export default function AdminViewCard({
   icon,
 }: AdminViewCardDataType) {
   return (
-    <Card className="w-[350px]">
+    <Card className="grow">
       <CardHeader>
         <div className="flex items-center space-x-1">
           {icon}

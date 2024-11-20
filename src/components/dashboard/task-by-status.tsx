@@ -17,14 +17,6 @@ import {
 } from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { Link } from "@/i18n/routing";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { getCookie } from "@/lib/get-cookie";
 
 type ChartData = {
@@ -132,19 +124,6 @@ export default function TasksByStatus() {
               Optional description about tasks based on status
             </CardDescription>
           </div>
-          <Select>
-            <SelectTrigger className="w-[180px] ml-2">
-              <SelectValue placeholder="This Month" defaultValue="This Month" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="This Week">This Week</SelectItem>
-                <SelectItem value="This Month">This Month</SelectItem>
-                <SelectItem value="This Year">This Year</SelectItem>
-                <SelectItem value="All Time">All Time</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
         </div>
       </CardHeader>
       <CardContent>

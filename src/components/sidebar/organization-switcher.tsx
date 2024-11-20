@@ -48,7 +48,7 @@ export function OrganizationSwitcher({
                 <Avatar>
                   <AvatarImage
                     src={activeOrganisationState.url}
-                    className="rounded-full object-scale-down"
+                    className="rounded-full object-scale-down p-1 border-2 border-gray-500"
                   />
                   <AvatarFallback>ORG</AvatarFallback>
                 </Avatar>
