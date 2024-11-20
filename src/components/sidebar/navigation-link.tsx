@@ -18,7 +18,10 @@ export default function NavigationLink({
   console.log(lastItem);
   return (
     <SidebarMenuItem
-      className={clsx("", lastItem === title && "bg-gray-200 rounded-md")}
+      className={clsx(
+        "",
+        lastItem === title && "bg-gray-200 rounded-md dark:bg-gray-800",
+      )}
     >
       <SidebarMenuButton asChild>
         <Link href={url}>

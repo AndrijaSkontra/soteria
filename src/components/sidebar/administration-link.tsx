@@ -18,7 +18,10 @@ export default function AdministrationLink({
   const lastItem = pathAsList[pathAsList.length - 1];
   return (
     <SidebarMenuSubItem
-      className={clsx("", lastItem === title && "bg-gray-200 rounded-md")}
+      className={clsx(
+        "",
+        lastItem === title && "bg-gray-200 rounded-md dark:bg-gray-800",
+      )}
     >
       <SidebarMenuSubButton asChild>
         <Link href={url}>
