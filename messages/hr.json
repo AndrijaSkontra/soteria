@@ -6,17 +6,17 @@
   },
   "NavigationLinks": {
     "personnel": "Osoblje",
-    "subjects": "Subjekti",
-    "playgrounds": "Igrališta",
-    "non complience": "Neusklađenosti",
+    "subject": "Subjekti",
+    "playground": "Igrališta",
+    "non-complience": "Neusklađenosti",
     "dashboard": "Upravljačka ploča",
     "orders": "Nalozi",
     "tasks": "Zadatci",
-    "my tasks": "Moji Zadatci",
+    "my-tasks": "Moji Zadatci",
     "organisation": "Organizacija",
     "documentation": "Dokumentacija",
     "administration": "Administracija",
-    "norms": "Norme"
+    "norm": "Norme"
   },
   "Settings": {
     "settings": "Postavke",

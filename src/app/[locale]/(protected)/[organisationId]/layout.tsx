@@ -53,10 +53,10 @@ export default async function OrganisationLayout({
         navigationLinks={linksToShowOnUI(roles, allLinks)}
       />
       <SidebarInset>
-        <main>
+        <header>
           <SidebarTrigger />
-          {children}
-        </main>
+        </header>
+        <main>{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

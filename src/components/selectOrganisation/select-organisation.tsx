@@ -59,11 +59,11 @@ export default function SelectOrganisation({
                     <Avatar>
                       <AvatarImage
                         src={orgWithRoles.organisation.url}
-                        className="rounded-full object-scale-down border-2 border-gray-100"
+                        className="rounded-full object-scale-down border-2 border-gray-400 p-1"
                       />
                       <AvatarFallback>ORG</AvatarFallback>
                     </Avatar>
-                    <p className="font-extrabold text-xl">
+                    <p className="font-medium text-xl">
                       {orgWithRoles.organisation.name}
                     </p>
                   </div>

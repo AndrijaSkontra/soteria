@@ -14,25 +14,25 @@ export const allLinks: NavigationLinkType[] = [
     type: "ADMINISTRATION",
   },
   {
-    title: "subjects",
+    title: "subject",
     url: "subject",
     roles: ["ADMIN", "MANAGER"],
     type: "ADMINISTRATION",
   },
   {
-    title: "playgrounds",
+    title: "playground",
     url: "playground",
     roles: ["ADMIN", "MANAGER"],
     type: "ADMINISTRATION",
   },
   {
-    title: "non complience",
+    title: "non-complience",
     url: "non-complience",
     roles: ["ADMIN", "MANAGER"],
     type: "ADMINISTRATION",
   },
   {
-    title: "norms",
+    title: "norm",
     url: "norm",
     roles: ["ADMIN", "MANAGER"],
     type: "ADMINISTRATION",
@@ -59,7 +59,7 @@ export const allLinks: NavigationLinkType[] = [
     type: "BASIC",
   },
   {
-    title: "my tasks",
+    title: "my-tasks",
     url: "my-tasks",
     icon: <GrTask />,
     roles: ["INSPECTOR"],
@@ -67,7 +67,7 @@ export const allLinks: NavigationLinkType[] = [
   },
   {
     title: "organisation",
-    url: "#",
+    url: "organisation",
     icon: <CgOrganisation />,
     roles: ["ADMIN", "MANAGER", "INSPECTOR"],
     type: "BASIC",

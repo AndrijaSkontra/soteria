@@ -2,6 +2,8 @@
 import { Link } from "@/i18n/routing";
 import { SidebarMenuSubButton, SidebarMenuSubItem } from "../ui/sidebar";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 export default function AdministrationLink({
   title,
@@ -11,8 +13,13 @@ export default function AdministrationLink({
   url: string;
 }) {
   const t = useTranslations("NavigationLinks");
+  const pathname = usePathname();
+  const pathAsList = pathname.split("/");
+  const lastItem = pathAsList[pathAsList.length - 1];
   return (
-    <SidebarMenuSubItem>
+    <SidebarMenuSubItem
+      className={clsx("", lastItem === title && "bg-gray-200 rounded-md")}
+    >
       <SidebarMenuSubButton asChild>
         <Link href={url}>
           <span>{t(title)}</span>

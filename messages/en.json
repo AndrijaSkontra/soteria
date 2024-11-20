@@ -6,17 +6,17 @@
   },
   "NavigationLinks": {
     "personnel": "Personnel",
-    "subjects": "Subjects",
-    "playgrounds": "Playgrounds",
-    "non complience": "Non complience",
+    "subject": "Subjects",
+    "playground": "Playgrounds",
+    "non-complience": "Non complience",
     "dashboard": "Dashboard",
     "orders": "Orders",
     "tasks": "Tasks",
-    "my tasks": "My Tasks",
+    "my-tasks": "My Tasks",
     "organisation": "Organisation",
     "documentation": "Documentation",
     "administration": "Administration",
-    "norms": "Norms"
+    "norm": "Norms"
   },
   "Settings": {
     "settings": "Settings",
