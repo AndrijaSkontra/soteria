@@ -211,7 +211,7 @@ async function main() {
       firstName: "Michael",
       lastName: "Smith",
       address: "123 Maple Street",
-      oib: "OIB1234567890",
+      oib: "1234567890",
       phone: "+12345678901",
       email: "michael.smith@example.com",
     },
@@ -219,7 +219,7 @@ async function main() {
       firstName: "Emily",
       lastName: "Johnson",
       address: "456 Oak Avenue",
-      oib: "OIB0987654321",
+      oib: "0987654321",
       phone: "+19876543210",
       email: "emily.johnson@example.com",
     },
@@ -227,7 +227,7 @@ async function main() {
       firstName: "William",
       lastName: "Brown",
       address: "789 Pine Road",
-      oib: "OIB1122334455",
+      oib: "1122334455",
       phone: "+11223344556",
       email: "william.brown@example.com",
     },
@@ -235,7 +235,7 @@ async function main() {
       firstName: "Olivia",
       lastName: "Davis",
       address: "321 Elm Street",
-      oib: "OIB2233445566",
+      oib: "2233445566",
       phone: "+12233445567",
       email: "olivia.davis@example.com",
     },
@@ -243,7 +243,7 @@ async function main() {
       firstName: "James",
       lastName: "Miller",
       address: "654 Cedar Lane",
-      oib: "OIB3344556677",
+      oib: "3344556677",
       phone: "+13344556678",
       email: "james.miller@example.com",
     },
@@ -251,7 +251,7 @@ async function main() {
       firstName: "Sophia",
       lastName: "Wilson",
       address: "987 Spruce Court",
-      oib: "OIB4455667788",
+      oib: "4455667788",
       phone: "+14455667789",
       email: "sophia.wilson@example.com",
     },
@@ -259,7 +259,7 @@ async function main() {
       firstName: "Benjamin",
       lastName: "Moore",
       address: "246 Birch Boulevard",
-      oib: "OIB5566778899",
+      oib: "5566778899",
       phone: "+15566778890",
       email: "benjamin.moore@example.com",
     },
@@ -267,7 +267,7 @@ async function main() {
       firstName: "Isabella",
       lastName: "Taylor",
       address: "135 Walnut Drive",
-      oib: "OIB6677889900",
+      oib: "6677889900",
       phone: "+16677889901",
       email: "isabella.taylor@example.com",
     },
@@ -275,7 +275,7 @@ async function main() {
       firstName: "Jacob",
       lastName: "Anderson",
       address: "864 Poplar Street",
-      oib: "OIB7788990011",
+      oib: "7788990011",
       phone: "+17788990012",
       email: "jacob.anderson@example.com",
     },
@@ -283,9 +283,25 @@ async function main() {
       firstName: "Mia",
       lastName: "Thomas",
       address: "975 Willow Way",
-      oib: "OIB8899001122",
+      oib: "8899001122",
       phone: "+18899001123",
       email: "mia.thomas@example.com",
+    },
+    {
+      firstName: "Mile",
+      lastName: "Milic",
+      address: "Ilica 23a",
+      oib: "1129208192",
+      phone: "+385989033831",
+      email: "mile.milic@gmail.com",
+    },
+    {
+      firstName: "Zdenka",
+      lastName: "Radic",
+      address: "Graica 7c",
+      oib: "1199805511",
+      phone: "+38598191828",
+      email: "zdenka.radic@gmail.com",
     },
   ];
 
@@ -295,6 +311,7 @@ async function main() {
     const subject = await prisma.subject.create({
       data,
     });
+    // @ts-expect-error subject is any but subject is never[]
     subjects.push(subject);
   }
 
@@ -389,9 +406,11 @@ async function main() {
     const playground = await prisma.playground.create({
       data: {
         ...data,
+        // @ts-expect-error disable
         subjectId: subject.id,
       },
     });
+    // @ts-expect-error disable
     playgrounds.push(playground);
   }
 
@@ -454,6 +473,7 @@ async function main() {
     const norm = await prisma.norm.create({
       data,
     });
+    // @ts-expect-error disable
     norms.push(norm);
   }
 
@@ -518,6 +538,7 @@ async function main() {
     const nonCompliance = await prisma.nonCompliance.create({
       data,
     });
+    // @ts-expect-error disable
     nonCompliances.push(nonCompliance);
   }
 
@@ -526,15 +547,19 @@ async function main() {
     const nonCompliance = nonCompliances[i];
 
     await prisma.norm.update({
+      // @ts-expect-error disable
       where: { id: norm.id },
       data: {
+        // @ts-expect-error disable
         nonCompliancesIDs: [nonCompliance.id],
       },
     });
 
     await prisma.nonCompliance.update({
+      // @ts-expect-error disable
       where: { id: nonCompliance.id },
       data: {
+        // @ts-expect-error disable
         normIDs: [norm.id],
       },
     });

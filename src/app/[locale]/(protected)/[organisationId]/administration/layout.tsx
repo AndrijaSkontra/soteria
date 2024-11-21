@@ -1,3 +1,5 @@
+import { RouteParams } from "@/types/app-types";
+
 export default async function AdminLayout({
   children,
 }: {
