@@ -70,7 +70,7 @@ export function OrganizationSwitcher({
             </DropdownMenuLabel>
             {organisationsWithRoles.map((orgWithRoles) => (
               <DropdownMenuItem
-                key={orgWithRoles.organisation.name}
+                key={orgWithRoles.organisation.id}
                 onClick={() => {
                   router.push(`/${orgWithRoles.organisation.id}/dashboard`);
                   setActiveOrganisationState(orgWithRoles.organisation);

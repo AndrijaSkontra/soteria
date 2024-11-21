@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 
-export async function getUserId(): Promise<string> {
+export async function getUserId(): Promise<string | undefined> {
   const session = await auth();
-  const userId = session!.user.userId;
+  const userId = session!.user.id;
   return userId;
 }

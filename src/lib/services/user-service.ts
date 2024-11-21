@@ -42,7 +42,7 @@ export async function getActiveUserFromDB(
     throw Error("No user");
   }
 
-  const newUser: User = { ...user, userId: user.id };
+  const newUser: User = { ...user, id: user.id };
   return newUser;
 }
 

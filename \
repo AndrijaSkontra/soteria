@@ -158,38 +158,38 @@ async function main() {
       organisationId: org.id,
       role: getRandomRoles(),
     })),
-    //
-    // {
-    //   userId: userData[1].id,
-    //   organisationId: organisationData[0].id,
-    //   role: [roles[0]],
-    // },
-    // {
-    //   userId: userData[1].id,
-    //   organisationId: organisationData[1].id,
-    //   role: [roles[1]],
-    // },
-    // {
-    //   userId: userData[1].id,
-    //   organisationId: organisationData[2].id,
-    //   role: [roles[0], roles[1]],
-    // },
-    //
-    // {
-    //   userId: userData[2].id,
-    //   organisationId: organisationData[3].id,
-    //   role: [roles[1]],
-    // },
-    // {
-    //   userId: userData[2].id,
-    //   organisationId: organisationData[4].id,
-    //   role: [roles[0]],
-    // },
-    // {
-    //   userId: userData[2].id,
-    //   organisationId: organisationData[5].id,
-    //   role: [roles[0], roles[1]],
-    // },
+
+    {
+      userId: userData[1].id,
+      organisationId: organisationData[0].id,
+      role: [roles[0]],
+    },
+    {
+      userId: userData[1].id,
+      organisationId: organisationData[1].id,
+      role: [roles[1]],
+    },
+    {
+      userId: userData[1].id,
+      organisationId: organisationData[2].id,
+      role: [roles[0], roles[1]],
+    },
+
+    {
+      userId: userData[2].id,
+      organisationId: organisationData[3].id,
+      role: [roles[1]],
+    },
+    {
+      userId: userData[2].id,
+      organisationId: organisationData[4].id,
+      role: [roles[0]],
+    },
+    {
+      userId: userData[2].id,
+      organisationId: organisationData[5].id,
+      role: [roles[0], roles[1]],
+    },
   ];
 
   console.log("Adding organisation user relations...");

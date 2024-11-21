@@ -30,6 +30,8 @@ export default async function OrganisationLayout({
   const userOrganisationsWithRoles: OrganisationWithRoles[] =
     await getUserOrganisationsWithRoles();
 
+  console.log(userOrganisationsWithRoles, "😀😀😀");
+
   const activeOrganisation: Organisation =
     await getOrganisationById(organisationId);
 
