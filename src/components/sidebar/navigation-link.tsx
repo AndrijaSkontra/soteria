@@ -15,7 +15,6 @@ export default function NavigationLink({
   const pathname = usePathname();
   const pathAsList = pathname.split("/");
   const lastItem = pathAsList[pathAsList.length - 1];
-  console.log(lastItem);
   return (
     <SidebarMenuItem
       className={clsx(

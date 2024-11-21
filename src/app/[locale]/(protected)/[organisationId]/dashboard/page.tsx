@@ -1,5 +1,5 @@
 import { Role } from "@prisma/client";
-import { getUserRolesForOrganisation } from "@/lib/services/organisation-service";
+import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 import AdminDashboardElements from "@/components/dashboard/admin-dashboard-elements";
 import ManagerDashboardElements from "@/components/dashboard/manager-dashboard-elements";
 import InspectorDashboardElements from "@/components/dashboard/inspector-dashboard-elements";
@@ -19,7 +19,7 @@ export default async function DashboardPage({
 }) {
   const { organisationId } = await params;
 
-  const roles: Role[] = await getUserRolesForOrganisation(organisationId);
+  const roles: Role[] = await getUserOrganisationRolesFromDB(organisationId);
 
   return (
     <div className="px-4 lg:px-32">
@@ -38,9 +38,9 @@ export default async function DashboardPage({
           </SelectContent>
         </Select>
       </div>
-      <AdminDashboardElements isAdmin={roles.includes("ADMIN")} />
       <ManagerDashboardElements isManager={roles.includes("MANAGER")} />
       <InspectorDashboardElements isInspector={roles.includes("INSPECTOR")} />
+      <AdminDashboardElements isAdmin={roles.includes("ADMIN")} />
     </div>
   );
 }

@@ -13,7 +13,7 @@ export default function ManagerDashboardElements({
       className={clsx("w-full space-y-6 mb-12", !isManager && "hidden mb-0")}
     >
       <div className="w-full">
-        <p className="text-sm text-muted-foreground">Manager</p>
+        <p className="text-sm text-muted-foreground">Manage</p>
         <Separator />
       </div>
       <TasksByStatus />

@@ -10,7 +10,7 @@ export default function AdminDashboardElements({
   return (
     <div className={clsx("space-y-6 mb-12", !isAdmin && "hidden mb-0")}>
       <div>
-        <p className="text-sm text-muted-foreground">Admin</p>
+        <p className="text-sm text-muted-foreground">Administrate</p>
         <Separator />
       </div>
       <AdminView />

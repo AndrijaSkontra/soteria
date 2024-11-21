@@ -75,7 +75,6 @@ export function NavSettings() {
             <DropdownMenuGroup>
               <DropdownMenuItem
                 onClick={() => {
-                  console.log(pathname);
                   router.push(`/profile?callbackUrl=${pathname}`);
                 }}
               >

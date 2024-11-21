@@ -1,17 +1,11 @@
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import {
-  doesOrganisationExist,
+  checkIsOrganisationValid,
+  getUserOrganisationRoles,
   getOrganisationById,
   getUserOrganisationsWithRoles,
 } from "@/lib/services/organisation-service";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import { isUserInOrganisation } from "@/lib/services/user-service";
-import { redirect } from "@/i18n/routing";
-import { getLocale } from "next-intl/server";
 import { Role } from "@prisma/client";
 import {
   NavigationLinkType,
@@ -20,6 +14,7 @@ import {
   RouteParams,
 } from "@/types/app-types";
 import { allLinks } from "@/lib/constants/links";
+import Header from "@/components/header/header";
 
 export default async function OrganisationLayout({
   children,
@@ -38,9 +33,7 @@ export default async function OrganisationLayout({
   const activeOrganisation: Organisation =
     await getOrganisationById(organisationId);
 
-  // maybe this would be better if we were to get roles
-  // from database with userId and organisationId?
-  const roles = getActiveOrganisationRoles(
+  const roles = getUserOrganisationRoles(
     activeOrganisation,
     userOrganisationsWithRoles,
   );
@@ -53,38 +46,11 @@ export default async function OrganisationLayout({
         navigationLinks={linksToShowOnUI(roles, allLinks)}
       />
       <SidebarInset>
-        <header>
-          <SidebarTrigger />
-        </header>
+        <Header organisationName={activeOrganisation.name} />
         <main>{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
-}
-
-async function checkIsOrganisationValid(organisationId: string) {
-  const isOrganisationPageValid =
-    (await doesOrganisationExist(organisationId)) &&
-    (await isUserInOrganisation(organisationId));
-
-  if (!isOrganisationPageValid) {
-    const locale = await getLocale();
-    redirect({ href: "select-organisation", locale: locale });
-  }
-}
-
-function getActiveOrganisationRoles(
-  activeOrg: Organisation,
-  userOrgWithRoles: OrganisationWithRoles[],
-) {
-  const roles: Role[] | undefined = userOrgWithRoles.find(
-    (uo) => uo.organisation.id === activeOrg.id,
-  )?.role;
-  if (roles) {
-    return roles;
-  } else {
-    throw Error("No roles connected to current user");
-  }
 }
 
 function linksToShowOnUI(

@@ -83,7 +83,7 @@ export default function InspectorLoad() {
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="h-[400px] w-[350px] md:w-[600px] lg:w-[750px] xl:w-[900px]"
+          className="h-[400px] w-[300px] sm:w-[350px] md:w-[600px] lg:w-[750px] xl:w-[900px]"
         >
           <BarChart
             accessibilityLayer

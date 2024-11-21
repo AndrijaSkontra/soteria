@@ -1,7 +1,8 @@
 "use client";
-import { GiHammerNails } from "react-icons/gi";
+import {  FaRegCalendarPlus } from "react-icons/fa6";
 import { GrDocumentConfig } from "react-icons/gr";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { AiOutlineSafety } from "react-icons/ai";
 import {
   Table,
   TableBody,
@@ -20,6 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Link } from "@/i18n/routing";
+import { HiOutlineCog } from "react-icons/hi";
 
 export default function InstructorTaskTable() {
   const locale = useLocale();
@@ -28,7 +30,7 @@ export default function InstructorTaskTable() {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Inspection Type</TableHead>
+          <TableHead className="text-center">Inspection Type</TableHead>
           <TableHead>Task Name</TableHead>
           <TableHead className="text-center">Deadline</TableHead>
           <TableHead>Actions</TableHead>
@@ -54,7 +56,7 @@ export default function InstructorTaskTable() {
             <TableCell className="text-center">
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <BsThreeDotsVertical className="size-5 inline-block hover:fill-gray-300" />
+                  <BsThreeDotsVertical className="size-4 inline-block hover:fill-gray-300" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>Location</DropdownMenuItem>
@@ -72,11 +74,13 @@ export default function InstructorTaskTable() {
 
 function getTaskTypeIcon(type: string) {
   if (type === "P") {
-    return <GiHammerNails className="size-5 inline-block" />;
-  } else if (type === "C") {
-    return <GrDocumentConfig className="size-5 inline-block" />;
+    return <AiOutlineSafety className="size-6 inline-block" />;
+  } else if (type === "E") {
+    return <HiOutlineCog className="size-5 inline-block" />;
   } else if (type === "A") {
     return <FaRegCalendarAlt className="size-5 inline-block" />;
+  } else if (type === "O") {
+    return <FaRegCalendarPlus className="size-5 inline-block" />;
   } else {
     return "";
   }
@@ -102,14 +106,14 @@ const data = [
   },
   {
     id: 2,
-    type: "C",
-    taskName: "Certificate inspection Griffin Park",
+    type: "E",
+    taskName: "Equipment inspection for smaller children",
     deadline: "02-22-2024",
   },
   {
     id: 3,
-    type: "C",
-    taskName: "Certificate inspection Lemon Park",
+    type: "E",
+    taskName: "Equipment inspection for climbing rocks",
     deadline: "03-05-2025",
   },
   {
@@ -126,8 +130,8 @@ const data = [
   },
   {
     id: 6,
-    type: "C",
-    taskName: "Certificate inspection Lemon Park",
+    type: "O",
+    taskName: "Operational Inspection Sant Bay Park",
     deadline: "03-05-2025",
   },
 ];

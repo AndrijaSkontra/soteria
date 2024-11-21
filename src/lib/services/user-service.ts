@@ -88,5 +88,4 @@ export async function updateUserDataInDatabase(data: UserInformationType) {
       contactNumber: data.contactNumber,
     },
   });
-  console.log(updateUser, "update user obj");
 }

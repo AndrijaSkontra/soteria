@@ -1,7 +1,10 @@
-import { Organisation, OrganisationWithRoles } from "@/app-types";
 import prisma from "@/index";
 import { getUserId } from "@/lib/get-user-id";
+import { Organisation, OrganisationWithRoles } from "@/types/app-types";
 import { Role } from "@prisma/client";
+import { isUserInOrganisation } from "./user-service";
+import { getLocale } from "next-intl/server";
+import { redirect } from "@/i18n/routing";
 
 export async function doesOrganisationExist(
   organisationId: string,
@@ -48,7 +51,7 @@ export async function getOrganisationById(
   throw new Error("No organisation with this id");
 }
 
-export async function getUserRolesForOrganisation(
+export async function getUserOrganisationRolesFromDB(
   orgId: string,
 ): Promise<Role[]> {
   const orgUser = await prisma.organisationUser.findFirst({
@@ -67,4 +70,29 @@ export async function getUserRolesForOrganisation(
   }
 
   return orgUser.role;
+}
+
+export function getUserOrganisationRoles(
+  activeOrg: Organisation,
+  userOrgWithRoles: OrganisationWithRoles[],
+) {
+  const roles: Role[] | undefined = userOrgWithRoles.find(
+    (uo) => uo.organisation.id === activeOrg.id,
+  )?.role;
+  if (roles) {
+    return roles;
+  } else {
+    throw Error("No roles connected to current user");
+  }
+}
+
+export async function checkIsOrganisationValid(organisationId: string) {
+  const isOrganisationPageValid =
+    (await doesOrganisationExist(organisationId)) &&
+    (await isUserInOrganisation(organisationId));
+
+  if (!isOrganisationPageValid) {
+    const locale = await getLocale();
+    redirect({ href: "select-organisation", locale: locale });
+  }
 }

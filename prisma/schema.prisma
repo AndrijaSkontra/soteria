@@ -15,17 +15,17 @@ model User {
   lastName      String
   createdAt     DateTime            @default(now())
   active        Boolean             @default(true)
-  organisations OrganisationUser[] 
+  organisations OrganisationUser[]
   contactNumber String
 }
 
 model Organisation {
-  id     String              @id @default(auto()) @map("_id") @db.ObjectId
-  name   String
-  url    String
-  createdAt DateTime         @default(now())
-  active  Boolean            @default(true)
-  users   OrganisationUser[]
+  id        String              @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  url       String
+  createdAt DateTime            @default(now())
+  active    Boolean             @default(true)
+  users     OrganisationUser[]
 }
 
 model OrganisationUser {
@@ -39,6 +39,49 @@ model OrganisationUser {
   active         Boolean        @default(true)
 }
 
+model Subject {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  firstName   String
+  lastName    String
+  address     String?
+  oib         String?
+  phone       String?
+  email       String?
+  active      Boolean @default(true)
+}
+
+model Playground {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  type          PlaygroundType
+  address       String?
+  location      String?
+  description   String?
+  contactPerson String?
+  subjectId     String  @db.ObjectId
+  subject       Subject @relation(fields: [subjectId], references: [id])
+  createdAt     DateTime            @default(now())
+  active        Boolean @default(true)
+}
+
+model Norm {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  createdAt   DateTime            @default(now())
+  code        String?
+  description String?
+  active      Boolean @default(true)
+}
+
+model NonCompliance {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  normIds         String[] @db.ObjectId
+  norms           Norm[]   @relation(fields: [normIds], references: [id])
+  recommendations String[]
+  createdAt       DateTime            @default(now())
+  active          Boolean  @default(true)
+}
 
 enum Role {
   INSPECTOR
@@ -46,3 +89,7 @@ enum Role {
   ADMIN
 }
 
+enum PlaygroundType {
+  EQUIPMENT
+  SPORT
+}
