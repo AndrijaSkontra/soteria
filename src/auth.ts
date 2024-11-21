@@ -1,6 +1,6 @@
 import Credentials from "next-auth/providers/credentials";
-import NextAuth from "next-auth";
-import { getUserFromDb } from "@/lib/services/user-service";
+import NextAuth, { User } from "next-auth";
+import { getActiveUserFromDB } from "@/lib/services/user-service";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -10,7 +10,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
-        const user: User = await getUserFromDb(
+        const user: User = await getActiveUserFromDB(
           credentials.email as string,
           credentials.password as string,
         );
@@ -18,6 +18,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!user) {
           throw new Error("Invalid credentials.");
         }
+        console.log(user, "user auth");
 
         return user;
       },

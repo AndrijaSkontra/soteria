@@ -48,6 +48,7 @@ model Subject {
   phone       String?
   email       String?
   active      Boolean @default(true)
+  playgrounds Playground[]
 }
 
 model Playground {
@@ -65,19 +66,21 @@ model Playground {
 }
 
 model Norm {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  createdAt   DateTime            @default(now())
-  code        String?
-  description String?
-  active      Boolean @default(true)
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  createdAt       DateTime            @default(now())
+  code            String?
+  description     String?
+  active          Boolean @default(true)
+  nonCompliancesIDs String[] @db.ObjectId
+  nonCompliances  NonCompliance[] @relation(fields: [nonCompliancesIDs], references: [id])
 }
 
 model NonCompliance {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
   title           String
-  normIds         String[] @db.ObjectId
-  norms           Norm[]   @relation(fields: [normIds], references: [id])
+  normIDs         String[] @db.ObjectId
+  norms           Norm[]   @relation(fields: [normIDs], references: [id])
   recommendations String[]
   createdAt       DateTime            @default(now())
   active          Boolean  @default(true)

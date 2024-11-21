@@ -11,7 +11,7 @@ export async function doesOrganisationExist(
 ): Promise<boolean> {
   try {
     await prisma.organisation.findUnique({
-      where: { id: organisationId },
+      where: { id: organisationId, active: true },
     });
     return true;
   } catch {

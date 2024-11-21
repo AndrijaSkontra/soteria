@@ -1,6 +1,7 @@
 import prisma from "@/index";
 import { getUserId } from "@/lib/get-user-id";
 import { UserInformationType } from "@/types/app-types";
+import { User } from "next-auth";
 
 export async function isUserInOrganisation(
   organisationId: string,
@@ -9,6 +10,7 @@ export async function isUserInOrganisation(
     where: {
       userId: await getUserId(),
       organisationId: organisationId,
+      active: true,
     },
   });
   if (!org) {
@@ -18,7 +20,7 @@ export async function isUserInOrganisation(
   }
 }
 
-export async function getUserFromDb(
+export async function getActiveUserFromDB(
   email: string,
   password: string,
 ): Promise<User> {
@@ -26,6 +28,7 @@ export async function getUserFromDb(
     where: {
       email: email,
       password: password,
+      active: true,
     },
     select: {
       id: true,
@@ -57,7 +60,7 @@ export async function getUserInformation(): Promise<UserInformationType> {
   });
 
   if (!user) {
-    throw Error("No user");
+    throw Error("No user information");
   }
 
   return user;
