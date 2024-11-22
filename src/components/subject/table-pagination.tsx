@@ -26,12 +26,15 @@ export default function TablePagination({
   const searchParams = useSearchParams();
   let currentPage = Number(searchParams.get("page"));
   let searchWord = searchParams.get("search");
-  const rowsPerPage = searchParams.get("rows");
+  let rowsPerPage = Number(searchParams.get("rows"));
   if (!currentPage) {
     currentPage = 1;
   }
   if (!searchWord) {
     searchWord = "";
+  }
+  if (!rowsPerPage) {
+    rowsPerPage = 10;
   }
   function changePage(direction: number) {
     router.push(
@@ -49,16 +52,19 @@ export default function TablePagination({
     router.push(`${pathname}?page=1&search=${searchWord}&rows=${rows}`);
   }
 
+  console.log(rowsPerPage, "rows");
+
   return (
     <div className="flex w-full justify-end items-center space-x-12">
       <div className="flex items-center space-x-2">
         <p className="font-medium text-nowrap">Rows per page</p>
         <Select
           onValueChange={(value) => setRowsPerPage(Number(value))}
-          defaultValue={rowsPerPage || "10"}
+          defaultValue={String(rowsPerPage)}
+          value={String(rowsPerPage)}
         >
           <SelectTrigger className="w-[70px] bg-white">
-            <SelectValue placeholder={rowsPerPage || "10"} />
+            <SelectValue placeholder={String(rowsPerPage)} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="5">5</SelectItem>

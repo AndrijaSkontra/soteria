@@ -10,6 +10,8 @@ export default function TableActions() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const params = new URLSearchParams(searchParams.toString());
+
   return (
     <div className="flex items-center space-x-2">
       <Input
@@ -19,8 +21,8 @@ export default function TableActions() {
       />
       <Button
         onClick={() => {
-          //  TODO: fix
-          router.push(`${pathname}?${searchParams}&search=${searchWord}`);
+          params.set("search", searchWord);
+          router.push(`${pathname}?${params.toString()}`);
         }}
       >
         Pretraži
