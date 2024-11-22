@@ -2,14 +2,17 @@ import { Subject } from "@prisma/client";
 import prisma from "@/index";
 
 export async function getActiveSubjectsFromDB(
+  rows: number,
   page?: number,
   searchWord?: string,
-): Promise<Subject[]> {
+): Promise<{ subjects: Subject[]; pagesAmount: number }> {
   if (!page) {
     page = 1;
   }
-  const PAGE_SIZE = 10;
-  const skip = (page - 1) * PAGE_SIZE;
+  if (!rows) {
+    rows = 10;
+  }
+  const skip = (page - 1) * rows;
 
   const whereClause: any = {
     active: true,
@@ -35,8 +38,14 @@ export async function getActiveSubjectsFromDB(
   const subjects = await prisma.subject.findMany({
     where: whereClause,
     skip,
-    take: PAGE_SIZE,
+    take: rows,
   });
 
-  return subjects;
+  const count = await prisma.subject.count({
+    where: whereClause,
+  });
+
+  const pagesAmount = Math.ceil(count / rows);
+
+  return { subjects: subjects, pagesAmount: pagesAmount };
 }

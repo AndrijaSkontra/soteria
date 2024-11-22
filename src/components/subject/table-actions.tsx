@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import AddSubjectDialog from "./add-subject-dialog";
@@ -8,6 +8,7 @@ export default function TableActions() {
   const router = useRouter();
   const [searchWord, setSearchWord] = useState("");
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   return (
     <div className="flex items-center space-x-2">
@@ -18,7 +19,8 @@ export default function TableActions() {
       />
       <Button
         onClick={() => {
-          router.push(`${pathname}?searchWord=${searchWord}`);
+          //  TODO: fix
+          router.push(`${pathname}?${searchParams}&search=${searchWord}`);
         }}
       >
         Pretraži
