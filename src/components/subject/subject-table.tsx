@@ -1,8 +1,5 @@
 "use client";
-
 import { Subject } from "@prisma/client";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableHeader,
@@ -18,27 +15,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
-  return (
-    <div>
-      <div className="flex items-center space-x-2 my-4">
-        <Input placeholder="Pretraživanje" />
-        <Button>Pretraži</Button>
-        <Button variant="secondary">Očisti</Button>
-        <Button variant="outline">+ Subjekt</Button>
-      </div>
+  const isMobile = useIsMobile();
 
+  return (
+    <div className="border border-gray-200 rounded-lg">
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead>#</TableHead>
             <TableHead>Naziv</TableHead>
-            <TableHead>Adresa</TableHead>
+            <TableHead hidden={isMobile}>Adresa</TableHead>
             <TableHead>Kontakt</TableHead>
             <TableHead>E-mail</TableHead>
             <TableHead>OIB</TableHead>
-            <TableHead></TableHead>
+            <TableHead className="text-center">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -48,11 +41,11 @@ export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
               <TableCell>
                 {subject.firstName} {subject.lastName}
               </TableCell>
-              <TableCell>{subject.address}</TableCell>
+              <TableCell hidden={isMobile}>{subject.address}</TableCell>
               <TableCell>{subject.phone}</TableCell>
               <TableCell>{subject.email}</TableCell>
               <TableCell>{subject.oib}</TableCell>
-              <TableCell>
+              <TableCell className="text-center">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <button>

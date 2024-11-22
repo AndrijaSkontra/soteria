@@ -47,8 +47,9 @@ model Subject {
   oib         String?
   phone       String?
   email       String?
-  active      Boolean @default(true)
   playgrounds Playground[]
+  createdAt     DateTime            @default(now())
+  active      Boolean @default(true)
 }
 
 model Playground {
