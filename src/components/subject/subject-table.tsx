@@ -38,9 +38,7 @@ export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
           {subjects.map((subject, index) => (
             <TableRow key={subject.id}>
               <TableCell>{index + 1}</TableCell>
-              <TableCell>
-                {subject.firstName} {subject.lastName}
-              </TableCell>
+              <TableCell>{subject.name}</TableCell>
               <TableCell hidden={isMobile}>{subject.address}</TableCell>
               <TableCell>{subject.phone}</TableCell>
               <TableCell>{subject.email}</TableCell>

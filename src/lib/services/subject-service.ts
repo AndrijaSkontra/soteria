@@ -18,13 +18,7 @@ export async function getActiveSubjectsFromDB(
   if (searchWord) {
     whereClause.OR = [
       {
-        firstName: {
-          contains: searchWord,
-          mode: "insensitive",
-        },
-      },
-      {
-        lastName: {
+        name: {
           contains: searchWord,
           mode: "insensitive",
         },

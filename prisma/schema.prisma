@@ -41,8 +41,7 @@ model OrganisationUser {
 
 model Subject {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  firstName   String
-  lastName    String
+  name   String
   address     String?
   oib         String?
   phone       String?

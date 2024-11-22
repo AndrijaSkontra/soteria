@@ -39,12 +39,8 @@ export default function AddSubjectDialog() {
         </DialogHeader>
         <form className="space-y-4 mt-4" action={formAction}>
           <div className="flex flex-col space-y-1">
-            <Label htmlFor="name">Ime*</Label>
+            <Label htmlFor="name">Naziv*</Label>
             <Input id="name" name="name" placeholder="Mateo" />
-          </div>
-          <div className="flex flex-col space-y-1">
-            <Label htmlFor="surname">Prezime*</Label>
-            <Input id="surname" name="surname" placeholder="Horvat" />
           </div>
           <div className="flex flex-col space-y-1">
             <Label htmlFor="address">Adresa</Label>

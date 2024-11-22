@@ -12,7 +12,6 @@ export async function addSubjectAction(
   const schema = getValidationSchemaObject();
   const validatedFields = schema.safeParse({
     name: (formData.get("name") as string).trim(),
-    surname: (formData.get("surname") as string).trim(),
     address: (formData.get("address") as string).trim(),
     contactNumber: (formData.get("contactNumber") as string).replace(/\s/g, ""),
     oib: (formData.get("oib") as string).replace(/\s/g, ""),
@@ -35,8 +34,7 @@ export async function addSubjectAction(
  */
 function getValidationSchemaObject() {
   return z.object({
-    name: z.string().min(1, { message: "Name is required" }),
-    surname: z.string().min(1, { message: "Surname is required" }),
+    name: z.string().min(3, { message: "Name is required" }),
     address: z.string().optional(),
     contactNumber: z
       .string()
