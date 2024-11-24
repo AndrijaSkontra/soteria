@@ -52,12 +52,10 @@ export default function TablePagination({
     router.push(`${pathname}?page=1&search=${searchWord}&rows=${rows}`);
   }
 
-  console.log(rowsPerPage, "rows");
-
   return (
-    <div className="flex w-full justify-end items-center space-x-12">
+    <div className="flex md:flex-row flex-col w-full md:justify-center md:items-center md:space-x-12 space-y-4 md:space-y-0">
       <div className="flex items-center space-x-2">
-        <p className="font-medium text-nowrap">Rows per page</p>
+        <p className="font-medium text-nowrap mr-2">Rows per page</p>
         <Select
           onValueChange={(value) => setRowsPerPage(Number(value))}
           defaultValue={String(rowsPerPage)}
@@ -74,40 +72,42 @@ export default function TablePagination({
           </SelectContent>
         </Select>
       </div>
-      <p className="font-medium">{`Page ${currentPage} of ${pagesAmount}`}</p>
       <div className="flex items-center space-x-2">
-        <Button
-          className={pagesAmount === 1 ? "hidden" : ""}
-          variant="outline"
-          size="icon"
-          onClick={() => changePageDirect(1)}
-        >
-          <ChevronsLeftIcon />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() => changePage(-1)}
-          disabled={currentPage === 1}
-        >
-          <ChevronLeft />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() => changePage(1)}
-          disabled={currentPage === pagesAmount}
-        >
-          <ChevronRight />
-        </Button>
-        <Button
-          className={pagesAmount === 1 ? "hidden" : ""}
-          variant="outline"
-          size="icon"
-          onClick={() => changePageDirect(pagesAmount)}
-        >
-          <ChevronsRightIcon />
-        </Button>
+        <p className="text-nowrap font-medium mr-2">{`Page ${currentPage} of ${pagesAmount}`}</p>
+        <div className="flex items-center space-x-2">
+          <Button
+            className={pagesAmount === 1 ? "hidden" : ""}
+            variant="outline"
+            size="icon"
+            onClick={() => changePageDirect(1)}
+          >
+            <ChevronsLeftIcon />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => changePage(-1)}
+            disabled={currentPage === 1}
+          >
+            <ChevronLeft />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => changePage(1)}
+            disabled={currentPage === pagesAmount}
+          >
+            <ChevronRight />
+          </Button>
+          <Button
+            className={pagesAmount === 1 ? "hidden" : ""}
+            variant="outline"
+            size="icon"
+            onClick={() => changePageDirect(pagesAmount)}
+          >
+            <ChevronsRightIcon />
+          </Button>
+        </div>
       </div>
     </div>
   );

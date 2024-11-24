@@ -40,13 +40,13 @@ export function OrganizationSwitcher({
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton size="lg" className="my-2">
+            <SidebarMenuButton size="lg">
               <div className="flex items-center text-left text-sm">
                 <div className="border-gray-300 border rounded-md bg-gray-100">
-                  <Avatar>
+                  <Avatar className="size-8">
                     <AvatarImage
                       src={activeOrganisationState.url}
-                      className="object-scale-down"
+                      className="object-scale-down p-1"
                     />
                     <AvatarFallback>ORG</AvatarFallback>
                   </Avatar>

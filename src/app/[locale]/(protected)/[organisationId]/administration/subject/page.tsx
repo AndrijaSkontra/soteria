@@ -15,6 +15,8 @@ export default async function SubjectPage({
     searchParamsData?.search,
   );
 
+  console.log(subjects, " nice");
+
   return (
     <div className="p-4 lg:px-8 space-y-4">
       <TableActions />

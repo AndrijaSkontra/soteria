@@ -15,34 +15,45 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
-  const isMobile = useIsMobile();
-
   return (
-    <div className="border border-gray-200 rounded-lg">
+    <div className="border border-gray-200 rounded-lg overflow-auto">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>#</TableHead>
+            <TableHead className="xl:table-cell hidden">#</TableHead>
             <TableHead>Naziv</TableHead>
-            <TableHead hidden={isMobile}>Adresa</TableHead>
-            <TableHead>Kontakt</TableHead>
-            <TableHead>E-mail</TableHead>
-            <TableHead>OIB</TableHead>
+            <TableHead className="xl:table-cell hidden">Adresa</TableHead>
+            <TableHead className="md:table-cell hidden">Kontakt</TableHead>
+            <TableHead className="xl:table-cell hidden">E-mail</TableHead>
+            <TableHead className="xl:table-cell hidden">Država</TableHead>
+            <TableHead className="xl:table-cell hidden">OIB</TableHead>
             <TableHead className="text-center">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {subjects.map((subject, index) => (
             <TableRow key={subject.id}>
-              <TableCell>{index + 1}</TableCell>
+              <TableCell className="xl:table-cell hidden">
+                {index + 1}
+              </TableCell>
               <TableCell>{subject.name}</TableCell>
-              <TableCell hidden={isMobile}>{subject.address}</TableCell>
-              <TableCell>{subject.phone}</TableCell>
-              <TableCell>{subject.email}</TableCell>
-              <TableCell>{subject.oib}</TableCell>
+              <TableCell className="xl:table-cell hidden">
+                {subject.address}
+              </TableCell>
+              <TableCell className="md:table-cell hidden">
+                {subject.phone}
+              </TableCell>
+              <TableCell className="xl:table-cell hidden">
+                {subject.email}
+              </TableCell>
+              <TableCell className="xl:table-cell hidden">
+                {subject.country}
+              </TableCell>
+              <TableCell className="xl:table-cell hidden">
+                {subject.oib}
+              </TableCell>
               <TableCell className="text-center">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -64,6 +75,9 @@ export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
                       }}
                     >
                       Ukloni
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="md:hidden" onClick={() => {}}>
+                      Detalji
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

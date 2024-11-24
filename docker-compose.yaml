@@ -1,17 +1,7 @@
-version: '3.8'
-
 services:
   mongo:
     image: mongo:latest
-    command: >
-      bash -c "
-      if [ ! -f /etc/secrets/mongo-keyfile ]; then
-        mkdir -p /etc/secrets &&
-        openssl rand -base64 756 > /etc/secrets/mongo-keyfile &&
-        chmod 400 /etc/secrets/mongo-keyfile
-      fi &&
-      mongod --replSet rs0 --bind_ip_all --keyFile /etc/secrets/mongo-keyfile
-      "
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--keyFile", "/etc/secrets/mongo-keyfile"]
     ports:
       - "27017:27017"
     environment:
@@ -19,10 +9,11 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - "mongo_data:/data/db"
+      - "./mongo-keyfile:/etc/secrets/mongo-keyfile:ro"
     healthcheck:
-      test: ["CMD-SHELL", "echo 'rs.status()' | mongosh --username root --password example --quiet || exit 1"]
-      interval: 10s
-      timeout: 10s
+      test: ["CMD-SHELL", "echo 'rs.status()' | mongosh --port 27017 --username root --password example --quiet || echo 'rs.initiate({_id: \"rs0\", members: [{ _id: 0, host: \"localhost:27017\" }]})' | mongosh --port 27017 --username root --password example --quiet"]
+      interval: 5s
+      timeout: 30s
       retries: 5
 
 volumes:

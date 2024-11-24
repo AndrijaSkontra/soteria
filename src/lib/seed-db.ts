@@ -213,6 +213,7 @@ async function main() {
       oib: "1234567890",
       phone: "+12345678901",
       email: "info@greenmeadowplaygrounds.com",
+      country: "Croatia",
     },
     {
       name: "SunnyTrail Parks Ltd.",
@@ -220,6 +221,7 @@ async function main() {
       oib: "0987654321",
       phone: "+19876543210",
       email: "contact@sunnytrailparks.com",
+      country: "Croatia",
     },
     {
       name: "AdventureHaven Parks Inc.",
@@ -227,6 +229,7 @@ async function main() {
       oib: "1122334455",
       phone: "+11223344556",
       email: "support@adventurehavenparks.com",
+      country: "Croatia",
     },
     {
       name: "LittleSprouts Playgrounds d.o.o.",
@@ -234,6 +237,7 @@ async function main() {
       oib: "2233445566",
       phone: "+12233445567",
       email: "info@littlesproutsplaygrounds.com",
+      country: "Croatia",
     },
     {
       name: "WillowWonderland Parks Ltd.",
@@ -241,6 +245,7 @@ async function main() {
       oib: "3344556677",
       phone: "+13344556678",
       email: "hello@willowwonderlandparks.com",
+      country: "Croatia",
     },
     {
       name: "HappyPines Playgrounds Inc.",
@@ -248,6 +253,7 @@ async function main() {
       oib: "4455667788",
       phone: "+14455667789",
       email: "contact@happypinesplaygrounds.com",
+      country: "Croatia",
     },
     {
       name: "SafeNest Playgrounds d.o.o.",
@@ -255,6 +261,7 @@ async function main() {
       oib: "5566778899",
       phone: "+15566778890",
       email: "info@safenestplaygrounds.com",
+      country: "Croatia",
     },
     {
       name: "RainbowFields Parks Ltd.",
@@ -262,6 +269,7 @@ async function main() {
       oib: "6677889900",
       phone: "+16677889901",
       email: "support@rainbowfieldsparks.com",
+      country: "Croatia",
     },
     {
       name: "Parkside Adventures Inc.",
@@ -269,6 +277,7 @@ async function main() {
       oib: "7788990011",
       phone: "+17788990012",
       email: "info@parksideadventures.com",
+      country: "Croatia",
     },
     {
       name: "WonderWood Parks d.o.o.",
@@ -276,6 +285,7 @@ async function main() {
       oib: "8899001122",
       phone: "+18899001123",
       email: "contact@wonderwoodparks.com",
+      country: "Germany",
     },
     {
       name: "Playground Croatia d.o.o.",
@@ -283,6 +293,7 @@ async function main() {
       oib: "1129208192",
       phone: "+385989033831",
       email: "info@playgroundcroatia.com",
+      country: "Netherlands",
     },
     {
       name: "MeadowSprings Playgrounds Ltd.",
@@ -290,6 +301,7 @@ async function main() {
       oib: "1199805511",
       phone: "+38598191828",
       email: "hello@meadowspringsplaygrounds.com",
+      country: "Germany",
     },
   ];
 
