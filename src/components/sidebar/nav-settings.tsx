@@ -49,13 +49,14 @@ export function NavSettings() {
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
-              <IoSettingsOutline />
-              <a className="font-semibold">{t("settings")}</a>
-              <ChevronsUpDown className="ml-auto size-4" />
+            <SidebarMenuButton>
+              <div className="flex items-center justify-between w-full">
+                <div className="flex space-x-2">
+                  <IoSettingsOutline className="size-5" />
+                  <a className="font-semibold">{t("settings")}</a>
+                </div>
+                <ChevronsUpDown className="ml-auto size-4" />
+              </div>
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent

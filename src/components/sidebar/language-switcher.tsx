@@ -11,6 +11,7 @@ import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import { useLocale } from "next-intl";
 import { ChevronsUpDownIcon } from "lucide-react";
+import { MdOutlineLanguage } from "react-icons/md";
 
 export default function LanguageSwitcher() {
   const router = useRouter();
@@ -38,15 +39,7 @@ export default function LanguageSwitcher() {
             <div className="flex items-center w-full hover:cursor-pointer">
               <div className="flex items-center justify-between w-full">
                 <div className="flex space-x-2">
-                  <Image
-                    src={
-                      locale === "hr" ? "/croatia.png" : "/united-kingdom.png"
-                    }
-                    alt="no"
-                    width={20}
-                    height={20}
-                    className="object-scale-down"
-                  />
+                  <MdOutlineLanguage className="size-5" />
                   <p className="font-semibold text-sm">
                     {locale === "hr" ? "Hrvatski" : "English"}
                   </p>
@@ -55,7 +48,7 @@ export default function LanguageSwitcher() {
               </div>
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent side={"right"} align="start">
+          <DropdownMenuContent side={"right"} align="end">
             <DropdownMenuItem onClick={() => handleClick("hr")}>
               <div className="flex space-x-2">
                 <Image

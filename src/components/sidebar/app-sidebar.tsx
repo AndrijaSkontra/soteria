@@ -38,11 +38,11 @@ export function AppSidebar({
           links={navigationLinks}
           organisationId={activeOrganisation.id}
         />
+      </SidebarContent>
+      <SidebarFooter>
         <div className="p-2">
           <LanguageSwitcher />
         </div>
-      </SidebarContent>
-      <SidebarFooter>
         <NavSettings />
       </SidebarFooter>
     </Sidebar>
