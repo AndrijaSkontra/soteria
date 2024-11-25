@@ -34,6 +34,20 @@ export async function addSubjectAction(
     contact: validatedFields.data.contactNumber,
   });
 
+  // await fetch(`${process.env.AUTH_TRUST_HOST}/api/subjects`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json", // Specify JSON content
+  //   },
+  //   body: JSON.stringify({
+  //     name: validatedFields.data.name,
+  //     oib: validatedFields.data.oib,
+  //     email: validatedFields.data.email,
+  //     address: validatedFields.data.address,
+  //     contact: validatedFields.data.contactNumber,
+  //   }),
+  // });
+
   return { message: "hello", errors: {} };
 }
 

@@ -63,7 +63,7 @@ export async function getActiveSubjectsFromDB(
 }
 
 export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
-  const value = await prisma.subject.create({
+  await prisma.subject.create({
     data: {
       name: createSubjectDto.name,
       email: createSubjectDto.email,
@@ -72,6 +72,5 @@ export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
       address: createSubjectDto.address,
     },
   });
-  revalidatePath("/hr/6744355f5d03fddef7afec66/administration/subject");
-  console.log(value, " info ");
+  // revalidatePath("/hr/6744355f5d03fddef7afec66/administration/subject");
 }
