@@ -25,11 +25,8 @@ export default function AddSubjectDialog() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
-
-  const params = new URLSearchParams(searchParams.toString());
-
+  const urlSearchParams = new URLSearchParams(searchParams.toString());
   const { toast } = useToast();
-
   const [state, formAction] = useActionState(
     addSubjectAction,
     initialFormState,
@@ -46,8 +43,8 @@ export default function AddSubjectDialog() {
   }
 
   function modalChange(isOpen: boolean) {
-    params.set("addSubject", String(isOpen));
-    router.push(`${pathname}?${params.toString()}`);
+    urlSearchParams.set("addSubject", String(isOpen));
+    router.push(`${pathname}?${urlSearchParams.toString()}`);
   }
 
   return (
