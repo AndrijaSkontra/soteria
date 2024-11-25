@@ -18,8 +18,14 @@ export default async function SubjectPage({
   return (
     <div className="p-4 lg:px-8 space-y-4">
       <TableActions />
-      <SubjectsTable subjects={subjects} />
-      <TablePagination pagesAmount={pagesAmount} />
+      {pagesAmount !== 0 ? (
+        <>
+          <SubjectsTable subjects={subjects} />
+          <TablePagination pagesAmount={pagesAmount} />
+        </>
+      ) : (
+        <p>no subjects</p>
+      )}
     </div>
   );
 }

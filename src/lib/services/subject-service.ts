@@ -1,6 +1,7 @@
 import prisma from "@/index";
 import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
 import { revalidateTag } from "next/cache";
+import { ensureError } from "../ensure-error";
 
 export async function getActiveSubjectsFromDB(
   searchParam: string | AdvancedSubjectSearch = "",
@@ -21,8 +22,6 @@ export async function getActiveSubjectsFromDB(
   let whereClause: any = {
     active: true,
   };
-
-  // let selectClause: any = null;
 
   if (typeof searchParam === "string" && searchParam.trim().length > 0) {
     whereClause.OR = stringFields.map((field) => ({
@@ -46,20 +45,24 @@ export async function getActiveSubjectsFromDB(
     // }, {});
   }
 
-  const subjects = await prisma.subject.findMany({
-    where: whereClause,
-    skip,
-    take: Number(rows),
-    // select: selectClause,
-  });
+  try {
+    const subjects = await prisma.subject.findMany({
+      where: whereClause,
+      skip,
+      take: Number(rows),
+      // select: selectClause,
+    });
 
-  const count = await prisma.subject.count({
-    where: whereClause,
-  });
+    const count = await prisma.subject.count({
+      where: whereClause,
+    });
 
-  const pagesAmount = Math.ceil(count / rows);
+    const pagesAmount = Math.ceil(count / rows);
 
-  return { subjects: subjects, pagesAmount: pagesAmount };
+    return { subjects: subjects, pagesAmount: pagesAmount };
+  } catch {
+    return { subjects: [], pagesAmount: 0 };
+  }
 }
 
 export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
@@ -72,6 +75,20 @@ export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
       address: createSubjectDto.address,
     },
   });
+
   //  INFO: this will update the subjects page
+  revalidateTag("subjects");
+}
+
+export async function disableSubjectInDB(subjectId: string) {
+  await prisma.subject.update({
+    where: {
+      id: subjectId,
+    },
+    data: {
+      active: false,
+    },
+  });
+
   revalidateTag("subjects");
 }

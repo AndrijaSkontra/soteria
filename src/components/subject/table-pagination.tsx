@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useEffect } from "react";
 
 export default function TablePagination({
   pagesAmount,
@@ -24,32 +25,25 @@ export default function TablePagination({
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  let currentPage = Number(searchParams.get("page"));
-  let searchWord = searchParams.get("search");
-  let rowsPerPage = Number(searchParams.get("rows"));
-  if (!currentPage) {
-    currentPage = 1;
-  }
-  if (!searchWord) {
-    searchWord = "";
-  }
-  if (!rowsPerPage) {
-    rowsPerPage = 10;
-  }
-  function changePage(direction: number) {
-    router.push(
-      `${pathname}?page=${currentPage + direction}&search=${searchWord}&rows=${rowsPerPage}`,
-    );
-  }
+  const urlSearchParams = new URLSearchParams(searchParams.toString());
+  const currentPage = searchParams.get("page") || String(1);
+  const rowsPerPage = searchParams.get("rows") || String(10);
 
-  function changePageDirect(pageNumber: number) {
-    router.push(
-      `${pathname}?page=${pageNumber}&search=${searchWord}&rows=${rowsPerPage}`,
-    );
+  useEffect(() => {
+    if (Number(currentPage) > pagesAmount) {
+      urlSearchParams.set("page", String(pagesAmount));
+      router.push(`${pathname}?${urlSearchParams}`);
+    }
+  }, [currentPage, pagesAmount, pathname, router, urlSearchParams]);
+
+  function changePage(pageNumber: number) {
+    urlSearchParams.set("page", String(pageNumber));
+    router.push(`${pathname}?${urlSearchParams}`);
   }
 
   function setRowsPerPage(rows: number) {
-    router.push(`${pathname}?page=1&search=${searchWord}&rows=${rows}`);
+    urlSearchParams.set("rows", String(rows));
+    router.push(`${pathname}?${urlSearchParams}`);
   }
 
   return (
@@ -79,24 +73,24 @@ export default function TablePagination({
             className={pagesAmount === 1 ? "hidden" : ""}
             variant="outline"
             size="icon"
-            onClick={() => changePageDirect(1)}
-            disabled={currentPage === 1}
+            onClick={() => changePage(1)}
+            disabled={currentPage === "1"}
           >
             <ChevronsLeftIcon />
           </Button>
           <Button
             variant="outline"
             size="icon"
-            onClick={() => changePage(-1)}
-            disabled={currentPage === 1}
+            onClick={() => changePage(Number(currentPage) - 1)}
+            disabled={currentPage === "1"}
           >
             <ChevronLeft />
           </Button>
           <Button
             variant="outline"
             size="icon"
-            onClick={() => changePage(1)}
-            disabled={currentPage === pagesAmount}
+            onClick={() => changePage(Number(currentPage) + 1)}
+            disabled={currentPage === String(pagesAmount)}
           >
             <ChevronRight />
           </Button>
@@ -104,8 +98,8 @@ export default function TablePagination({
             className={pagesAmount === 1 ? "hidden" : ""}
             variant="outline"
             size="icon"
-            onClick={() => changePageDirect(pagesAmount)}
-            disabled={currentPage === pagesAmount}
+            onClick={() => changePage(pagesAmount)}
+            disabled={currentPage === String(pagesAmount)}
           >
             <ChevronsRightIcon />
           </Button>

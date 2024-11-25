@@ -1,4 +1,3 @@
-"use client";
 import { Subject } from "@prisma/client";
 import {
   Table,
@@ -8,13 +7,7 @@ import {
   TableCell,
   TableHead,
 } from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import TableActionsDropDown from "./table-actions-dropdown";
 
 export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
   return (
@@ -43,7 +36,7 @@ export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
                 {subject.address}
               </TableCell>
               <TableCell className="md:table-cell hidden">
-                {subject.phone}
+                {subject.contact}
               </TableCell>
               <TableCell className="xl:table-cell hidden">
                 {subject.email}
@@ -55,32 +48,7 @@ export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
                 {subject.oib}
               </TableCell>
               <TableCell className="text-center">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button>
-                      <BsThreeDotsVertical className="size-4" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuItem
-                      onClick={() => {
-                        /* Edit action */
-                      }}
-                    >
-                      Uredi
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() => {
-                        /* Remove action */
-                      }}
-                    >
-                      Ukloni
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="md:hidden" onClick={() => {}}>
-                      Detalji
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <TableActionsDropDown subject={subject} />
               </TableCell>
             </TableRow>
           ))}

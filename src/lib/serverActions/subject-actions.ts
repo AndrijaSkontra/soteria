@@ -1,7 +1,14 @@
 "use server";
 
 import { z } from "zod";
-import { addSubjectToDB } from "../services/subject-service";
+import {
+  addSubjectToDB,
+  disableSubjectInDB,
+} from "../services/subject-service";
+
+export async function disableSubject(subjectId) {
+  await disableSubjectInDB(subjectId);
+}
 
 export async function addSubjectAction(prevState: any, formData: FormData) {
   const schema = getValidationSchemaObject();

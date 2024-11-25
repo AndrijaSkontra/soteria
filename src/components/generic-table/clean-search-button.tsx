@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
-export default function CleanSearchButton() {
+export default function CleanSearchButton({ setSearchInput }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -14,6 +14,7 @@ export default function CleanSearchButton() {
       className="w-full md:w-auto"
       variant="secondary"
       onClick={() => {
+        setSearchInput("");
         urlSearchParams.set("search", "");
         router.push(`${pathname}?${urlSearchParams}`);
       }}

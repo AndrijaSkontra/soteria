@@ -11,7 +11,7 @@ import {
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { addSubjectAction } from "@/lib/serverActions/subject-actions";
 import { useToast } from "@/hooks/use-toast";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -32,15 +32,17 @@ export default function AddSubjectDialog() {
     initialFormState,
   );
 
-  if (state.status === "ADDED") {
-    toast({
-      title: "Success",
-      description: `Added: ${state.subjectName}`,
-      duration: 2000,
-    });
-    state.status = "PENDING";
-    modalChange(false);
-  }
+  useEffect(() => {
+    if (state.status === "ADDED") {
+      toast({
+        title: "Success",
+        description: `Added: ${state.subjectName}`,
+        duration: 2000,
+      });
+      state.status = "PENDING";
+      modalChange(false);
+    }
+  }, [state]);
 
   function modalChange(isOpen: boolean) {
     urlSearchParams.set("addSubject", String(isOpen));
