@@ -24,6 +24,7 @@ export default function TableActions() {
           className="w-full md:w-auto"
           onClick={() => {
             params.set("search", searchWord);
+            params.set("page", "1");
             router.push(`${pathname}?${params.toString()}`);
           }}
         >
