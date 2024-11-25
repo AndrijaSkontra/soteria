@@ -1,6 +1,6 @@
 import prisma from "@/index";
 import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 export async function getActiveSubjectsFromDB(
   searchParam: string | AdvancedSubjectSearch = "",
@@ -72,5 +72,6 @@ export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
       address: createSubjectDto.address,
     },
   });
-  // revalidatePath("/hr/6744355f5d03fddef7afec66/administration/subject");
+  //  INFO: this will update the subjects page
+  revalidateTag("subjects");
 }

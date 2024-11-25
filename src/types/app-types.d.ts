@@ -54,3 +54,9 @@ type CreateSubjectDTO = {
   oib?: string;
   email?: string;
 };
+//
+// type SubjectFormState = {
+//   status: "ADDED" | "PENDING";
+//   subjectName?: string;
+//   errors: any;
+// };

@@ -3,13 +3,7 @@
 import { z } from "zod";
 import { addSubjectToDB } from "../services/subject-service";
 
-export async function addSubjectAction(
-  prevState: {
-    message: string;
-    errors: {};
-  },
-  formData: FormData,
-) {
+export async function addSubjectAction(prevState: any, formData: FormData) {
   const schema = getValidationSchemaObject();
   const validatedFields = schema.safeParse({
     name: (formData.get("name") as string).trim(),
@@ -34,21 +28,11 @@ export async function addSubjectAction(
     contact: validatedFields.data.contactNumber,
   });
 
-  // await fetch(`${process.env.AUTH_TRUST_HOST}/api/subjects`, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json", // Specify JSON content
-  //   },
-  //   body: JSON.stringify({
-  //     name: validatedFields.data.name,
-  //     oib: validatedFields.data.oib,
-  //     email: validatedFields.data.email,
-  //     address: validatedFields.data.address,
-  //     contact: validatedFields.data.contactNumber,
-  //   }),
-  // });
-
-  return { message: "hello", errors: {} };
+  return {
+    status: "ADDED",
+    subjectName: validatedFields.data.name,
+    errors: {},
+  };
 }
 
 /**

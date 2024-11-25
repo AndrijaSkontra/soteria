@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/toaster";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 
@@ -17,7 +18,10 @@ export default async function LocaleLayout({
 
   return (
     <html className={theme === "dark" ? "dark" : "light"}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <main>{children}</main>
+        <Toaster />
+      </body>
     </html>
   );
 }
