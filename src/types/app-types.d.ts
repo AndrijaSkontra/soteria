@@ -36,3 +36,21 @@ type AdminViewCardDataType = {
   buttonText: string;
   icon: React.ReactNode;
 };
+
+type AdvancedSubjectSearch = {
+  id?: string;
+  name?: string;
+  address?: string;
+  oib?: string;
+  phone?: string;
+  email?: string;
+  country?: string;
+};
+
+type CreateSubjectDTO = {
+  name: string;
+  address?: string;
+  contact?: string;
+  oib?: string;
+  email?: string;
+};

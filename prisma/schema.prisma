@@ -44,7 +44,7 @@ model Subject {
   name   String
   address     String?
   oib         String?
-  phone       String?
+  contact     String?
   email       String?
   playgrounds Playground[]
   country     String?

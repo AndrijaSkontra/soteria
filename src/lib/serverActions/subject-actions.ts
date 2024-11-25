@@ -1,6 +1,7 @@
 "use server";
 
 import { z } from "zod";
+import { addSubjectToDB } from "../services/subject-service";
 
 export async function addSubjectAction(
   prevState: {
@@ -25,11 +26,19 @@ export async function addSubjectAction(
     };
   }
 
+  await addSubjectToDB({
+    name: validatedFields.data.name,
+    oib: validatedFields.data.oib,
+    email: validatedFields.data.email,
+    address: validatedFields.data.address,
+    contact: validatedFields.data.contactNumber,
+  });
+
   return { message: "hello", errors: {} };
 }
 
 /**
- * Make an zod object that will validate form data
+ * Makes a zod object that will validate form data
  * @returns z.object
  */
 function getValidationSchemaObject() {

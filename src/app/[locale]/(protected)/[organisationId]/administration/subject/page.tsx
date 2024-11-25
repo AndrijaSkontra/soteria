@@ -6,16 +6,14 @@ import { getActiveSubjectsFromDB } from "@/lib/services/subject-service";
 export default async function SubjectPage({
   searchParams,
 }: {
-  searchParams: Promise<{ search: string; page: string; rows: string }>;
+  searchParams: Promise<{ search: string; page: number; rows: number }>;
 }) {
   const searchParamsData = await searchParams;
   const { subjects, pagesAmount } = await getActiveSubjectsFromDB(
-    Number(searchParamsData.rows),
-    Number(searchParamsData.page),
     searchParamsData?.search,
+    searchParamsData.rows,
+    searchParamsData.page,
   );
-
-  console.log(subjects, " nice");
 
   return (
     <div className="p-4 lg:px-8 space-y-4">

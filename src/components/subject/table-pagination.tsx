@@ -80,6 +80,7 @@ export default function TablePagination({
             variant="outline"
             size="icon"
             onClick={() => changePageDirect(1)}
+            disabled={currentPage === 1}
           >
             <ChevronsLeftIcon />
           </Button>
@@ -104,6 +105,7 @@ export default function TablePagination({
             variant="outline"
             size="icon"
             onClick={() => changePageDirect(pagesAmount)}
+            disabled={currentPage === pagesAmount}
           >
             <ChevronsRightIcon />
           </Button>

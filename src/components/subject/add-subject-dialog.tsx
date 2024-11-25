@@ -25,6 +25,8 @@ export default function AddSubjectDialog() {
     initialFormState,
   );
 
+  console.log(state);
+
   return (
     <Dialog>
       <DialogTrigger asChild>
