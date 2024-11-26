@@ -75,6 +75,30 @@ export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
   revalidateTag("subjects");
 }
 
+export async function updateSubjectInDB(
+  subjectId: string,
+  createSubjectDto: CreateSubjectDTO,
+) {
+  // filter empty fields
+  const updateData: Record<string, any> = {};
+  for (const [key, value] of Object.entries(createSubjectDto)) {
+    if (value !== "") {
+      updateData[key] = value;
+    }
+  }
+
+  if (Object.keys(updateData).length > 0) {
+    await prisma.subject.update({
+      where: { id: subjectId },
+      data: updateData,
+    });
+
+    revalidateTag("subjects");
+  } else {
+    throw new Error("No valid fields provided to update.");
+  }
+}
+
 export async function disableSubjectInDB(subjectId: string) {
   await prisma.subject.update({
     where: {

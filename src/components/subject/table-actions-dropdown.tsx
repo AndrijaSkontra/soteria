@@ -15,6 +15,8 @@ import { Button } from "../ui/button";
 import { Subject } from "@prisma/client";
 import { disableSubject } from "@/lib/serverActions/subject-actions";
 import UpdateSubjectForm from "./update-subject-form";
+import { CgDetailsMore } from "react-icons/cg";
+import BasicSubjectDetails from "./basic-subject-details";
 
 export default function TableActionsDropDown({
   subject,
@@ -23,16 +25,28 @@ export default function TableActionsDropDown({
 }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   return (
     <>
+      <ResponsiveDialog
+        isOpen={isDetailsOpen}
+        setIsOpen={setIsDetailsOpen}
+        title={`Details ${subject.name}`}
+        description="Subject info"
+      >
+        <BasicSubjectDetails subject={subject} />
+      </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isEditOpen}
         setIsOpen={setIsEditOpen}
         title={`Edit ${subject.name}`}
         description="Change data about the subject"
       >
-        <UpdateSubjectForm setIsOpenAction={setIsEditOpen} />
+        <UpdateSubjectForm
+          setIsOpenAction={setIsEditOpen}
+          subjectId={subject.id}
+        />
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isDeleteOpen}
@@ -68,7 +82,15 @@ export default function TableActionsDropDown({
               <p>Uredi</p>
             </div>
           </DropdownMenuItem>
-          <DropdownMenuItem className="md:hidden">Detalji</DropdownMenuItem>
+          <DropdownMenuItem
+            className="md:hidden"
+            onClick={() => setIsDetailsOpen(true)}
+          >
+            <div className="flex items-center space-x-2">
+              <CgDetailsMore />
+              <p>Detalji</p>
+            </div>
+          </DropdownMenuItem>
           <Separator />
           <DropdownMenuItem onClick={() => setIsDeleteOpen(true)}>
             <div className="flex items-center space-x-2">

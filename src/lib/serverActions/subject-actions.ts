@@ -4,6 +4,7 @@ import { z } from "zod";
 import {
   addSubjectToDB,
   disableSubjectInDB,
+  updateSubjectInDB,
 } from "../services/subject-service";
 
 export async function disableSubject(subjectId) {
@@ -12,23 +13,40 @@ export async function disableSubject(subjectId) {
 
 export async function updateSubjectAction(prevState: any, formData: FormData) {
   console.log(formData);
-  return { status: "PENDING", errors: {} };
-}
-
-export async function addSubjectAction(prevState: any, formData: FormData) {
-  const schema = getValidationSchemaObject();
-  const validatedFields = schema.safeParse({
-    name: (formData.get("name") as string).trim(),
-    address: (formData.get("address") as string).trim(),
-    contactNumber: (formData.get("contactNumber") as string).replace(/\s/g, ""),
-    oib: (formData.get("oib") as string).trim(),
-    email: (formData.get("email") as string).trim(),
-    country: (formData.get("country") as string).trim(),
-  });
+  const schema = getValidationForUpdatingSubject();
+  const validatedFields = getValidatedFields(formData, schema);
 
   if (!validatedFields.success) {
     return {
-      message: "Please the form again",
+      status: "ERROR",
+      message: "Please fix the form.",
+      errors: validatedFields.error.format(),
+    };
+  }
+
+  await updateSubjectInDB(String(formData.get("subjectId")), {
+    name: validatedFields.data.name,
+    oib: validatedFields.data.oib,
+    email: validatedFields.data.email,
+    address: validatedFields.data.address,
+    contact: validatedFields.data.contactNumber,
+    country: validatedFields.data.country,
+  });
+
+  return {
+    status: "ADDED",
+    subjectName: validatedFields.data.name,
+    errors: {},
+  };
+}
+
+export async function addSubjectAction(prevState: any, formData: FormData) {
+  const schema = getValidationForAddingSubject();
+  const validatedFields = getValidatedFields(formData, schema);
+
+  if (!validatedFields.success) {
+    return {
+      message: "Please fix the form.",
       errors: validatedFields.error.format(),
     };
   }
@@ -49,11 +67,29 @@ export async function addSubjectAction(prevState: any, formData: FormData) {
   };
 }
 
+function getValidatedFields(formData: FormData, schema) {
+  const name = String(formData.get("name")).trim() || undefined;
+  const address = String(String(formData.get("address"))) || undefined;
+  const contactNumber = String(formData.get("contactNumber")) || undefined;
+  const oib = String(formData.get("oib")) || undefined;
+  const email = String(formData.get("email")) || undefined;
+  const country = String(formData.get("country")) || undefined;
+  const validatedFields = schema.safeParse({
+    name: name,
+    address: address,
+    contactNumber: contactNumber,
+    oib: oib,
+    email: email,
+    country: country,
+  });
+  return validatedFields;
+}
+
 /**
- * Makes a zod object that will validate form data
+ * Makes a zod object that will validate form data for adding subjects
  * @returns z.object
  */
-function getValidationSchemaObject() {
+function getValidationForAddingSubject() {
   return z.object({
     name: z.string().min(3, { message: "Name must be at least 3 characters" }),
     address: z
@@ -64,7 +100,43 @@ function getValidationSchemaObject() {
     contactNumber: z
       .string()
       .trim()
-      .regex(/^\+?[1-9]\d{1,14}$/, {
+      .regex(/^\+?[1-9]\d{9,14}$/, {
+        message: "Invalid contact number",
+      })
+      .optional()
+      .or(z.literal("")),
+    oib: z
+      .string()
+      .trim()
+      .length(11, { message: "OIB must be exactly 11 digits" })
+      .regex(/^\d+$/, { message: "OIB must contain only digits" })
+      .optional()
+      .or(z.literal("")),
+    email: z
+      .string()
+      .email({ message: "Invalid email address" })
+      .optional()
+      .or(z.literal("")),
+    country: z.string().optional(),
+  });
+}
+
+function getValidationForUpdatingSubject() {
+  return z.object({
+    name: z
+      .string()
+      .min(3, { message: "Name must be at least 3 characters" })
+      .optional()
+      .or(z.literal("")),
+    address: z
+      .string()
+      .min(3, { message: "Address must be at least 3 characters" })
+      .optional()
+      .or(z.literal("")),
+    contactNumber: z
+      .string()
+      .trim()
+      .regex(/^\+?[1-9]\d{9,14}$/, {
         message: "Invalid contact number",
       })
       .optional()

@@ -1,6 +1,7 @@
 import SubjectsTable from "@/components/subject/subject-table";
 import TableActions from "@/components/subject/table-actions";
 import TablePagination from "@/components/subject/table-pagination";
+import { Switch } from "@/components/ui/switch";
 import { getActiveSubjectsFromDB } from "@/lib/services/subject-service";
 
 export default async function SubjectPage({
@@ -20,6 +21,10 @@ export default async function SubjectPage({
       <TableActions />
       {pagesAmount !== 0 ? (
         <>
+          <div className="flex space-x-2 items-center">
+            <Switch />
+            <p className="text-sm font-semibold">Advanced search</p>
+          </div>
           <SubjectsTable
             rows={searchParamsData.rows || 10}
             subjects={subjects}

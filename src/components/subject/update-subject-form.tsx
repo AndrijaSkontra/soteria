@@ -13,7 +13,7 @@ const initialFormState: any = {
   errors: {},
 };
 
-export default function UpdateSubjectForm({ setIsOpenAction }) {
+export default function UpdateSubjectForm({ setIsOpenAction, subjectId }) {
   const [countryValue, setCountryValue] = useState("");
   const { toast } = useToast();
   const [state, formAction] = useActionState(
@@ -25,7 +25,17 @@ export default function UpdateSubjectForm({ setIsOpenAction }) {
     if (state.status === "ADDED") {
       toast({
         title: "Success",
-        description: `Added: ${state.subjectName}`,
+        description: `Updated: ${state.subjectName}`,
+        duration: 2000,
+      });
+      state.status = "PENDING";
+    }
+
+    if (state.status === "ERROR") {
+      toast({
+        variant: "destructive",
+        title: "Invalid fields",
+        description: `Can't update`,
         duration: 2000,
       });
       state.status = "PENDING";
@@ -133,9 +143,18 @@ export default function UpdateSubjectForm({ setIsOpenAction }) {
             );
           })}
         </div>
+        <Input
+          id="subjectId"
+          name="subjectId"
+          value={subjectId}
+          readOnly={true}
+          className="hidden"
+        />
       </div>
       <div className="flex justify-end space-x-2 mt-6">
-        <Button type="submit">Dodaj</Button>
+        <Button type="submit" onClick={() => setIsOpenAction(false)}>
+          Uredi
+        </Button>
         <Button variant="outline" onClick={() => setIsOpenAction(false)}>
           Odustani
         </Button>
