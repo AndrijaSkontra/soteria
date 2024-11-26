@@ -20,7 +20,11 @@ export default async function SubjectPage({
       <TableActions />
       {pagesAmount !== 0 ? (
         <>
-          <SubjectsTable subjects={subjects} />
+          <SubjectsTable
+            rows={searchParamsData.rows || 10}
+            subjects={subjects}
+            page={searchParamsData.page || 1}
+          />
           <TablePagination pagesAmount={pagesAmount} />
         </>
       ) : (

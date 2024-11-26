@@ -9,7 +9,15 @@ import {
 } from "@/components/ui/table";
 import TableActionsDropDown from "./table-actions-dropdown";
 
-export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
+export default function SubjectsTable({
+  subjects,
+  page,
+  rows,
+}: {
+  subjects: Subject[];
+  page: number;
+  rows: number;
+}) {
   return (
     <div className="border border-gray-200 rounded-lg overflow-auto">
       <Table>
@@ -29,23 +37,23 @@ export default function SubjectsTable({ subjects }: { subjects: Subject[] }) {
           {subjects.map((subject, index) => (
             <TableRow key={subject.id}>
               <TableCell className="xl:table-cell hidden">
-                {index + 1}
+                {Number(index + 1) + Number(page - 1) * Number(rows)}
               </TableCell>
               <TableCell>{subject.name}</TableCell>
               <TableCell className="xl:table-cell hidden">
-                {subject.address}
+                {subject.address || "/"}
               </TableCell>
               <TableCell className="md:table-cell hidden">
-                {subject.contact}
+                {subject.contact || "/"}
               </TableCell>
               <TableCell className="xl:table-cell hidden">
-                {subject.email}
+                {subject.email || "/"}
               </TableCell>
               <TableCell className="xl:table-cell hidden">
-                {subject.country}
+                {subject.country || "/"}
               </TableCell>
               <TableCell className="xl:table-cell hidden">
-                {subject.oib}
+                {subject.oib || "/"}
               </TableCell>
               <TableCell className="text-center">
                 <TableActionsDropDown subject={subject} />

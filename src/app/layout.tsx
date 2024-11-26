@@ -1,6 +1,12 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Soteria",
@@ -18,7 +24,7 @@ export default async function LocaleLayout({
 
   return (
     <html className={theme === "dark" ? "dark" : "light"}>
-      <body className="antialiased">
+      <body className={`antialiased ${inter.className}`}>
         <main>{children}</main>
         <Toaster />
       </body>

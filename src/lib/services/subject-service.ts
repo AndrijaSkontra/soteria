@@ -1,7 +1,6 @@
 import prisma from "@/index";
 import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
 import { revalidateTag } from "next/cache";
-import { ensureError } from "../ensure-error";
 
 export async function getActiveSubjectsFromDB(
   searchParam: string | AdvancedSubjectSearch = "",
@@ -39,10 +38,6 @@ export async function getActiveSubjectsFromDB(
       active: true,
       ...searchParam,
     };
-    // selectClause = Object.keys(searchParam).reduce((acc, key) => {
-    //   acc[key] = true;
-    //   return acc;
-    // }, {});
   }
 
   try {
@@ -50,7 +45,6 @@ export async function getActiveSubjectsFromDB(
       where: whereClause,
       skip,
       take: Number(rows),
-      // select: selectClause,
     });
 
     const count = await prisma.subject.count({
@@ -73,6 +67,7 @@ export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
       oib: createSubjectDto.oib,
       contact: createSubjectDto.contact,
       address: createSubjectDto.address,
+      country: createSubjectDto.country,
     },
   });
 

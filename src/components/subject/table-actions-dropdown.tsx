@@ -26,6 +26,19 @@ export default function TableActionsDropDown({
   return (
     <>
       <ResponsiveDialog
+        isOpen={isEditOpen}
+        setIsOpen={setIsEditOpen}
+        title={`Edit ${subject.name}`}
+        description="Change data about the subject"
+      >
+        <div className="flex space-x-2 items-center justify-end">
+          <Button variant="outline" onClick={() => setIsDeleteOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={() => {}}>Confirm</Button>
+        </div>
+      </ResponsiveDialog>
+      <ResponsiveDialog
         isOpen={isDeleteOpen}
         setIsOpen={setIsDeleteOpen}
         title={`Remove ${subject.name}`}

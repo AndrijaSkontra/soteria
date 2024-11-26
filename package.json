@@ -8,9 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node ./src/lib/seed-db.ts"
+    "seed": "node ./src/lib/seed/seed-db.ts"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.2.0",
     "@heroicons/react": "^2.1.5",
     "@prisma/client": "^5.22.0",
     "@radix-ui/react-alert-dialog": "^1.1.2",

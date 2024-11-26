@@ -51,6 +51,7 @@ type CreateSubjectDTO = {
   name: string;
   address?: string;
   contact?: string;
+  country?: string;
   oib?: string;
   email?: string;
 };
