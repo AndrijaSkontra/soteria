@@ -15,7 +15,7 @@ import { SubmitButton } from "@/components/ui/submit-button-with-spinner";
 import { useActionState } from "react";
 import { updateUserAction } from "@/lib/serverActions/user-actions";
 import { UserInformationType } from "@/types/app-types";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const initialState = {
   message: "",
@@ -23,14 +23,13 @@ const initialState = {
 
 export function EditProfileDialog({
   userInfo,
-  searchParams,
 }: {
   userInfo: UserInformationType;
-  searchParams: { callbackUrl: string; editModal: string };
 }) {
   const [state, formAction] = useActionState(updateUserAction, initialState);
   const pathname = usePathname();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   function modalChange(isOpen: boolean) {
     const params = new URLSearchParams(searchParams);
@@ -41,7 +40,7 @@ export function EditProfileDialog({
   return (
     <Dialog
       onOpenChange={(isOpen) => modalChange(isOpen)}
-      open={searchParams.editModal === "true"}
+      open={searchParams.get("editModal") === "true"}
     >
       <DialogTrigger asChild>
         <Button>Edit Profile</Button>

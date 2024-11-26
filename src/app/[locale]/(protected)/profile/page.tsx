@@ -1,19 +1,12 @@
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { RouteParams, UserInformationType } from "@/types/app-types";
+import { UserInformationType } from "@/types/app-types";
 import { getUserInformation } from "@/lib/services/user-service";
 import UserInformation from "@/components/profile/user-information";
 import GoBackToOrganisationLink from "@/components/profile/go-back-to-organisation-link";
 import { EditProfileDialog } from "@/components/profile/edit-profile-dialog";
 import { ChangePasswordDialog } from "@/components/profile/change-profile-dialog";
 
-export default async function ProfilePage({
-  searchParams,
-  params,
-}: {
-  searchParams: Promise<{ callbackUrl: string; editModal: string }>;
-  params: RouteParams;
-}) {
-  const searchParamsURL = await searchParams;
+export default async function ProfilePage() {
   const userInfo: UserInformationType = await getUserInformation();
 
   return (
@@ -21,10 +14,7 @@ export default async function ProfilePage({
       <Card className="max-w-md w-full p-4">
         <CardHeader>
           <div className="flex items-center space-x-3 mb-6">
-            <GoBackToOrganisationLink
-              callbackUrl={searchParamsURL.callbackUrl}
-              locale={(await params).locale}
-            />
+            <GoBackToOrganisationLink />
             <h1 className="font-semibold text-2xl">Profile</h1>
           </div>
         </CardHeader>
@@ -32,10 +22,7 @@ export default async function ProfilePage({
           <UserInformation userInfo={userInfo} />
 
           <div className="flex flex-col space-y-4 mt-4">
-            <EditProfileDialog
-              userInfo={userInfo}
-              searchParams={searchParamsURL}
-            />
+            <EditProfileDialog userInfo={userInfo} />
             <ChangePasswordDialog />
           </div>
         </CardContent>

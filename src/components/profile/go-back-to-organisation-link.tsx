@@ -1,13 +1,13 @@
+"use client";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { useSearchParams } from "next/navigation";
+import { useLocale } from "next-intl";
 
-export default function GoBackToOrganisationLink({
-  callbackUrl,
-  locale,
-}: {
-  callbackUrl: string;
-  locale: string;
-}) {
+export default function GoBackToOrganisationLink() {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+  const locale = useLocale();
   return (
     <Link
       href={callbackUrl ? `${callbackUrl}` : `/${locale}/select-organisation`}
