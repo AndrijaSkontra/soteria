@@ -3,7 +3,6 @@
 import { useFormStatus } from "react-dom";
 import { Button } from "./button";
 import ClipLoader from "react-spinners/ClipLoader";
-import { cookies } from "next/headers";
 import { getCookie } from "@/lib/get-cookie";
 
 export function SubmitButton({
