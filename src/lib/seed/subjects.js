@@ -10,7 +10,7 @@ function generateSubjects(amount) {
       address: faker.location.streetAddress(),
       oib: String(faker.number.int({ min: 100000000, max: 990000000 })),
       contact: String(faker.number.int({ min: 90000000, max: 99000000 })),
-      email: `${name.slice(6)}.company@example.com`,
+      email: `${name.slice(0, 6)}.company@example.com`,
       country: faker.location.country(),
     });
   }

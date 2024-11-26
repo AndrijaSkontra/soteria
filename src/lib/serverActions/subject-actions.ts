@@ -12,7 +12,6 @@ export async function disableSubject(subjectId) {
 }
 
 export async function updateSubjectAction(prevState: any, formData: FormData) {
-  console.log(formData);
   const schema = getValidationForUpdatingSubject();
   const validatedFields = getValidatedFields(formData, schema);
 

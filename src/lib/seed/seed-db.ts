@@ -20,8 +20,6 @@ const dataAmount = readlineSync.question(
 `,
 );
 
-console.log(dataAmount);
-
 const subjectData = getSubjectData(dataAmount);
 
 async function main() {
