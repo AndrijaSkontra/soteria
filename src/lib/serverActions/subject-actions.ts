@@ -10,8 +10,9 @@ export async function disableSubject(subjectId) {
   await disableSubjectInDB(subjectId);
 }
 
-export async function updateSubjectAction(prevState: any, formData) {
+export async function updateSubjectAction(prevState: any, formData: FormData) {
   console.log(formData);
+  return { status: "PENDING", errors: {} };
 }
 
 export async function addSubjectAction(prevState: any, formData: FormData) {

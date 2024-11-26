@@ -109,7 +109,7 @@ export function EditProfileDialog({
                   )}
                 </div>
                 <div className="flex justify-center items-center">
-                  <SubmitButton innerText="Update Profile" />
+                  <SubmitButton innerText="Update Profile" className="w-full" />
                 </div>
                 <DialogClose asChild>
                   <Button variant={"outline"}>Close</Button>

@@ -11,10 +11,12 @@ import {
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { addSubjectAction } from "@/lib/serverActions/subject-actions";
 import { useToast } from "@/hooks/use-toast";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { CountrySelect } from "../ui/select-country";
+import { SubmitButton } from "../ui/submit-button-with-spinner";
 
 const initialFormState: any = {
   status: "PENDING",
@@ -22,6 +24,7 @@ const initialFormState: any = {
 };
 
 export default function AddSubjectDialog() {
+  const [countryValue, setCountryValue] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -99,7 +102,15 @@ export default function AddSubjectDialog() {
             <Label htmlFor="country" className="mb-1">
               Država
             </Label>
-            <Input id="country" name="country" placeholder="Croatia" />
+            <CountrySelect setDialogValue={setCountryValue} />
+            <Input
+              id="country"
+              name="country"
+              placeholder="Croatia"
+              value={countryValue}
+              readOnly={true}
+              className="hidden"
+            />
             {state.errors?.country?._errors.map((error, index) => {
               return (
                 <p key={index} className="text-red-500 text-xs">
@@ -158,7 +169,7 @@ export default function AddSubjectDialog() {
             </div>
           </div>
           <div className="flex justify-end space-x-2 mt-6">
-            <Button type="submit">Dodaj</Button>
+            <SubmitButton innerText="Dodaj" className={""} />
             <DialogClose asChild>
               <Button variant="outline">Odustani</Button>
             </DialogClose>

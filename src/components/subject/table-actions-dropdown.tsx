@@ -14,6 +14,7 @@ import { ResponsiveDialog } from "../ui/responsive-dialog";
 import { Button } from "../ui/button";
 import { Subject } from "@prisma/client";
 import { disableSubject } from "@/lib/serverActions/subject-actions";
+import UpdateSubjectForm from "./update-subject-form";
 
 export default function TableActionsDropDown({
   subject,
@@ -31,12 +32,7 @@ export default function TableActionsDropDown({
         title={`Edit ${subject.name}`}
         description="Change data about the subject"
       >
-        <div className="flex space-x-2 items-center justify-end">
-          <Button variant="outline" onClick={() => setIsDeleteOpen(false)}>
-            Cancel
-          </Button>
-          <Button onClick={() => {}}>Confirm</Button>
-        </div>
+        <UpdateSubjectForm setIsOpenAction={setIsEditOpen} />
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isDeleteOpen}

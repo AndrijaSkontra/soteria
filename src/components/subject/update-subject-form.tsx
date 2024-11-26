@@ -3,19 +3,21 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useActionState, useEffect } from "react";
-import { addSubjectAction } from "@/lib/serverActions/subject-actions";
+import { useActionState, useEffect, useState } from "react";
+import { updateSubjectAction } from "@/lib/serverActions/subject-actions";
 import { useToast } from "@/hooks/use-toast";
+import { CountrySelect } from "@/components/ui/select-country";
 
 const initialFormState: any = {
   status: "PENDING",
   errors: {},
 };
 
-export default function AddSubjectForm() {
+export default function UpdateSubjectForm({ setIsOpenAction }) {
+  const [countryValue, setCountryValue] = useState("");
   const { toast } = useToast();
   const [state, formAction] = useActionState(
-    addSubjectAction,
+    updateSubjectAction,
     initialFormState,
   );
 
@@ -34,7 +36,7 @@ export default function AddSubjectForm() {
     <form className="space-y-4 mt-4" action={formAction}>
       <div className="flex flex-col space-y-1">
         <Label htmlFor="name" className="mb-1">
-          Naziv*
+          Naziv
         </Label>
         <Input id="name" name="name" placeholder="Org d.o.o." />
         {state.errors?.name?._errors.map((error, index) => {
@@ -66,7 +68,15 @@ export default function AddSubjectForm() {
         <Label htmlFor="country" className="mb-1">
           Država
         </Label>
-        <Input id="country" name="country" placeholder="Croatia" />
+        <CountrySelect setDialogValue={setCountryValue} />
+        <Input
+          id="country"
+          name="country"
+          placeholder="Croatia"
+          value={countryValue}
+          readOnly={true}
+          className="hidden"
+        />
         {state.errors?.country?._errors.map((error, index) => {
           return (
             <p key={index} className="text-red-500 text-xs">
@@ -126,7 +136,9 @@ export default function AddSubjectForm() {
       </div>
       <div className="flex justify-end space-x-2 mt-6">
         <Button type="submit">Dodaj</Button>
-        <Button variant="outline">Odustani</Button>
+        <Button variant="outline" onClick={() => setIsOpenAction(false)}>
+          Odustani
+        </Button>
       </div>
     </form>
   );

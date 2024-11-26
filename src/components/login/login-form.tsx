@@ -69,7 +69,7 @@ export function LoginForm() {
               )}
             </div>
             <div className="flex justify-center items-center">
-              <SubmitButton innerText="Login" />
+              <SubmitButton innerText="Login" className="w-full" />
             </div>
           </div>
         </form>
