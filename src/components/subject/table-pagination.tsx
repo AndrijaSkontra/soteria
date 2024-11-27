@@ -47,9 +47,11 @@ export default function TablePagination({
   }
 
   return (
-    <div className="flex md:flex-row flex-col w-full md:justify-center md:items-center md:space-x-12 space-y-4 md:space-y-0">
+    <div className="flex flex-row justify-between w-full md:justify-center md:items-center md:space-x-12 md:space-y-0">
       <div className="flex items-center space-x-2">
-        <p className="font-medium text-nowrap mr-2">Rows per page</p>
+        <p className="hidden  md:inline font-medium text-nowrap mr-2">
+          Rows per page
+        </p>
         <Select
           onValueChange={(value) => setRowsPerPage(Number(value))}
           defaultValue={String(rowsPerPage)}
@@ -67,7 +69,7 @@ export default function TablePagination({
         </Select>
       </div>
       <div className="flex items-center space-x-2">
-        <p className="text-nowrap font-medium mr-2">{`Page ${currentPage} of ${pagesAmount}`}</p>
+        <p className="text-nowrap font-medium mr-2 hidden  md:inline">{`Page ${currentPage} of ${pagesAmount}`}</p>
         <div className="flex items-center space-x-2">
           <Button
             className={pagesAmount === 1 ? "hidden" : ""}
