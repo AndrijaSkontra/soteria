@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import AddSubjectDialog from "@/components/subject/add-subject-dialog";
 import CleanSearchButton from "@/components/generic-table/clean-search-button";
 
-export default function TableActions() {
+export default function SubjectTableActions() {
   const router = useRouter();
   const [searchInput, setSearchInput] = useState("");
   const pathname = usePathname();

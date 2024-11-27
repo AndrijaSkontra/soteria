@@ -7,7 +7,7 @@ import {
   TableCell,
   TableHead,
 } from "@/components/ui/table";
-import TableActionsDropDown from "./table-actions-dropdown";
+import SubjectTableDropdown from "./subject-table-dropdown";
 
 export default function SubjectsTable({
   subjects,
@@ -56,7 +56,7 @@ export default function SubjectsTable({
                 {subject.oib || "-"}
               </TableCell>
               <TableCell className="text-center">
-                <TableActionsDropDown subject={subject} />
+                <SubjectTableDropdown subject={subject} />
               </TableCell>
             </TableRow>
           ))}

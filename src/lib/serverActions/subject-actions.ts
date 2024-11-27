@@ -5,7 +5,7 @@ import {
   addSubjectToDB,
   disableSubjectInDB,
   updateSubjectInDB,
-} from "../services/subject-service";
+} from "@/lib/services/subject-service";
 
 export async function disableSubject(subjectId) {
   await disableSubjectInDB(subjectId);
@@ -33,7 +33,7 @@ export async function updateSubjectAction(prevState: any, formData: FormData) {
   });
 
   return {
-    status: "ADDED",
+    status: "UPDATED",
     subjectName: validatedFields.data.name,
     errors: {},
   };
@@ -120,6 +120,10 @@ function getValidationForAddingSubject() {
   });
 }
 
+/**
+ * Makes a zod object that will validate form data for updating subjects
+ * @returns z.object
+ */
 function getValidationForUpdatingSubject() {
   return z.object({
     name: z

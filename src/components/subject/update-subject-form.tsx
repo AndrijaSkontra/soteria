@@ -22,7 +22,7 @@ export default function UpdateSubjectForm({ setIsOpenAction, subjectId }) {
   );
 
   useEffect(() => {
-    if (state.status === "ADDED") {
+    if (state.status === "UPDATED") {
       toast({
         title: "Success",
         description: `Updated: ${state.subjectName}`,

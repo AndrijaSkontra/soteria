@@ -23,6 +23,11 @@ const initialFormState: any = {
   errors: {},
 };
 
+/**
+ * Dialog and a form to add a new subject.
+ * @see https://react.dev/reference/react/useActionState#
+ * @author Andrija Skontra
+ */
 export default function AddSubjectDialog() {
   const [countryValue, setCountryValue] = useState("");
   const router = useRouter();
@@ -43,18 +48,18 @@ export default function AddSubjectDialog() {
         duration: 2000,
       });
       state.status = "PENDING";
-      modalChange(false);
+      dialogOpen(false);
     }
   }, [state]);
 
-  function modalChange(isOpen: boolean) {
+  function dialogOpen(isOpen: boolean) {
     urlSearchParams.set("addSubject", String(isOpen));
     router.push(`${pathname}?${urlSearchParams.toString()}`);
   }
 
   return (
     <Dialog
-      onOpenChange={(isOpen) => modalChange(isOpen)}
+      onOpenChange={(isOpen) => dialogOpen(isOpen)}
       open={searchParams.get("addSubject") === "true"}
     >
       <DialogTrigger asChild>

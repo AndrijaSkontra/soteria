@@ -1,4 +1,4 @@
-export default function BasicSubjectDetails({ subject }) {
+export default function SubjectDetails({ subject }) {
   return (
     <div className="space-y-4 p-4">
       <div>

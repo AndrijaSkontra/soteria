@@ -11,14 +11,13 @@ import { Separator } from "../ui/separator";
 import { useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { ResponsiveDialog } from "../ui/responsive-dialog";
-import { Button } from "../ui/button";
 import { Subject } from "@prisma/client";
-import { disableSubject } from "@/lib/serverActions/subject-actions";
 import UpdateSubjectForm from "./update-subject-form";
 import { CgDetailsMore } from "react-icons/cg";
-import BasicSubjectDetails from "./basic-subject-details";
+import SubjectDetails from "./subject-details";
+import DeleteSubject from "./delete-subject";
 
-export default function TableActionsDropDown({
+export default function SubjectTableDropdown({
   subject,
 }: {
   subject: Subject;
@@ -29,46 +28,6 @@ export default function TableActionsDropDown({
 
   return (
     <>
-      <ResponsiveDialog
-        isOpen={isDetailsOpen}
-        setIsOpen={setIsDetailsOpen}
-        title={`Details ${subject.name}`}
-        description="Subject info"
-      >
-        <BasicSubjectDetails subject={subject} />
-      </ResponsiveDialog>
-      <ResponsiveDialog
-        isOpen={isEditOpen}
-        setIsOpen={setIsEditOpen}
-        title={`Edit ${subject.name}`}
-        description="Change data about the subject"
-      >
-        <UpdateSubjectForm
-          setIsOpenAction={setIsEditOpen}
-          subjectId={subject.id}
-        />
-      </ResponsiveDialog>
-      <ResponsiveDialog
-        isOpen={isDeleteOpen}
-        setIsOpen={setIsDeleteOpen}
-        title={`Remove ${subject.name}`}
-        description="Are you sure you want to remove this subject?"
-      >
-        <div className="flex space-x-2 items-center justify-end">
-          <Button variant="outline" onClick={() => setIsDeleteOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            onClick={() => {
-              setIsDeleteOpen(false);
-              disableSubject(subject.id);
-            }}
-          >
-            Yes
-          </Button>
-        </div>
-      </ResponsiveDialog>
-
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button>
@@ -100,6 +59,34 @@ export default function TableActionsDropDown({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <ResponsiveDialog
+        isOpen={isDetailsOpen}
+        setIsOpen={setIsDetailsOpen}
+        title={`Details ${subject.name}`}
+        description="Subject info"
+      >
+        <SubjectDetails subject={subject} />
+      </ResponsiveDialog>
+      <ResponsiveDialog
+        isOpen={isEditOpen}
+        setIsOpen={setIsEditOpen}
+        title={`Edit ${subject.name}`}
+        description="Change data about the subject"
+      >
+        <UpdateSubjectForm
+          setIsOpenAction={setIsEditOpen}
+          subjectId={subject.id}
+        />
+      </ResponsiveDialog>
+      <ResponsiveDialog
+        isOpen={isDeleteOpen}
+        setIsOpen={setIsDeleteOpen}
+        title={`Remove ${subject.name}`}
+        description="Are you sure you want to remove this subject?"
+      >
+        <DeleteSubject setIsDeleteOpen={setIsDeleteOpen} subject={subject} />
+      </ResponsiveDialog>
     </>
   );
 }

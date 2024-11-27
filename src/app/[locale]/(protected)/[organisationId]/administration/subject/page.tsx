@@ -1,8 +1,9 @@
 import SubjectsTable from "@/components/subject/subject-table";
-import TableActions from "@/components/subject/table-actions";
-import TablePagination from "@/components/subject/table-pagination";
+import SubjectTableActions from "@/components/subject/table-actions";
+import TablePagination from "@/components/generic-table/table-pagination";
 import { Switch } from "@/components/ui/switch";
 import { getActiveSubjectsFromDB } from "@/lib/services/subject-service";
+import { FaUserAltSlash } from "react-icons/fa";
 
 export default async function SubjectPage({
   searchParams,
@@ -18,7 +19,7 @@ export default async function SubjectPage({
 
   return (
     <div className="p-4 lg:px-8 space-y-4">
-      <TableActions />
+      <SubjectTableActions />
       {pagesAmount !== 0 ? (
         <>
           <div className="flex space-x-2 items-center">
@@ -33,7 +34,12 @@ export default async function SubjectPage({
           <TablePagination pagesAmount={pagesAmount} />
         </>
       ) : (
-        <p>no subjects</p>
+        <div className="flex items-center justify-center">
+          <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 flex space-x-2">
+            <FaUserAltSlash className="size-7" />
+            <p className="text-center text-lg font-bold">No Subjects</p>
+          </div>
+        </div>
       )}
     </div>
   );

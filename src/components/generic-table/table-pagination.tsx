@@ -15,7 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 export default function TablePagination({
   pagesAmount,
@@ -25,7 +25,10 @@ export default function TablePagination({
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const urlSearchParams = new URLSearchParams(searchParams.toString());
+  const urlSearchParams = useMemo(
+    () => new URLSearchParams(searchParams.toString()),
+    [searchParams],
+  );
   const currentPage = searchParams.get("page") || String(1);
   const rowsPerPage = searchParams.get("rows") || String(10);
 
