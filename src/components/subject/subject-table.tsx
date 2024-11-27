@@ -41,19 +41,19 @@ export default function SubjectsTable({
               </TableCell>
               <TableCell>{subject.name}</TableCell>
               <TableCell className="xl:table-cell hidden">
-                {subject.address || "/"}
+                {subject.address || "-"}
               </TableCell>
               <TableCell className="md:table-cell hidden">
-                {subject.contact || "/"}
+                {subject.contact || "-"}
               </TableCell>
               <TableCell className="xl:table-cell hidden">
-                {subject.email || "/"}
+                {subject.email || "-"}
               </TableCell>
               <TableCell className="xl:table-cell hidden">
-                {subject.country || "/"}
+                {subject.country || "-"}
               </TableCell>
               <TableCell className="xl:table-cell hidden">
-                {subject.oib || "/"}
+                {subject.oib || "-"}
               </TableCell>
               <TableCell className="text-center">
                 <TableActionsDropDown subject={subject} />
