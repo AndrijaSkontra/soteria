@@ -26,6 +26,8 @@ export default function SubjectTableDropdown({
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
+  console.log(subject);
+
   return (
     <>
       <DropdownMenu>
@@ -74,10 +76,7 @@ export default function SubjectTableDropdown({
         title={`Edit ${subject.name}`}
         description="Change data about the subject"
       >
-        <UpdateSubjectForm
-          setIsOpenAction={setIsEditOpen}
-          subjectId={subject.id}
-        />
+        <UpdateSubjectForm setIsOpenAction={setIsEditOpen} subject={subject} />
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isDeleteOpen}

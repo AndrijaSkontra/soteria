@@ -12,13 +12,16 @@ export async function disableSubject(subjectId) {
 }
 
 export async function updateSubjectAction(prevState: any, formData: FormData) {
+  if (checkIsFormDataEmpty(formData)) {
+    return { status: "NOCHANGE", errors: {} };
+  }
+
   const schema = getValidationForUpdatingSubject();
   const validatedFields = getValidatedFields(formData, schema);
 
   if (!validatedFields.success) {
     return {
       status: "ERROR",
-      message: "Please fix the form.",
       errors: validatedFields.error.format(),
     };
   }
@@ -34,7 +37,6 @@ export async function updateSubjectAction(prevState: any, formData: FormData) {
 
   return {
     status: "UPDATED",
-    subjectName: validatedFields.data.name,
     errors: {},
   };
 }
@@ -158,4 +160,20 @@ function getValidationForUpdatingSubject() {
       .or(z.literal("")),
     country: z.string().optional(),
   });
+}
+
+function checkIsFormDataEmpty(formData): boolean {
+  const fieldsToCheck = [
+    "name",
+    "address",
+    "country",
+    "contactNumber",
+    "oib",
+    "email",
+  ];
+
+  const allFieldsEmpty = fieldsToCheck.every(
+    (field) => formData.get(field) === "",
+  );
+  return allFieldsEmpty;
 }

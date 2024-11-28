@@ -31,7 +31,7 @@ export function EditProfileDialog({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  function modalChange(isOpen: boolean) {
+  function profileDialogOpen(isOpen: boolean) {
     const params = new URLSearchParams(searchParams);
     params.set("editModal", String(isOpen));
     router.push(`${pathname}?${params.toString()}`);
@@ -39,7 +39,7 @@ export function EditProfileDialog({
 
   return (
     <Dialog
-      onOpenChange={(isOpen) => modalChange(isOpen)}
+      onOpenChange={(isOpen) => profileDialogOpen(isOpen)}
       open={searchParams.get("editModal") === "true"}
     >
       <DialogTrigger asChild>

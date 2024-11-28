@@ -34,7 +34,7 @@ export default function ResponsiveDialog({
   if (isMobile) {
     return (
       <Drawer onOpenChange={setIsOpenAction} open={isOpen}>
-        <DrawerContent>
+        <DrawerContent className="p-2">
           <DrawerHeader className="text-left">
             <DrawerTitle>{title}</DrawerTitle>
             {description && (

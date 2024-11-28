@@ -8,13 +8,20 @@ import { updateSubjectAction } from "@/lib/serverActions/subject-actions";
 import { useToast } from "@/hooks/use-toast";
 import { CountrySelect } from "@/components/ui/select-country";
 import { SubmitButton } from "../ui/submit-button-with-spinner";
+import { Subject } from "@prisma/client";
 
 const initialFormState: any = {
   status: "PENDING",
   errors: {},
 };
 
-export default function UpdateSubjectForm({ setIsOpenAction, subjectId }) {
+export default function UpdateSubjectForm({
+  setIsOpenAction,
+  subject,
+}: {
+  setIsOpenAction: (boolean) => void;
+  subject: Subject;
+}) {
   const [countryValue, setCountryValue] = useState("");
   const { toast } = useToast();
   const [state, formAction] = useActionState(
@@ -25,18 +32,7 @@ export default function UpdateSubjectForm({ setIsOpenAction, subjectId }) {
   useEffect(() => {
     if (state.status === "UPDATED") {
       toast({
-        title: "Success",
-        description: `Updated: ${state.subjectName}`,
-        duration: 2000,
-      });
-      state.status = "PENDING";
-    }
-
-    if (state.status === "ERROR") {
-      toast({
-        variant: "destructive",
-        title: "Invalid fields",
-        description: `Can't update`,
+        title: `Updated: ${subject.name}`,
         duration: 2000,
       });
       state.status = "PENDING";
@@ -147,19 +143,16 @@ export default function UpdateSubjectForm({ setIsOpenAction, subjectId }) {
         <Input
           id="subjectId"
           name="subjectId"
-          value={subjectId}
+          value={subject.id}
           readOnly={true}
           className="hidden"
         />
       </div>
       <div className="flex justify-end space-x-2 mt-6">
-        <SubmitButton innerText="Uredi" />
-        <Button type="submit" onClick={() => setIsOpenAction(false)}>
-          Uredi
-        </Button>
         <Button variant="outline" onClick={() => setIsOpenAction(false)}>
-          Odustani
+          Zatvori
         </Button>
+        <SubmitButton innerText="Uredi" />
       </div>
     </form>
   );
