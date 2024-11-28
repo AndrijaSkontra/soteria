@@ -10,7 +10,7 @@ export default async function ProfilePage() {
   const userInfo: UserInformationType = await getUserInformation();
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex md:items-center justify-center min-h-screen">
       <Card className="max-w-md w-full p-4">
         <CardHeader>
           <div className="flex items-center space-x-3 mb-6">

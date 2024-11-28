@@ -7,7 +7,8 @@ import { useToast } from "@/hooks/use-toast";
 import { CountrySelect } from "../ui/select-country";
 import { SubmitButton } from "../ui/submit-button-with-spinner";
 import CloseButtonDialog from "../ui/close-button-dialog";
-import { DrawerClose } from "../ui/drawer";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { Button } from "../ui/button";
 
 const initialFormState: any = {
   status: "PENDING",
@@ -143,9 +144,9 @@ export default function AddSubjectForm({ dialogOpen }) {
       </div>
       <div className="flex justify-end space-x-2 mt-6">
         <SubmitButton innerText="Dodaj" />
-        <DrawerClose>
-          <CloseButtonDialog className="w-full" text="Cancel" />
-        </DrawerClose>
+        <DialogClose asChild>
+          <Button variant="outline">Cancel</Button>
+        </DialogClose>
       </div>
     </form>
   );

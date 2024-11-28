@@ -10,6 +10,7 @@ import {
   Drawer,
   DrawerContent,
   DrawerDescription,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
@@ -34,14 +35,15 @@ export default function ResponsiveDialog({
   if (isMobile) {
     return (
       <Drawer onOpenChange={setIsOpenAction} open={isOpen}>
-        <DrawerContent className="p-2">
+        <DrawerContent>
           <DrawerHeader className="text-left">
             <DrawerTitle>{title}</DrawerTitle>
             {description && (
               <DrawerDescription>{description}</DrawerDescription>
             )}
           </DrawerHeader>
-          {children}
+
+          <DrawerFooter>{children}</DrawerFooter>
         </DrawerContent>
       </Drawer>
     );

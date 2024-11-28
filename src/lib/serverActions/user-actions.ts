@@ -40,8 +40,7 @@ export async function updateUserAction(
     revalidatePath(`/${getLocale()}/profile`);
   } catch {
     return {
-      message:
-        "There was an error updating your information. Please try again.",
+      message: "There was an error updating your information",
     };
   }
 
