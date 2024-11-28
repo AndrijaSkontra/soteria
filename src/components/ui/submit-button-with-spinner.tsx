@@ -23,10 +23,10 @@ export function SubmitButton({
         </Button>
       ) : (
         <Button
-          className={`${className || ""} py-2 px-4`}
+          className={`${className || ""} py-2 px-4 flex space-x-2`}
           onClick={(e) => e.preventDefault()}
         >
-          {innerText}
+          <p>{innerText}</p>
           <ClipLoader color={theme === "dark" ? "#000000" : "#ffffff"} />
         </Button>
       )}
