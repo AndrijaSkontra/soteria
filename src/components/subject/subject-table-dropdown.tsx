@@ -10,7 +10,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { Separator } from "../ui/separator";
 import { useState } from "react";
 import { FaRegTrashCan } from "react-icons/fa6";
-import { ResponsiveDialog } from "../ui/responsive-dialog";
+import ResponsiveDialog from "../ui/responsive-dialog";
 import { Subject } from "@prisma/client";
 import UpdateSubjectForm from "./update-subject-form";
 import { CgDetailsMore } from "react-icons/cg";
@@ -62,7 +62,7 @@ export default function SubjectTableDropdown({
 
       <ResponsiveDialog
         isOpen={isDetailsOpen}
-        setIsOpen={setIsDetailsOpen}
+        setIsOpenAction={setIsDetailsOpen}
         title={`Details ${subject.name}`}
         description="Subject info"
       >
@@ -70,7 +70,7 @@ export default function SubjectTableDropdown({
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isEditOpen}
-        setIsOpen={setIsEditOpen}
+        setIsOpenAction={setIsEditOpen}
         title={`Edit ${subject.name}`}
         description="Change data about the subject"
       >
@@ -81,7 +81,7 @@ export default function SubjectTableDropdown({
       </ResponsiveDialog>
       <ResponsiveDialog
         isOpen={isDeleteOpen}
-        setIsOpen={setIsDeleteOpen}
+        setIsOpenAction={setIsDeleteOpen}
         title={`Remove ${subject.name}`}
         description="Are you sure you want to remove this subject?"
       >

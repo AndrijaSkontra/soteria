@@ -10,7 +10,7 @@ export function SubmitButton({
   className,
 }: {
   innerText: string;
-  className: string;
+  className?: string;
 }) {
   const { pending } = useFormStatus();
   const theme = getCookie("theme");
@@ -18,11 +18,14 @@ export function SubmitButton({
   return (
     <>
       {!pending ? (
-        <Button className={`${className} py-2 px-4`} type="submit">
+        <Button className={`${className || ""} py-2 px-4`} type="submit">
           {innerText}
         </Button>
       ) : (
-        <Button className={`${className} py-2 px-4`} type="submit">
+        <Button
+          className={`${className || ""} py-2 px-4`}
+          onClick={(e) => e.preventDefault()}
+        >
           {innerText}
           <ClipLoader color={theme === "dark" ? "#000000" : "#ffffff"} />
         </Button>

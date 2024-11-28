@@ -7,6 +7,7 @@ import { useActionState, useEffect, useState } from "react";
 import { updateSubjectAction } from "@/lib/serverActions/subject-actions";
 import { useToast } from "@/hooks/use-toast";
 import { CountrySelect } from "@/components/ui/select-country";
+import { SubmitButton } from "../ui/submit-button-with-spinner";
 
 const initialFormState: any = {
   status: "PENDING",
@@ -152,6 +153,7 @@ export default function UpdateSubjectForm({ setIsOpenAction, subjectId }) {
         />
       </div>
       <div className="flex justify-end space-x-2 mt-6">
+        <SubmitButton innerText="Uredi" />
         <Button type="submit" onClick={() => setIsOpenAction(false)}>
           Uredi
         </Button>

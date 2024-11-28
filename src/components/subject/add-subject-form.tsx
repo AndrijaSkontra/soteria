@@ -142,7 +142,7 @@ export default function AddSubjectForm({ dialogOpen }) {
         </div>
       </div>
       <div className="flex justify-end space-x-2 mt-6">
-        <SubmitButton innerText="Dodaj" className={""} />
+        <SubmitButton innerText="Dodaj" />
         <DrawerClose>
           <CloseButtonDialog className="w-full" text="Cancel" />
         </DrawerClose>

@@ -10,8 +10,7 @@ export default function DeleteSubject({ setIsDeleteOpen, subject }) {
     try {
       disableSubject(subject.id);
       toast({
-        title: "Success",
-        description: `Deleted ${subject.name}`,
+        title: `Removed ${subject.name}`,
         duration: 2000,
       });
     } catch {
