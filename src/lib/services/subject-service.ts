@@ -3,10 +3,12 @@ import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
 import { revalidateTag } from "next/cache";
 
 export async function getActiveSubjectsFromDB(
+  orgId: string,
   searchParam: string | AdvancedSubjectSearch = "",
   rows: number = 10,
   page: number = 1,
 ): Promise<{ subjects: any[]; pagesAmount: number }> {
+  console.log(orgId, " org id");
   const skip = (page - 1) * rows;
 
   const stringFields = [
@@ -20,6 +22,7 @@ export async function getActiveSubjectsFromDB(
 
   let whereClause: any = {
     active: true,
+    organisationId: orgId,
   };
 
   if (typeof searchParam === "string" && searchParam.trim().length > 0) {
@@ -36,6 +39,7 @@ export async function getActiveSubjectsFromDB(
   ) {
     whereClause = {
       active: true,
+      organisationId: orgId,
       ...searchParam,
     };
   }
@@ -68,6 +72,7 @@ export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
       contact: createSubjectDto.contact,
       address: createSubjectDto.address,
       country: createSubjectDto.country,
+      organisationId: "fix this",
     },
   });
 

@@ -26,8 +26,6 @@ export default function SubjectTableDropdown({
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
-  console.log(subject);
-
   return (
     <>
       <DropdownMenu>
