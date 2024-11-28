@@ -3,8 +3,9 @@ import { useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import AddSubjectDialog from "@/components/subject/add-subject-dialog";
+import ResponsiveDialog from "@/components/ui/responsive-dialog";
 import CleanSearchButton from "@/components/generic-table/clean-search-button";
+import AddSubjectForm from "./add-subject-form";
 
 export default function SubjectTableActions() {
   const router = useRouter();
@@ -12,6 +13,11 @@ export default function SubjectTableActions() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const urlSearchParams = new URLSearchParams(searchParams.toString());
+
+  function dialogOpen(isOpen: boolean) {
+    urlSearchParams.set("addSubject", String(isOpen));
+    router.push(`${pathname}?${urlSearchParams.toString()}`);
+  }
 
   return (
     <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 items-center space-x-2">
@@ -32,7 +38,17 @@ export default function SubjectTableActions() {
           Pretraži
         </Button>
         <CleanSearchButton setSearchInput={setSearchInput} />
-        <AddSubjectDialog />
+        <Button variant="outline" onClick={() => dialogOpen(true)}>
+          + Subjekt
+        </Button>
+        <ResponsiveDialog
+          setIsOpenAction={dialogOpen}
+          isOpen={searchParams.get("addSubject") === "true"}
+          title="Dodaj subjekta"
+          description="Obavezna polja su označena zvijezdicom"
+        >
+          <AddSubjectForm dialogOpen={dialogOpen} />
+        </ResponsiveDialog>
       </div>
     </div>
   );

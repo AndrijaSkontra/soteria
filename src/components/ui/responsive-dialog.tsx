@@ -1,5 +1,4 @@
-import * as React from "react";
-
+"use client";
 import {
   Dialog,
   DialogContent,
@@ -10,52 +9,53 @@ import {
 import {
   Drawer,
   DrawerContent,
-  DrawerFooter,
+  DrawerDescription,
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 
-export function ResponsiveDialog({
+export default function ResponsiveDialog({
   children,
+  setIsOpenAction,
   isOpen,
-  setIsOpen,
   title,
   description,
 }: {
   children: React.ReactNode;
+  setIsOpenAction: (boolean) => void;
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   title: string;
   description?: string;
 }) {
-  const isDesktop = !useIsMobile();
+  const isMobile = useIsMobile();
 
-  if (isDesktop) {
+  if (isMobile) {
     return (
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
+      <Drawer onOpenChange={setIsOpenAction} open={isOpen}>
+        <DrawerContent>
+          <DrawerHeader className="text-left">
+            <DrawerTitle>{title}</DrawerTitle>
             {description && (
-              <DialogDescription>{description}</DialogDescription>
+              <DrawerDescription>{description}</DrawerDescription>
             )}
-          </DialogHeader>
+          </DrawerHeader>
           {children}
-        </DialogContent>
-      </Dialog>
+        </DrawerContent>
+      </Drawer>
     );
   }
 
   return (
-    <Drawer open={isOpen} onOpenChange={setIsOpen}>
-      <DrawerContent>
-        <DrawerHeader className="text-left">
-          <DrawerTitle>{title}</DrawerTitle>
+    <Dialog onOpenChange={setIsOpenAction} open={isOpen}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
           {description && <DialogDescription>{description}</DialogDescription>}
-        </DrawerHeader>
-        <DrawerFooter className="pt-2">{children}</DrawerFooter>
-      </DrawerContent>
-    </Drawer>
+        </DialogHeader>
+        {children}
+      </DialogContent>
+    </Dialog>
   );
 }
