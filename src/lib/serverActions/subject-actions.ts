@@ -7,8 +7,8 @@ import {
   updateSubjectInDB,
 } from "@/lib/services/subject-service";
 
-export async function disableSubject(subjectId) {
-  await disableSubjectInDB(subjectId);
+export async function disableSubject(subjectId: string, orgId: string) {
+  await disableSubjectInDB(subjectId, orgId);
 }
 
 export async function updateSubjectAction(prevState: any, formData: FormData) {

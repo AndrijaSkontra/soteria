@@ -2,26 +2,28 @@
 import { disableSubject } from "@/lib/serverActions/subject-actions";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { useParams } from "next/navigation";
 
 export default function DeleteSubject({ setIsDeleteOpen, subject }) {
   const { toast } = useToast();
+  const params = useParams();
 
   function handleDelete() {
-    try {
-      disableSubject(subject.id);
-      toast({
-        title: `Removed ${subject.name}`,
-        duration: 2000,
+    disableSubject(subject.id, params.organisationId as string)
+      .then(() => {
+        toast({
+          title: `Removed ${subject.name}`,
+          duration: 2000,
+        });
+      })
+      .catch(() => {
+        toast({
+          variant: "destructive",
+          title: `Failed to delete`,
+          duration: 2000,
+        });
       });
-    } catch {
-      toast({
-        title: "Error",
-        description: "Failed to delete subject",
-        duration: 2000,
-      });
-    } finally {
-      setIsDeleteOpen(false);
-    }
+    setIsDeleteOpen(false);
   }
   return (
     <div className="flex space-x-2 items-center justify-end">
@@ -31,7 +33,6 @@ export default function DeleteSubject({ setIsDeleteOpen, subject }) {
       <Button
         onClick={() => {
           setIsDeleteOpen(false);
-          disableSubject(subject.id);
           handleDelete();
         }}
       >

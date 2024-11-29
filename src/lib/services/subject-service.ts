@@ -1,6 +1,8 @@
 import prisma from "@/index";
 import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
 import { revalidateTag } from "next/cache";
+import { getUserOrganisationRolesFromDB } from "./organisation-service";
+import { Role } from "@prisma/client";
 
 export async function getActiveSubjectsFromDB(
   searchParam: string | AdvancedSubjectSearch = "",
@@ -99,15 +101,22 @@ export async function updateSubjectInDB(
   }
 }
 
-export async function disableSubjectInDB(subjectId: string) {
-  await prisma.subject.update({
-    where: {
-      id: subjectId,
-    },
-    data: {
-      active: false,
-    },
-  });
+export async function disableSubjectInDB(subjectId: string, orgId: string) {
+  const roles: Role[] = await getUserOrganisationRolesFromDB(orgId);
+  console.log(roles, " <-- roles");
+  if (roles.includes("ADMIN")) {
+    await prisma.subject.update({
+      where: {
+        id: subjectId,
+        organisationId: orgId,
+      },
+      data: {
+        active: false,
+      },
+    });
+  } else {
+    throw new Error("You don't have permissions to delete subjects!");
+  }
 
   revalidateTag("subjects");
 }

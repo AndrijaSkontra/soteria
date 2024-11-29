@@ -80,8 +80,6 @@ export async function isUserAdmin(organisationId: string): Promise<boolean> {
   return userRoles !== null;
 }
 export async function updateUserDataInDatabase(data: UserInformationType) {
-  console.log(data, " profile");
-  console.log(await getUserId());
   await prisma.user.update({
     where: {
       id: await getUserId(),
