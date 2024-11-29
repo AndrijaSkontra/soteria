@@ -20,8 +20,6 @@ const dataAmount = readlineSync.question(
 `,
 );
 
-const subjectData = getSubjectData(dataAmount);
-
 async function main() {
   await dropCollections();
 
@@ -37,6 +35,8 @@ async function main() {
       }),
     ),
   );
+  const organisationIDs = organisationData.map((org) => org.id)
+  const subjectData = getSubjectData(dataAmount, organisationIDs);
 
   const roles = ["INSPECTOR", "MANAGER", "ADMIN"];
 

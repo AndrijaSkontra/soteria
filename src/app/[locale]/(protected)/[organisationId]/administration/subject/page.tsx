@@ -4,14 +4,19 @@ import TablePagination from "@/components/generic-table/table-pagination";
 import { Switch } from "@/components/ui/switch";
 import { getActiveSubjectsFromDB } from "@/lib/services/subject-service";
 import { FaUserAltSlash } from "react-icons/fa";
+import { RouteParams } from "@/types/app-types";
 
 export default async function SubjectPage({
   searchParams,
+  params,
 }: {
   searchParams: Promise<{ search: string; page: number; rows: number }>;
+  params: RouteParams;
 }) {
   const searchParamsData = await searchParams;
+  const paramsData = await params;
   const { subjects, pagesAmount } = await getActiveSubjectsFromDB(
+    paramsData.organisationId,
     searchParamsData?.search,
     searchParamsData.rows,
     searchParamsData.page,
