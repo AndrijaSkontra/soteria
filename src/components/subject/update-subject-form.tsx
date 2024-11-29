@@ -31,8 +31,6 @@ export default function UpdateSubjectForm({
     initialFormState,
   );
 
-  console.log(state.status, " -- ");
-
   useEffect(() => {
     if (state.status === "ERROR") {
       toast({

@@ -64,7 +64,14 @@ export async function getActiveSubjectsFromDB(
   }
 }
 
-export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
+export async function addSubjectToDB(
+  organisationId: string,
+  createSubjectDto: CreateSubjectDTO,
+) {
+  const roles: Role[] = await getUserOrganisationRolesFromDB(organisationId);
+  if (!roles.includes("ADMIN")) {
+    throw new Error("You don't have permissions to add subjects!");
+  }
   await prisma.subject.create({
     data: {
       name: createSubjectDto.name,
@@ -73,7 +80,7 @@ export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
       contact: createSubjectDto.contact,
       address: createSubjectDto.address,
       country: createSubjectDto.country,
-      organisationId: "fix this",
+      organisationId: organisationId,
     },
   });
 

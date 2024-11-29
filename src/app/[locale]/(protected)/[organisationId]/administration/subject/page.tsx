@@ -5,6 +5,8 @@ import { Switch } from "@/components/ui/switch";
 import { getActiveSubjectsFromDB } from "@/lib/services/subject-service";
 import { FaUserAltSlash } from "react-icons/fa";
 import { RouteParams } from "@/types/app-types";
+import { Role } from "@prisma/client";
+import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 
 export default async function SubjectPage({
   searchParams,
@@ -22,9 +24,16 @@ export default async function SubjectPage({
     searchParamsData.page,
   );
 
+  const roles: Role[] = await getUserOrganisationRolesFromDB(
+    paramsData.organisationId,
+  );
+
   return (
     <div className="p-4 lg:px-8 space-y-4">
-      <SubjectTableActions />
+      <SubjectTableActions
+        isAdmin={roles.includes("ADMIN")}
+        orgId={paramsData.organisationId}
+      />
       {pagesAmount !== 0 ? (
         <>
           <div className="flex space-x-2 items-center">

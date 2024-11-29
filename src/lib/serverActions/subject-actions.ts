@@ -62,7 +62,7 @@ export async function addSubjectAction(prevState: any, formData: FormData) {
     };
   }
 
-  await addSubjectToDB({
+  await addSubjectToDB(String(formData.get("organisationId")), {
     name: validatedFields.data.name,
     oib: validatedFields.data.oib,
     email: validatedFields.data.email,

@@ -1,13 +1,18 @@
 "use client";
 import { useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import ResponsiveDialog from "@/components/ui/responsive-dialog";
 import CleanSearchButton from "@/components/generic-table/clean-search-button";
 import AddSubjectForm from "./add-subject-form";
 
-export default function SubjectTableActions() {
+export default function SubjectTableActions({ isAdmin, orgId }) {
   const router = useRouter();
   const [searchInput, setSearchInput] = useState("");
   const pathname = usePathname();
@@ -38,17 +43,21 @@ export default function SubjectTableActions() {
           Pretraži
         </Button>
         <CleanSearchButton setSearchInput={setSearchInput} />
-        <Button variant="outline" onClick={() => dialogOpen(true)}>
-          + Subjekt
-        </Button>
-        <ResponsiveDialog
-          setIsOpenAction={dialogOpen}
-          isOpen={searchParams.get("addSubject") === "true"}
-          title="Dodaj subjekta"
-          description="Obavezna polja su označena zvijezdicom"
-        >
-          <AddSubjectForm dialogOpen={dialogOpen} />
-        </ResponsiveDialog>
+        {isAdmin && (
+          <>
+            <Button variant="outline" onClick={() => dialogOpen(true)}>
+              + Subjekt
+            </Button>
+            <ResponsiveDialog
+              setIsOpenAction={dialogOpen}
+              isOpen={searchParams.get("addSubject") === "true"}
+              title="Dodaj subjekta"
+              description="Obavezna polja su označena zvijezdicom"
+            >
+              <AddSubjectForm dialogOpen={dialogOpen} orgId={orgId} />
+            </ResponsiveDialog>
+          </>
+        )}
       </div>
     </div>
   );

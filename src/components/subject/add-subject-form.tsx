@@ -19,7 +19,7 @@ const initialFormState: any = {
  * @see https://react.dev/reference/react/useActionState#
  * @author Andrija Skontra
  */
-export default function AddSubjectForm({ dialogOpen }) {
+export default function AddSubjectForm({ dialogOpen, orgId }) {
   const [countryValue, setCountryValue] = useState("");
   const { toast } = useToast();
   const [state, formAction] = useActionState(
@@ -141,6 +141,13 @@ export default function AddSubjectForm({ dialogOpen }) {
           })}
         </div>
       </div>
+      <Input
+        id="organisationId"
+        name="organisationId"
+        readOnly={true}
+        value={orgId}
+        className="hidden"
+      />
       <div className="flex justify-end space-x-2 mt-6">
         <SubmitButton innerText="Dodaj" />
         <DialogClose asChild>
