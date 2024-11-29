@@ -12,7 +12,7 @@ export default function CleanSearchButton({ setSearchInput }) {
   return (
     <Button
       className="w-full md:w-auto"
-      variant="secondary"
+      variant="outline"
       onClick={() => {
         setSearchInput("");
         urlSearchParams.set("search", "");

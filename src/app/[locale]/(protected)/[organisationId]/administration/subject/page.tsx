@@ -36,10 +36,6 @@ export default async function SubjectPage({
       />
       {pagesAmount !== 0 ? (
         <>
-          <div className="flex space-x-2 items-center">
-            <Switch />
-            <p className="text-sm font-semibold">Advanced search</p>
-          </div>
           <SubjectsTable
             orgId={paramsData.organisationId}
             rows={searchParamsData.rows || 10}

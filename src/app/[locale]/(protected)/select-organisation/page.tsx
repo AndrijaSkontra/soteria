@@ -1,4 +1,4 @@
-import SelectOrganisation from "@/components/selectOrganisation/select-organisation";
+import SelectOrganisation from "@/components/select-organisation/select-organisation";
 import { getUserOrganisationsWithRoles } from "@/lib/services/organisation-service";
 import { OrganisationWithRoles } from "@/types/app-types";
 
