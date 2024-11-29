@@ -1,4 +1,4 @@
-import { Subject } from "@prisma/client";
+import { Role, Subject } from "@prisma/client";
 import {
   Table,
   TableHeader,
@@ -8,16 +8,24 @@ import {
   TableHead,
 } from "@/components/ui/table";
 import SubjectTableDropdown from "./subject-table-dropdown";
+import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
+import clsx from "clsx";
 
-export default function SubjectsTable({
+export default async function SubjectsTable({
+  orgId,
   subjects,
   page,
   rows,
 }: {
+  orgId: string;
   subjects: Subject[];
   page: number;
   rows: number;
 }) {
+  const roles: Role[] = await getUserOrganisationRolesFromDB(orgId);
+
+  const isAdmin = roles.includes("ADMIN");
+
   return (
     <div className="border border-gray-200 rounded-lg overflow-auto">
       <Table>
@@ -30,7 +38,9 @@ export default function SubjectsTable({
             <TableHead className="xl:table-cell hidden">E-mail</TableHead>
             <TableHead className="xl:table-cell hidden">Država</TableHead>
             <TableHead className="xl:table-cell hidden">OIB</TableHead>
-            <TableHead className="text-center">Actions</TableHead>
+            <TableHead className={clsx("text-center", !isAdmin && "hidden")}>
+              Actions
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -55,7 +65,7 @@ export default function SubjectsTable({
               <TableCell className="xl:table-cell hidden">
                 {subject.oib || "-"}
               </TableCell>
-              <TableCell className="text-center">
+              <TableCell className={clsx("text-center", !isAdmin && "hidden")}>
                 <SubjectTableDropdown subject={subject} />
               </TableCell>
             </TableRow>

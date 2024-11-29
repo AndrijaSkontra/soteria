@@ -26,19 +26,29 @@ export async function updateSubjectAction(prevState: any, formData: FormData) {
     };
   }
 
-  await updateSubjectInDB(String(formData.get("subjectId")), {
-    name: validatedFields.data.name,
-    oib: validatedFields.data.oib,
-    email: validatedFields.data.email,
-    address: validatedFields.data.address,
-    contact: validatedFields.data.contactNumber,
-    country: validatedFields.data.country,
-  });
+  const returnObj = await updateSubjectInDB(
+    String(formData.get("organisationId")),
+    String(formData.get("subjectId")),
+    {
+      name: validatedFields.data.name,
+      oib: validatedFields.data.oib,
+      email: validatedFields.data.email,
+      address: validatedFields.data.address,
+      contact: validatedFields.data.contactNumber,
+      country: validatedFields.data.country,
+    },
+  )
+    .then(() => {
+      return {
+        status: "UPDATED",
+        errors: {},
+      };
+    })
+    .catch(() => {
+      return { status: "ERROR", errors: {} };
+    });
 
-  return {
-    status: "UPDATED",
-    errors: {},
-  };
+  return returnObj;
 }
 
 export async function addSubjectAction(prevState: any, formData: FormData) {

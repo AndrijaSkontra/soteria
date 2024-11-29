@@ -32,6 +32,7 @@ export default async function SubjectPage({
             <p className="text-sm font-semibold">Advanced search</p>
           </div>
           <SubjectsTable
+            orgId={paramsData.organisationId}
             rows={searchParamsData.rows || 10}
             subjects={subjects}
             page={searchParamsData.page || 1}

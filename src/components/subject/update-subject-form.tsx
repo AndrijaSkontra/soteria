@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { CountrySelect } from "@/components/ui/select-country";
 import { SubmitButton } from "../ui/submit-button-with-spinner";
 import { Subject } from "@prisma/client";
+import { useParams } from "next/navigation";
 
 const initialFormState: any = {
   status: "PENDING",
@@ -22,6 +23,7 @@ export default function UpdateSubjectForm({
   setIsOpenAction: (boolean) => void;
   subject: Subject;
 }) {
+  const params = useParams();
   const [countryValue, setCountryValue] = useState("");
   const { toast } = useToast();
   const [state, formAction] = useActionState(
@@ -29,7 +31,17 @@ export default function UpdateSubjectForm({
     initialFormState,
   );
 
+  console.log(state.status, " -- ");
+
   useEffect(() => {
+    if (state.status === "ERROR") {
+      toast({
+        variant: "destructive",
+        title: "You don't have permissions to edit this subject!",
+        duration: 2000,
+      });
+      state.status = "PENDING";
+    }
     if (state.status === "UPDATED") {
       toast({
         title: `Updated: ${subject.name}`,
@@ -140,6 +152,13 @@ export default function UpdateSubjectForm({
             );
           })}
         </div>
+        <Input
+          id="organisationId"
+          name="organisationId"
+          value={params.organisationId}
+          readOnly={true}
+          className="hidden"
+        />
         <Input
           id="subjectId"
           name="subjectId"

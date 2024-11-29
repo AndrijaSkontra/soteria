@@ -19,7 +19,7 @@ export default function DeleteSubject({ setIsDeleteOpen, subject }) {
       .catch(() => {
         toast({
           variant: "destructive",
-          title: `Failed to delete`,
+          title: "You don't have permissions to delete this subject!",
           duration: 2000,
         });
       });

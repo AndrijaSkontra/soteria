@@ -10,7 +10,6 @@ export async function getActiveSubjectsFromDB(
   rows: number = 10,
   page: number = 1,
 ): Promise<{ subjects: any[]; pagesAmount: number }> {
-  console.log(orgId, " org id");
   const skip = (page - 1) * rows;
 
   const stringFields = [
@@ -83,10 +82,14 @@ export async function addSubjectToDB(createSubjectDto: CreateSubjectDTO) {
 }
 
 export async function updateSubjectInDB(
+  orgId: string,
   subjectId: string,
   createSubjectDto: CreateSubjectDTO,
 ) {
-  // filter empty fields
+  const roles: Role[] = await getUserOrganisationRolesFromDB(orgId);
+  if (!roles.includes("ADMIN")) {
+    throw new Error("You don't have permissions to delete subjects!");
+  }
   const updateData: Record<string, any> = {};
   for (const [key, value] of Object.entries(createSubjectDto)) {
     if (value !== "") {
@@ -108,7 +111,6 @@ export async function updateSubjectInDB(
 
 export async function disableSubjectInDB(subjectId: string, orgId: string) {
   const roles: Role[] = await getUserOrganisationRolesFromDB(orgId);
-  console.log(roles, " <-- roles");
   if (roles.includes("ADMIN")) {
     await prisma.subject.update({
       where: {
