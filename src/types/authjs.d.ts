@@ -12,6 +12,7 @@ declare module "next-auth" {
       email: string;
       createdAt: Date;
       active: boolean;
+      userId: string;
     } & DefaultSession["user"];
   }
 }

@@ -1,7 +1,6 @@
 import SubjectsTable from "@/components/subject/subject-table";
 import SubjectTableActions from "@/components/subject/table-actions";
 import TablePagination from "@/components/generic-table/table-pagination";
-import { Switch } from "@/components/ui/switch";
 import { getActiveSubjectsFromDB } from "@/lib/services/subject-service";
 import { FaUserAltSlash } from "react-icons/fa";
 import { RouteParams } from "@/types/app-types";

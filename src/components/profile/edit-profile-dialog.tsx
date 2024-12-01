@@ -1,13 +1,5 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { UserInformationType } from "@/types/app-types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { EditProfileForm } from "./edit-profile-form";

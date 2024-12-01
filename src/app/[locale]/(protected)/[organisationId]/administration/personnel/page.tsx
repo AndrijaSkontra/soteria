@@ -3,6 +3,7 @@ export default async function PersonnelPage({
 }: {
   searchParams: Promise<{ search: string; page: number; rows: number }>;
 }) {
+  console.log(searchParams);
   return (
     <div>
       <h1>personnel</h1>

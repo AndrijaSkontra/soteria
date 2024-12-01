@@ -19,6 +19,8 @@ export default function AdvancedSearchSubject() {
     initialState,
   );
 
+  console.log(state);
+
   return (
     <Card>
       <CardHeader>
