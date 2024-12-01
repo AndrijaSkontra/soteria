@@ -55,6 +55,9 @@ type CreateSubjectDTO = {
   oib?: string;
   email?: string;
 };
+
+type SubjectSearch = Promise<{ search: string; page: number; rows: number }>;
+
 //
 // type SubjectFormState = {
 //   status: "ADDED" | "PENDING";

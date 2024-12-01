@@ -11,6 +11,11 @@ export async function disableSubject(subjectId: string, orgId: string) {
   await disableSubjectInDB(subjectId, orgId);
 }
 
+export async function advancedSearchAction(prevState: any, formData: FormData) {
+  console.log(formData);
+  return { message: "", errors: {} };
+}
+
 export async function updateSubjectAction(prevState: any, formData: FormData) {
   if (checkIsFormDataEmpty(formData)) {
     return { status: "NOCHANGE", errors: {} };
