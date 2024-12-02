@@ -1,15 +1,12 @@
 import SubjectsTable from "@/components/subject/subject-table";
 import SubjectTableActions from "@/components/subject/table-actions";
 import TablePagination from "@/components/generic-table/table-pagination";
-import { getActiveSubjectsFromDB } from "@/lib/services/subject-service";
 import { FaUserAltSlash } from "react-icons/fa";
-import {
-  AdvancedSubjectSearch,
-  RouteParams,
-  SubjectSearch,
-} from "@/types/app-types";
+import { RouteParams, SubjectSearch } from "@/types/app-types";
 import { Role } from "@prisma/client";
 import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
+import { getSubjectsData } from "@/lib/services/subject-service";
+import { Suspense } from "react";
 
 export default async function SubjectPage({
   searchParams,
@@ -21,31 +18,10 @@ export default async function SubjectPage({
   const searchParamsData = await searchParams;
   const paramsData = await params;
 
-  let subjects, pagesAmount: number;
-
-  if (!searchParamsData.advSearch || searchParamsData.advSearch === "false") {
-    ({ subjects, pagesAmount } = await getActiveSubjectsFromDB(
-      paramsData.organisationId,
-      searchParamsData?.search,
-      searchParamsData.rows,
-      searchParamsData.page,
-    ));
-  } else {
-    const advSearchData: AdvancedSubjectSearch = {
-      name: searchParamsData.name,
-      address: searchParamsData.address,
-      oib: searchParamsData.oib,
-      contact: searchParamsData.contact,
-      email: searchParamsData.email,
-      country: searchParamsData.country,
-    };
-    ({ subjects, pagesAmount } = await getActiveSubjectsFromDB(
-      paramsData.organisationId,
-      advSearchData,
-      searchParamsData.rows,
-      searchParamsData.page,
-    ));
-  }
+  const { subjects, pagesAmount } = await getSubjectsData(
+    searchParamsData,
+    paramsData,
+  );
 
   const roles: Role[] = await getUserOrganisationRolesFromDB(
     paramsData.organisationId,
@@ -59,12 +35,14 @@ export default async function SubjectPage({
       />
       {pagesAmount !== 0 ? (
         <>
-          <SubjectsTable
-            orgId={paramsData.organisationId}
-            rows={searchParamsData.rows || 10}
-            subjects={subjects}
-            page={searchParamsData.page || 1}
-          />
+          <Suspense fallback={<p>Loading</p>}>
+            <SubjectsTable
+              orgId={paramsData.organisationId}
+              rows={searchParamsData.rows || 10}
+              subjects={subjects}
+              page={searchParamsData.page || 1}
+            />
+          </Suspense>
           <TablePagination pagesAmount={pagesAmount} />
         </>
       ) : (

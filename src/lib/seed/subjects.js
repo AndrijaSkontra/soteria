@@ -37,7 +37,8 @@ function getSubjectData(input, organisationIDs) {
       subjectData = generateSubjects(256, organisationIDs);
       break;
     default:
-      subjectData = generateSubjects(52, organisationIDs);
+      console.log("default amount 154...");
+      subjectData = generateSubjects(154, organisationIDs);
   }
 
   return subjectData;

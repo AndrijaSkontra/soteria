@@ -53,6 +53,9 @@ export async function getActiveSubjectsFromDB(
     }));
   }
 
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  await delay(1000);
+
   try {
     const subjects = await prisma.subject.findMany({
       where: whereClause,
@@ -141,4 +144,31 @@ export async function disableSubjectInDB(subjectId: string, orgId: string) {
   }
 
   revalidateTag("subjects");
+}
+
+export async function getSubjectsData(searchParamsData, paramsData) {
+  if (!searchParamsData.advSearch || searchParamsData.advSearch === "false") {
+    return await getActiveSubjectsFromDB(
+      paramsData.organisationId,
+      searchParamsData?.search,
+      searchParamsData.rows,
+      searchParamsData.page,
+    );
+  } else {
+    const advSearchData: AdvancedSubjectSearch = {
+      name: searchParamsData.name,
+      address: searchParamsData.address,
+      oib: searchParamsData.oib,
+      contact: searchParamsData.contact,
+      email: searchParamsData.email,
+      country: searchParamsData.country,
+    };
+
+    return await getActiveSubjectsFromDB(
+      paramsData.organisationId,
+      advSearchData,
+      searchParamsData.rows,
+      searchParamsData.page,
+    );
+  }
 }

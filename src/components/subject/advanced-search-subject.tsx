@@ -10,7 +10,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { addDays } from "date-fns";
 
 export default function AdvancedSearchSubject() {
-  // State variables for each input field
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [oib, setOib] = useState("");
@@ -29,9 +28,8 @@ export default function AdvancedSearchSubject() {
   const urlSearchParams = new URLSearchParams(searchParams);
 
   async function handleSubmit(event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
-    // Update the URL search parameters
     urlSearchParams.set("name", name);
     urlSearchParams.set("address", address);
     urlSearchParams.set("oib", oib);
@@ -40,8 +38,6 @@ export default function AdvancedSearchSubject() {
     urlSearchParams.set("country", country);
     urlSearchParams.set("from", dateRange.from.toISOString());
     urlSearchParams.set("to", dateRange.to.toISOString());
-
-    // Navigate to the new URL with updated query parameters
     router.push(`${pathname}?${urlSearchParams.toString()}`);
   }
 
