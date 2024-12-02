@@ -35,7 +35,7 @@ export default async function SubjectPage({
       />
       {pagesAmount !== 0 ? (
         <>
-          <Suspense fallback={<p>Loading</p>}>
+          <Suspense key={searchParamsData.page} fallback={<p>Loading</p>}>
             <SubjectsTable
               orgId={paramsData.organisationId}
               rows={searchParamsData.rows || 10}

@@ -53,9 +53,6 @@ export async function getActiveSubjectsFromDB(
     }));
   }
 
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  await delay(1000);
-
   try {
     const subjects = await prisma.subject.findMany({
       where: whereClause,

@@ -22,8 +22,8 @@ export default async function SubjectsTable({
   page: number;
   rows: number;
 }) {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   const roles: Role[] = await getUserOrganisationRolesFromDB(orgId);
-
   const isAdmin = roles.includes("ADMIN");
 
   return (
