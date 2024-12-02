@@ -3,7 +3,11 @@ import SubjectTableActions from "@/components/subject/table-actions";
 import TablePagination from "@/components/generic-table/table-pagination";
 import { getActiveSubjectsFromDB } from "@/lib/services/subject-service";
 import { FaUserAltSlash } from "react-icons/fa";
-import { RouteParams } from "@/types/app-types";
+import {
+  AdvancedSubjectSearch,
+  RouteParams,
+  SubjectSearch,
+} from "@/types/app-types";
 import { Role } from "@prisma/client";
 import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 
@@ -11,17 +15,38 @@ export default async function SubjectPage({
   searchParams,
   params,
 }: {
-  searchParams: Promise<{ search: string; page: number; rows: number }>;
+  searchParams: SubjectSearch;
   params: RouteParams;
 }) {
   const searchParamsData = await searchParams;
   const paramsData = await params;
-  const { subjects, pagesAmount } = await getActiveSubjectsFromDB(
-    paramsData.organisationId,
-    searchParamsData?.search,
-    searchParamsData.rows,
-    searchParamsData.page,
-  );
+
+  const advSearchData: AdvancedSubjectSearch = {
+    name: searchParamsData.name,
+    address: searchParamsData.address,
+    oib: searchParamsData.oib,
+    contact: searchParamsData.contact,
+    email: searchParamsData.email,
+    country: searchParamsData.country,
+  };
+
+  let subjects, pagesAmount: number;
+
+  if (!searchParamsData.advSearch) {
+    ({ subjects, pagesAmount } = await getActiveSubjectsFromDB(
+      paramsData.organisationId,
+      searchParamsData?.search,
+      searchParamsData.rows,
+      searchParamsData.page,
+    ));
+  } else {
+    ({ subjects, pagesAmount } = await getActiveSubjectsFromDB(
+      paramsData.organisationId,
+      advSearchData,
+      searchParamsData.rows,
+      searchParamsData.page,
+    ));
+  }
 
   const roles: Role[] = await getUserOrganisationRolesFromDB(
     paramsData.organisationId,

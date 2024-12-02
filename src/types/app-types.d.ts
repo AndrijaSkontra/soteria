@@ -38,11 +38,10 @@ type AdminViewCardDataType = {
 };
 
 type AdvancedSubjectSearch = {
-  id?: string;
   name?: string;
   address?: string;
   oib?: string;
-  phone?: string;
+  contact?: string;
   email?: string;
   country?: string;
 };
@@ -56,7 +55,20 @@ type CreateSubjectDTO = {
   email?: string;
 };
 
-type SubjectSearch = Promise<{ search: string; page: number; rows: number }>;
+type SubjectSearch = Promise<{
+  search: string;
+  page: number;
+  rows: number;
+  advSearch: boolean;
+  name: string;
+  email: string;
+  address: string;
+  oib: string;
+  contact: string;
+  country: string;
+  from: string;
+  to: string;
+}>;
 
 //
 // type SubjectFormState = {

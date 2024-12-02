@@ -22,7 +22,7 @@ export default function SubjectTableActions({ isAdmin, orgId }) {
   }
 
   function advancedSearchOpen(isOpen: boolean) {
-    urlSearchParams.set("adv-search", String(isOpen));
+    urlSearchParams.set("advSearch", String(isOpen));
     router.push(`${pathname}?${urlSearchParams.toString()}`);
   }
 
@@ -31,16 +31,16 @@ export default function SubjectTableActions({ isAdmin, orgId }) {
       <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 items-center md:space-x-2">
         <Input
           placeholder="Pretraživanje"
-          disabled={urlSearchParams.get("adv-search") === "true"}
+          disabled={urlSearchParams.get("advSearch") === "true"}
           onChange={(ev) => setSearchInput(ev.target.value)}
           value={searchInput}
         />
         <div className="flex items-center space-x-2 w-full md:w-auto">
           <AdvancedSearchButton
             setAdvancedSearchOpen={advancedSearchOpen}
-            advancedSearchOpen={urlSearchParams.get("adv-search") === "true"}
+            advancedSearchOpen={urlSearchParams.get("advSearch") === "true"}
           />
-          {!(urlSearchParams.get("adv-search") === "true") && (
+          {!(urlSearchParams.get("advSearch") === "true") && (
             <Button
               className="w-full md:w-auto"
               onClick={() => {
@@ -70,9 +70,7 @@ export default function SubjectTableActions({ isAdmin, orgId }) {
           )}
         </div>
       </div>
-      {urlSearchParams.get("adv-search") === "true" && (
-        <AdvancedSearchSubject />
-      )}
+      {urlSearchParams.get("advSearch") === "true" && <AdvancedSearchSubject />}
     </>
   );
 }
