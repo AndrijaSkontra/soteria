@@ -17,6 +17,7 @@ model User {
   active        Boolean            @default(true)
   organisations OrganisationUser[]
   contactNumber String
+  subjectLogs   SubjectLog[]
 }
 
 model Organisation {
@@ -26,7 +27,7 @@ model Organisation {
   createdAt DateTime           @default(now())
   active    Boolean            @default(true)
   users     OrganisationUser[]
-  subjects Subject[]
+  subjects  Subject[]
 }
 
 model OrganisationUser {
@@ -41,18 +42,26 @@ model OrganisationUser {
 }
 
 model Subject {
-  id          String       @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  address     String?
-  oib         String?
-  contact     String?
-  email       String?
-  playgrounds Playground[]
-  country     String?
-  createdAt   DateTime     @default(now())
-  active      Boolean      @default(true)
-  organisation   Organisation   @relation(fields: [organisationId], references: [id])
-  organisationId String @db.ObjectId
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  address        String?
+  oib            String?
+  contact        String?
+  email          String?
+  playgrounds    Playground[]
+  country        String?
+  createdAt      DateTime     @default(now())
+  active         Boolean      @default(true)
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  organisationId String       @db.ObjectId
+}
+
+model SubjectLog {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  action       Action
+  timeExecuted DateTime @default(now())
+  userId       String     @db.ObjectId
+  user         User     @relation(fields: [userId], references: [id])
 }
 
 model Playground {
@@ -94,6 +103,13 @@ enum Role {
   INSPECTOR
   MANAGER
   ADMIN
+}
+
+enum Action {
+  CREATE
+  UPDATE
+  READ
+  DELETE
 }
 
 enum PlaygroundType {

@@ -6,6 +6,7 @@ import {
   disableSubjectInDB,
   updateSubjectInDB,
 } from "@/lib/services/subject-service";
+import { addSubjectLogToDB } from "../services/subject-log-service";
 
 export async function disableSubject(subjectId: string, orgId: string) {
   await disableSubjectInDB(subjectId, orgId);
@@ -70,6 +71,8 @@ export async function addSubjectAction(prevState: any, formData: FormData) {
     contact: validatedFields.data.contactNumber,
     country: validatedFields.data.country,
   });
+
+  await addSubjectLogToDB("CREATE");
 
   return {
     status: "ADDED",
