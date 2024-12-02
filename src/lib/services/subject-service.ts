@@ -11,7 +11,6 @@ export async function getActiveSubjectsFromDB(
   page: number = 1,
 ): Promise<{ subjects: any[]; pagesAmount: number }> {
   // removing empty search params (like: "") from searchParam object
-  console.log(searchParam, " -- param");
   Object.keys(searchParam).forEach((field) => {
     if (searchParam[field] === "") {
       delete searchParam[field];

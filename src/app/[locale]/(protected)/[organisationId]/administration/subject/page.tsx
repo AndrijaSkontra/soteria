@@ -21,8 +21,6 @@ export default async function SubjectPage({
   const searchParamsData = await searchParams;
   const paramsData = await params;
 
-  console.log(searchParamsData.search, " +++");
-
   let subjects, pagesAmount: number;
 
   if (!searchParamsData.advSearch || searchParamsData.advSearch === "false") {
