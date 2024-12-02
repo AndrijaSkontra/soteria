@@ -1,25 +1,35 @@
 "use client";
-import React, { useActionState, useState } from "react";
+import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { DatePickerWithRange } from "../generic-table/date-picker-with-range";
 import { CountrySelect } from "../ui/select-country";
-import { advancedSearchAction } from "@/lib/serverActions/subject-actions";
-
-const initialState = {
-  message: "",
-  errors: {},
-};
-
+import { Button } from "../ui/button";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { addDays } from "date-fns";
 export default function AdvancedSearchSubject() {
   const [country, setCountry] = useState("");
-  const [state, formAction] = useActionState(
-    advancedSearchAction,
-    initialState,
-  );
+  const [dateRange, setDateRange] = useState({
+    from: addDays(new Date(new Date()), -20),
+    to: new Date(),
+  });
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const urlSearchParams = new URLSearchParams(searchParams);
 
-  console.log(state);
+  async function handleSubmit(formData) {
+    urlSearchParams.set("name", formData.get("name"));
+    urlSearchParams.set("address", formData.get("address"));
+    urlSearchParams.set("oib", formData.get("oib"));
+    urlSearchParams.set("contact", formData.get("contact"));
+    urlSearchParams.set("email", formData.get("email"));
+    urlSearchParams.set("country", country);
+    urlSearchParams.set("from", JSON.stringify(dateRange.from));
+    urlSearchParams.set("to", JSON.stringify(dateRange.to));
+    router.push(`${pathname}?${urlSearchParams.toString()}`);
+  }
 
   return (
     <Card>
@@ -27,26 +37,20 @@ export default function AdvancedSearchSubject() {
         <CardTitle>Advanced Search</CardTitle>
       </CardHeader>
       <CardContent>
-        <form className="space-y-4" action={formAction}>
+        <form className="space-y-4" action={handleSubmit}>
           <div className="upper-row flex flex-col md:flex-row w-full gap-x-6 space-y-4 md:space-y-0">
             <div className="grow">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" required />
+              <Input name="name" />
             </div>
 
             <div className="grow">
               <Label htmlFor="address">Address</Label>
-              <Input id="address" />
+              <Input name="address" />
             </div>
 
             <div className="grow">
               <Label htmlFor="country">Country</Label>
-              <Input
-                id="country"
-                className="hidden"
-                readOnly={true}
-                value={country}
-              />
               <CountrySelect setDialogValue={setCountry} />
             </div>
           </div>
@@ -54,23 +58,26 @@ export default function AdvancedSearchSubject() {
           <div className="lower-row flex-col md:flex-row flex w-full gap-x-6 space-y-4 md:space-y-0">
             <div className="grow">
               <Label htmlFor="oib">OIB</Label>
-              <Input id="oib" />
+              <Input name="oib" />
             </div>
 
             <div className="grow">
               <Label htmlFor="contact">Contact</Label>
-              <Input id="contact" />
+              <Input name="contact" />
             </div>
 
             <div className="grow">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" />
+              <Input name="email" />
             </div>
 
             <div className="grow">
               <Label>Time Range</Label>
-              <DatePickerWithRange />
+              <DatePickerWithRange setDateRangeAction={setDateRange} />
             </div>
+          </div>
+          <div className="w-full flex justify-end">
+            <Button type="submit">Search</Button>
           </div>
         </form>
       </CardContent>
