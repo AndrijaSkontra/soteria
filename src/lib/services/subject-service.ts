@@ -11,6 +11,7 @@ export async function getActiveSubjectsFromDB(
   page: number = 1,
 ): Promise<{ subjects: any[]; pagesAmount: number }> {
   // removing empty search params (like: "") from searchParam object
+  console.log(searchParam, " -- param");
   Object.keys(searchParam).forEach((field) => {
     if (searchParam[field] === "") {
       delete searchParam[field];
@@ -28,7 +29,7 @@ export async function getActiveSubjectsFromDB(
     "country",
   ];
 
-  let whereClause: any = {
+  const whereClause: any = {
     active: true,
     organisationId: orgId,
   };
@@ -52,10 +53,6 @@ export async function getActiveSubjectsFromDB(
       },
     }));
   }
-
-  console.log();
-  console.log(whereClause);
-  console.log();
 
   try {
     const subjects = await prisma.subject.findMany({

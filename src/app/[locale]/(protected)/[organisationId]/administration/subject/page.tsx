@@ -21,18 +21,11 @@ export default async function SubjectPage({
   const searchParamsData = await searchParams;
   const paramsData = await params;
 
-  const advSearchData: AdvancedSubjectSearch = {
-    name: searchParamsData.name,
-    address: searchParamsData.address,
-    oib: searchParamsData.oib,
-    contact: searchParamsData.contact,
-    email: searchParamsData.email,
-    country: searchParamsData.country,
-  };
+  console.log(searchParamsData.search, " +++");
 
   let subjects, pagesAmount: number;
 
-  if (!searchParamsData.advSearch) {
+  if (!searchParamsData.advSearch || searchParamsData.advSearch === "false") {
     ({ subjects, pagesAmount } = await getActiveSubjectsFromDB(
       paramsData.organisationId,
       searchParamsData?.search,
@@ -40,6 +33,14 @@ export default async function SubjectPage({
       searchParamsData.page,
     ));
   } else {
+    const advSearchData: AdvancedSubjectSearch = {
+      name: searchParamsData.name,
+      address: searchParamsData.address,
+      oib: searchParamsData.oib,
+      contact: searchParamsData.contact,
+      email: searchParamsData.email,
+      country: searchParamsData.country,
+    };
     ({ subjects, pagesAmount } = await getActiveSubjectsFromDB(
       paramsData.organisationId,
       advSearchData,

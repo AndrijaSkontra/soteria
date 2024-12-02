@@ -59,7 +59,7 @@ type SubjectSearch = Promise<{
   search: string;
   page: number;
   rows: number;
-  advSearch: boolean;
+  advSearch: string;
   name: string;
   email: string;
   address: string;
