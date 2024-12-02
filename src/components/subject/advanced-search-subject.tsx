@@ -8,26 +8,40 @@ import { CountrySelect } from "../ui/select-country";
 import { Button } from "../ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { addDays } from "date-fns";
+
 export default function AdvancedSearchSubject() {
+  // State variables for each input field
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [oib, setOib] = useState("");
+  const [contact, setContact] = useState("");
+  const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
+
   const [dateRange, setDateRange] = useState({
-    from: addDays(new Date(new Date()), -20),
+    from: addDays(new Date(), -20),
     to: new Date(),
   });
+
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
   const urlSearchParams = new URLSearchParams(searchParams);
 
-  async function handleSubmit(formData) {
-    urlSearchParams.set("name", formData.get("name"));
-    urlSearchParams.set("address", formData.get("address"));
-    urlSearchParams.set("oib", formData.get("oib"));
-    urlSearchParams.set("contact", formData.get("contact"));
-    urlSearchParams.set("email", formData.get("email"));
+  async function handleSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Update the URL search parameters
+    urlSearchParams.set("name", name);
+    urlSearchParams.set("address", address);
+    urlSearchParams.set("oib", oib);
+    urlSearchParams.set("contact", contact);
+    urlSearchParams.set("email", email);
     urlSearchParams.set("country", country);
-    urlSearchParams.set("from", JSON.stringify(dateRange.from));
-    urlSearchParams.set("to", JSON.stringify(dateRange.to));
+    urlSearchParams.set("from", dateRange.from.toISOString());
+    urlSearchParams.set("to", dateRange.to.toISOString());
+
+    // Navigate to the new URL with updated query parameters
     router.push(`${pathname}?${urlSearchParams.toString()}`);
   }
 
@@ -37,16 +51,24 @@ export default function AdvancedSearchSubject() {
         <CardTitle>Advanced Search</CardTitle>
       </CardHeader>
       <CardContent>
-        <form className="space-y-4" action={handleSubmit}>
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="upper-row flex flex-col md:flex-row w-full gap-x-6 space-y-4 md:space-y-0">
             <div className="grow">
               <Label htmlFor="name">Name</Label>
-              <Input name="name" />
+              <Input
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
 
             <div className="grow">
               <Label htmlFor="address">Address</Label>
-              <Input name="address" />
+              <Input
+                name="address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
             </div>
 
             <div className="grow">
@@ -55,20 +77,32 @@ export default function AdvancedSearchSubject() {
             </div>
           </div>
 
-          <div className="lower-row flex-col md:flex-row flex w-full gap-x-6 space-y-4 md:space-y-0">
+          <div className="lower-row flex flex-col md:flex-row w-full gap-x-6 space-y-4 md:space-y-0">
             <div className="grow">
               <Label htmlFor="oib">OIB</Label>
-              <Input name="oib" />
+              <Input
+                name="oib"
+                value={oib}
+                onChange={(e) => setOib(e.target.value)}
+              />
             </div>
 
             <div className="grow">
               <Label htmlFor="contact">Contact</Label>
-              <Input name="contact" />
+              <Input
+                name="contact"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+              />
             </div>
 
             <div className="grow">
               <Label htmlFor="email">Email</Label>
-              <Input name="email" />
+              <Input
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className="grow">
