@@ -40,16 +40,18 @@ export default function SubjectTableActions({ isAdmin, orgId }) {
             setAdvancedSearchOpen={advancedSearchOpen}
             advancedSearchOpen={urlSearchParams.get("adv-search") === "true"}
           />
-          <Button
-            className="w-full md:w-auto"
-            onClick={() => {
-              urlSearchParams.set("search", searchInput);
-              urlSearchParams.set("page", "1");
-              router.push(`${pathname}?${urlSearchParams.toString()}`);
-            }}
-          >
-            Pretraži
-          </Button>
+          {!(urlSearchParams.get("adv-search") === "true") && (
+            <Button
+              className="w-full md:w-auto"
+              onClick={() => {
+                urlSearchParams.set("search", searchInput);
+                urlSearchParams.set("page", "1");
+                router.push(`${pathname}?${urlSearchParams.toString()}`);
+              }}
+            >
+              Pretraži
+            </Button>
+          )}
           <CleanSearchButton setSearchInput={setSearchInput} />
           {isAdmin && (
             <>
