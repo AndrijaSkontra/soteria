@@ -7,6 +7,7 @@ import { Role } from "@prisma/client";
 import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 import { getSubjectsData } from "@/lib/services/subject-service";
 import { Suspense } from "react";
+import TableSkeletonTenRows from "@/components/generic-table/table-skeleton-10-rows";
 
 export default async function SubjectPage({
   searchParams,
@@ -17,6 +18,8 @@ export default async function SubjectPage({
 }) {
   const searchParamsData = await searchParams;
   const paramsData = await params;
+
+  console.log(searchParamsData)
 
   const { subjects, pagesAmount } = await getSubjectsData(
     searchParamsData,
@@ -35,11 +38,12 @@ export default async function SubjectPage({
       />
       {pagesAmount !== 0 ? (
         <>
-          <Suspense key={searchParamsData.page} fallback={<p>Loading</p>}>
+          <Suspense key={`page=${searchParamsData.page}&rows=${searchParamsData.rows}`} fallback={<TableSkeletonTenRows />}>
             <SubjectsTable
+              params={paramsData}
+              searchParams={searchParamsData}
               orgId={paramsData.organisationId}
               rows={searchParamsData.rows || 10}
-              subjects={subjects}
               page={searchParamsData.page || 1}
             />
           </Suspense>

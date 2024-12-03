@@ -144,6 +144,7 @@ export async function disableSubjectInDB(subjectId: string, orgId: string) {
 }
 
 export async function getSubjectsData(searchParamsData, paramsData) {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   if (!searchParamsData.advSearch || searchParamsData.advSearch === "false") {
     return await getActiveSubjectsFromDB(
       paramsData.organisationId,
