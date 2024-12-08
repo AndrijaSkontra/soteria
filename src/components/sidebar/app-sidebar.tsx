@@ -3,18 +3,9 @@
 import * as React from "react";
 import { MainNavigation } from "@/components/sidebar/nav-main";
 import { OrganizationSwitcher } from "@/components/sidebar/organization-switcher";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/components/ui/sidebar";
 import { NavSettings } from "@/components/sidebar/nav-settings";
-import {
-  NavigationLinkType,
-  Organisation,
-  OrganisationWithRoles,
-} from "@/types/app-types";
+import { NavigationLinkType, Organisation, OrganisationWithRoles } from "@/types/app-types";
 import LanguageSwitcher from "./language-switcher";
 export function AppSidebar({
   organisationsWithRoles,
@@ -34,10 +25,7 @@ export function AppSidebar({
         />
       </SidebarHeader>
       <SidebarContent>
-        <MainNavigation
-          links={navigationLinks}
-          organisationId={activeOrganisation.id}
-        />
+        <MainNavigation links={navigationLinks} organisationId={activeOrganisation.id} />
       </SidebarContent>
       <SidebarFooter>
         <div className="p-2">

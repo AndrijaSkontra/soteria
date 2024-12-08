@@ -7,18 +7,12 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Link, usePathname } from "@/i18n/routing";
 import { ChevronRight } from "lucide-react";
-export default function Breadcrumbs({
-  organisationName,
-}: {
-  organisationName: string;
-}) {
+export default function Breadcrumbs({ organisationName }: { organisationName: string }) {
   const pathname = usePathname();
   let list = pathname.split("/");
   list.shift();
   list[0] = organisationName;
-  list = list.map(
-    (elem: string) => elem.charAt(0).toUpperCase() + elem.slice(1),
-  );
+  list = list.map((elem: string) => elem.charAt(0).toUpperCase() + elem.slice(1));
 
   return (
     <Breadcrumb>

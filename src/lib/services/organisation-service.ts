@@ -6,9 +6,7 @@ import { isUserInOrganisation } from "./user-service";
 import { getLocale } from "next-intl/server";
 import { redirect } from "@/i18n/routing";
 
-export async function doesOrganisationExist(
-  organisationId: string,
-): Promise<boolean> {
+export async function doesOrganisationExist(organisationId: string): Promise<boolean> {
   try {
     await prisma.organisation.findUnique({
       where: { id: organisationId, active: true },
@@ -19,9 +17,7 @@ export async function doesOrganisationExist(
   }
 }
 
-export async function getUserOrganisationsWithRoles(): Promise<
-  OrganisationWithRoles[]
-> {
+export async function getUserOrganisationsWithRoles(): Promise<OrganisationWithRoles[]> {
   const userOrganisationsWithRoles: OrganisationWithRoles[] =
     await prisma.organisationUser.findMany({
       where: {
@@ -36,13 +32,10 @@ export async function getUserOrganisationsWithRoles(): Promise<
   return userOrganisationsWithRoles;
 }
 
-export async function getOrganisationById(
-  orgId: string,
-): Promise<Organisation> {
-  const organisation: Organisation | null =
-    await prisma.organisation.findUnique({
-      where: { id: orgId },
-    });
+export async function getOrganisationById(orgId: string): Promise<Organisation> {
+  const organisation: Organisation | null = await prisma.organisation.findUnique({
+    where: { id: orgId },
+  });
 
   if (organisation) {
     return organisation;
@@ -51,9 +44,7 @@ export async function getOrganisationById(
   throw new Error("No organisation with this id");
 }
 
-export async function getUserOrganisationRolesFromDB(
-  orgId: string,
-): Promise<Role[]> {
+export async function getUserOrganisationRolesFromDB(orgId: string): Promise<Role[]> {
   const orgUser = await prisma.organisationUser.findFirst({
     where: {
       userId: await getUserId(),
@@ -88,8 +79,7 @@ export function getUserOrganisationRoles(
 
 export async function checkIsOrganisationValid(organisationId: string) {
   const isOrganisationPageValid =
-    (await doesOrganisationExist(organisationId)) &&
-    (await isUserInOrganisation(organisationId));
+    (await doesOrganisationExist(organisationId)) && (await isUserInOrganisation(organisationId));
 
   if (!isOrganisationPageValid) {
     const locale = await getLocale();

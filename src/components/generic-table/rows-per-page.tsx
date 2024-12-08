@@ -27,9 +27,7 @@ export default function RowsPerPage() {
 
   return (
     <div className="flex items-center space-x-2">
-      <p className="hidden  md:inline font-medium text-nowrap mr-2">
-        Rows per page
-      </p>
+      <p className="hidden  md:inline font-medium text-nowrap mr-2">Rows per page</p>
       <Select
         onValueChange={(value) => setRowsPerPage(Number(value))}
         defaultValue={String(rowsPerPage)}

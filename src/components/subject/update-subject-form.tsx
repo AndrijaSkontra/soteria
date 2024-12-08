@@ -26,10 +26,7 @@ export default function UpdateSubjectForm({
   const params = useParams();
   const [countryValue, setCountryValue] = useState("");
   const { toast } = useToast();
-  const [state, formAction] = useActionState(
-    updateSubjectAction,
-    initialFormState,
-  );
+  const [state, formAction] = useActionState(updateSubjectAction, initialFormState);
 
   useEffect(() => {
     if (state.status === "ERROR") {
@@ -68,11 +65,7 @@ export default function UpdateSubjectForm({
         <Label htmlFor="address" className="mb-1">
           Adresa
         </Label>
-        <Input
-          id="address"
-          name="address"
-          placeholder="Ulica Bana Jelačića 10, Zagreb"
-        />
+        <Input id="address" name="address" placeholder="Ulica Bana Jelačića 10, Zagreb" />
         {state.errors?.address?._errors.map((error, index) => {
           return (
             <p key={index} className="text-red-500 text-xs">
@@ -107,11 +100,7 @@ export default function UpdateSubjectForm({
           <Label htmlFor="contactNumber" className="mb-1">
             Kontakt broj
           </Label>
-          <Input
-            id="contactNumber"
-            name="contactNumber"
-            placeholder="091 234 5678"
-          />
+          <Input id="contactNumber" name="contactNumber" placeholder="091 234 5678" />
           {state.errors?.contactNumber?._errors.map((error, index) => {
             return (
               <p key={index} className="text-red-500 text-xs">
@@ -137,11 +126,7 @@ export default function UpdateSubjectForm({
           <Label htmlFor="email" className="mb-1">
             E-mail
           </Label>
-          <Input
-            id="email"
-            name="email"
-            placeholder="mateo.horvat@primjer.hr"
-          />
+          <Input id="email" name="email" placeholder="mateo.horvat@primjer.hr" />
           {state.errors?.email?._errors.map((error, index) => {
             return (
               <p key={index} className="text-red-500 text-xs">

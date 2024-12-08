@@ -20,14 +20,7 @@ export async function getActiveSubjectsFromDB(
 
   const skip = (page - 1) * rows;
 
-  const stringFields = [
-    "name",
-    "address",
-    "oib",
-    "contact",
-    "email",
-    "country",
-  ];
+  const stringFields = ["name", "address", "oib", "contact", "email", "country"];
 
   const whereClause: any = {
     active: true,
@@ -73,10 +66,7 @@ export async function getActiveSubjectsFromDB(
   }
 }
 
-export async function addSubjectToDB(
-  organisationId: string,
-  createSubjectDto: CreateSubjectDTO,
-) {
+export async function addSubjectToDB(organisationId: string, createSubjectDto: CreateSubjectDTO) {
   const roles: Role[] = await getUserOrganisationRolesFromDB(organisationId);
   if (!roles.includes("ADMIN")) {
     throw new Error("You don't have permissions to add subjects!");
@@ -178,9 +168,9 @@ export async function getSubjectPages(
 ): Promise<number> {
   let filteredSubjectsCount;
 
-  console.log(searchParamsData?.search, " search params")
+  console.log(searchParamsData?.search, " search params");
 
-  if (!searchParamsData?.search || searchParamsData?.search ===  "") {
+  if (!searchParamsData?.search || searchParamsData?.search === "") {
     filteredSubjectsCount = await prisma.subject.count({
       where: {
         organisationId: paramsData.organisationId,
@@ -189,24 +179,21 @@ export async function getSubjectPages(
     });
   } else if (!searchParamsData?.advSearch || searchParamsData.advSearch === "false") {
     filteredSubjectsCount = await prisma.subject.count({
-  where: {
-    AND: [
-      { organisationId: paramsData.organisationId },
-      { active: true },
-    ],
-    OR: [
-      { name: { contains: searchParamsData.search } },
-      { address: { contains: searchParamsData.search } },
-      { oib: { contains: searchParamsData.search } },
-      { contact: { contains: searchParamsData.search } },
-      { email: { contains: searchParamsData.search } },
-      { country: { contains: searchParamsData.search } },
-    ],
-  },
-});
+      where: {
+        AND: [{ organisationId: paramsData.organisationId }, { active: true }],
+        OR: [
+          { name: { contains: searchParamsData.search } },
+          { address: { contains: searchParamsData.search } },
+          { oib: { contains: searchParamsData.search } },
+          { contact: { contains: searchParamsData.search } },
+          { email: { contains: searchParamsData.search } },
+          { country: { contains: searchParamsData.search } },
+        ],
+      },
+    });
   }
 
-  const tableRows = searchParamsData.rows || DEFAULT_ROWS
+  const tableRows = searchParamsData.rows || DEFAULT_ROWS;
 
   return Math.ceil(filteredSubjectsCount / tableRows);
 }

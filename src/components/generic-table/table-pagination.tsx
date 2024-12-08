@@ -7,15 +7,8 @@ type Props = {
   paramsData: any;
 };
 
-export default async function TablePagination({
-  searchParamsData,
-  paramsData,
-}: Props) {
-
-  const tablePages: number = await getSubjectPages(
-    searchParamsData,
-    paramsData,
-  );
+export default async function TablePagination({ searchParamsData, paramsData }: Props) {
+  const tablePages: number = await getSubjectPages(searchParamsData, paramsData);
 
   return (
     <div className="flex flex-row justify-between w-full md:justify-center md:items-center md:space-x-12 md:space-y-0">

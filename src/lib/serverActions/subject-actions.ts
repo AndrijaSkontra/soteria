@@ -126,11 +126,7 @@ function getValidationForAddingSubject() {
       .regex(/^\d+$/, { message: "OIB must contain only digits" })
       .optional()
       .or(z.literal("")),
-    email: z
-      .string()
-      .email({ message: "Invalid email address" })
-      .optional()
-      .or(z.literal("")),
+    email: z.string().email({ message: "Invalid email address" }).optional().or(z.literal("")),
     country: z.string().optional(),
   });
 }
@@ -166,27 +162,14 @@ function getValidationForUpdatingSubject() {
       .regex(/^\d+$/, { message: "OIB must contain only digits" })
       .optional()
       .or(z.literal("")),
-    email: z
-      .string()
-      .email({ message: "Invalid email address" })
-      .optional()
-      .or(z.literal("")),
+    email: z.string().email({ message: "Invalid email address" }).optional().or(z.literal("")),
     country: z.string().optional(),
   });
 }
 
 function checkIsFormDataEmpty(formData): boolean {
-  const fieldsToCheck = [
-    "name",
-    "address",
-    "country",
-    "contactNumber",
-    "oib",
-    "email",
-  ];
+  const fieldsToCheck = ["name", "address", "country", "contactNumber", "oib", "email"];
 
-  const allFieldsEmpty = fieldsToCheck.every(
-    (field) => formData.get(field) === "",
-  );
+  const allFieldsEmpty = fieldsToCheck.every((field) => formData.get(field) === "");
   return allFieldsEmpty;
 }

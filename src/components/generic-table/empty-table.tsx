@@ -17,9 +17,7 @@ export function EmptyTable({
         <FileQuestion className="h-10 w-10 text-muted-foreground" />
       </div>
       <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-      <p className="mt-2 text-sm text-muted-foreground max-w-sm mx-auto">
-        {description}
-      </p>
+      <p className="mt-2 text-sm text-muted-foreground max-w-sm mx-auto">{description}</p>
     </div>
   );
 }

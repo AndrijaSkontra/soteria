@@ -38,9 +38,7 @@ export default function ResponsiveDialog({
         <DrawerContent>
           <DrawerHeader className="text-left">
             <DrawerTitle>{title}</DrawerTitle>
-            {description && (
-              <DrawerDescription>{description}</DrawerDescription>
-            )}
+            {description && <DrawerDescription>{description}</DrawerDescription>}
           </DrawerHeader>
 
           <DrawerFooter>{children}</DrawerFooter>

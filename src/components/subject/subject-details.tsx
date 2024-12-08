@@ -33,10 +33,7 @@ export default function SubjectDetails({ subject }) {
           </p>
           <p>
             <span className="font-medium">Email: </span>
-            <a
-              href={`mailto:${subject.email}`}
-              className="text-blue-600 underline"
-            >
+            <a href={`mailto:${subject.email}`} className="text-blue-600 underline">
               {subject.email || "N/A"}
             </a>
           </p>

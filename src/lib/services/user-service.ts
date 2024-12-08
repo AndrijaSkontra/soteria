@@ -3,9 +3,7 @@ import { getUserId } from "@/lib/get-user-id";
 import { UserInformationType } from "@/types/app-types";
 import { User } from "next-auth";
 
-export async function isUserInOrganisation(
-  organisationId: string,
-): Promise<boolean> {
+export async function isUserInOrganisation(organisationId: string): Promise<boolean> {
   const org = await prisma.organisationUser.findFirst({
     where: {
       userId: await getUserId(),
@@ -20,10 +18,7 @@ export async function isUserInOrganisation(
   }
 }
 
-export async function getActiveUserFromDB(
-  email: string,
-  password: string,
-): Promise<User> {
+export async function getActiveUserFromDB(email: string, password: string): Promise<User> {
   const user = await prisma.user.findFirst({
     where: {
       email: email,

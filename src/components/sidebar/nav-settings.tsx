@@ -19,11 +19,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useRouter } from "@/i18n/routing";
-import {
-  IoMoonOutline,
-  IoSettingsOutline,
-  IoSunnyOutline,
-} from "react-icons/io5";
+import { IoMoonOutline, IoSettingsOutline, IoSunnyOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import { createCookie } from "@/lib/serverActions/cookie-actions";
 import { getCookie } from "@/lib/get-cookie";

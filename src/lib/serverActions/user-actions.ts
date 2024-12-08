@@ -14,12 +14,8 @@ export async function updateUserAction(
 ) {
   const schema = z.object({
     email: z.string().email({ message: "Please enter a valid email address" }),
-    firstName: z
-      .string()
-      .min(2, { message: "Name can't be shorter than 2 characters" }),
-    lastName: z
-      .string()
-      .min(2, { message: "Surname can't be shorter than 2 characters" }),
+    firstName: z.string().min(2, { message: "Name can't be shorter than 2 characters" }),
+    lastName: z.string().min(2, { message: "Surname can't be shorter than 2 characters" }),
     contactNumber: z.string().min(5, { message: "Invalid contact number" }),
   });
 

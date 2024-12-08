@@ -2,13 +2,7 @@
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartContainer,
   ChartLegend,
@@ -85,34 +79,14 @@ export default function InspectorLoad() {
           config={chartConfig}
           className="h-[400px] w-[300px] sm:w-[350px] md:w-[600px] lg:w-[750px] xl:w-[900px]"
         >
-          <BarChart
-            accessibilityLayer
-            data={chartData}
-            layout="vertical"
-            className="my-2"
-          >
+          <BarChart accessibilityLayer data={chartData} layout="vertical" className="my-2">
             <CartesianGrid horizontal={false} />
             <XAxis type="number" />
-            <YAxis
-              dataKey="month"
-              type="category"
-              tickLine={false}
-              axisLine={false}
-            />
-            <ChartTooltip
-              content={<ChartTooltipContent hideLabel className="min-w-44" />}
-            />
+            <YAxis dataKey="month" type="category" tickLine={false} axisLine={false} />
+            <ChartTooltip content={<ChartTooltipContent hideLabel className="min-w-44" />} />
             <ChartLegend content={<ChartLegendContent />} />
-            <Bar
-              dataKey="inProgress"
-              stackId="a"
-              fill="var(--color-inProgress)"
-            />
-            <Bar
-              dataKey="needVerification"
-              stackId="a"
-              fill="var(--color-needVerification)"
-            />
+            <Bar dataKey="inProgress" stackId="a" fill="var(--color-inProgress)" />
+            <Bar dataKey="needVerification" stackId="a" fill="var(--color-needVerification)" />
             <Bar dataKey="created" stackId="a" fill="var(--color-created)" />
           </BarChart>
         </ChartContainer>

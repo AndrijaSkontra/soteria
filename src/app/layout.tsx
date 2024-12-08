@@ -13,11 +13,7 @@ export const metadata: Metadata = {
   description: "Soteria web application",
 };
 
-export default async function LocaleLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function LocaleLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies();
 
   const theme = cookieStore.get("theme")?.value;

@@ -1,11 +1,7 @@
 "use client";
 import { ChevronRight } from "lucide-react";
 import { RiAdminLine } from "react-icons/ri";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -35,9 +31,7 @@ export default function AdministrationLinks({
           <CollapsibleContent>
             <SidebarMenuSub>
               {Array.isArray(children)
-                ? children.map((child, index) => (
-                    <Fragment key={index}>{child}</Fragment>
-                  ))
+                ? children.map((child, index) => <Fragment key={index}>{child}</Fragment>)
                 : children}
             </SidebarMenuSub>
           </CollapsibleContent>

@@ -7,10 +7,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function linksToShowOnUI(
-  roles: Role[],
-  links: NavigationLinkType[],
-): NavigationLinkType[] {
+export function linksToShowOnUI(roles: Role[], links: NavigationLinkType[]): NavigationLinkType[] {
   let finalLinks: NavigationLinkType[] = [];
 
   // Object.keys(Role) will return the lenght of Enum Role

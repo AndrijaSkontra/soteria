@@ -9,24 +9,14 @@ export default function AdminView() {
       className="flex flex-col lg:flex-row lg:space-x-4 space-y-4
       lg:space-y-0 mb-2 w-full lg:justify-stretch items-stretch"
     >
-      <AdminViewCard
-        title="Personnel"
-        dataNumber={5}
-        buttonText="+ Invite"
-        icon={<BsPeople />}
-      />
+      <AdminViewCard title="Personnel" dataNumber={5} buttonText="+ Invite" icon={<BsPeople />} />
       <AdminViewCard
         title="Playgrounds"
         dataNumber={15}
         buttonText="+ Playgrounds"
         icon={<IoBasketballOutline />}
       />
-      <AdminViewCard
-        title="Subjects"
-        dataNumber={8}
-        buttonText="+ Subjects"
-        icon={<FaPerson />}
-      />
+      <AdminViewCard title="Subjects" dataNumber={8} buttonText="+ Subjects" icon={<FaPerson />} />
     </div>
   );
 }

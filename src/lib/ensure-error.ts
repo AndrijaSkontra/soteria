@@ -6,8 +6,6 @@ export function ensureError(value: unknown): Error {
     stringified = JSON.stringify(value);
   } catch {}
 
-  const error = new Error(
-    `This value was thrown as is, not through an Error: ${stringified}`,
-  );
+  const error = new Error(`This value was thrown as is, not through an Error: ${stringified}`);
   return error;
 }

@@ -1,13 +1,7 @@
 import { Button } from "@/components/ui/button";
-import {
-  HiOutlineChevronDoubleDown,
-  HiOutlineChevronDoubleUp,
-} from "react-icons/hi";
+import { HiOutlineChevronDoubleDown, HiOutlineChevronDoubleUp } from "react-icons/hi";
 
-export default function AdvancedSearchButton({
-  setAdvancedSearchOpen,
-  advancedSearchOpen,
-}) {
+export default function AdvancedSearchButton({ setAdvancedSearchOpen, advancedSearchOpen }) {
   return (
     <>
       {!advancedSearchOpen ? (

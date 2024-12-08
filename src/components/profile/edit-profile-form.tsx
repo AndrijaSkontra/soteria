@@ -12,11 +12,7 @@ const initialState = {
   message: "",
 };
 
-export function EditProfileForm({
-  userInfo,
-}: {
-  userInfo: UserInformationType;
-}) {
+export function EditProfileForm({ userInfo }: { userInfo: UserInformationType }) {
   const [state, formAction] = useActionState(updateUserAction, initialState);
 
   return (
@@ -67,8 +63,7 @@ export function EditProfileForm({
           />
         </div>
         <div className="flex w-full justify-center items-center">
-          {state.message &&
-          state.message !== "Your profile has been updated." ? (
+          {state.message && state.message !== "Your profile has been updated." ? (
             <p className="text-red-500 text-sm">{state.message}</p>
           ) : (
             <p className="text-green-500 text-sm">{state.message}</p>

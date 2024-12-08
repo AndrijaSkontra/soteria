@@ -1,19 +1,9 @@
 import clsx from "clsx";
 import { Separator } from "@/components/ui/separator";
 import InstructorTaskTable from "./inspector-task-table";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
-export default function InspectorDashboardElements({
-  isInspector,
-}: {
-  isInspector: boolean;
-}) {
+export default function InspectorDashboardElements({ isInspector }: { isInspector: boolean }) {
   return (
     <div className={clsx("space-y-6 mb-12", !isInspector && "hidden mb-0")}>
       <div>
@@ -24,9 +14,7 @@ export default function InspectorDashboardElements({
         <Card className="grow">
           <CardHeader>
             <CardTitle>Inspector Assigned Tasks</CardTitle>
-            <CardDescription>
-              Optional description about instructor tasks
-            </CardDescription>
+            <CardDescription>Optional description about instructor tasks</CardDescription>
           </CardHeader>
           <CardContent>
             <InstructorTaskTable />
@@ -35,9 +23,7 @@ export default function InspectorDashboardElements({
         <Card className="grow">
           <CardHeader>
             <CardTitle>In Progress Tasks</CardTitle>
-            <CardDescription>
-              Optional description about instructor tasks
-            </CardDescription>
+            <CardDescription>Optional description about instructor tasks</CardDescription>
           </CardHeader>
           <CardContent>
             <InstructorTaskTable />

@@ -35,7 +35,7 @@ async function main() {
       }),
     ),
   );
-  const organisationIDs = organisationData.map((org) => org.id)
+  const organisationIDs = organisationData.map((org) => org.id);
   const subjectData = getSubjectData(dataAmount, organisationIDs);
 
   const roles = ["INSPECTOR", "MANAGER", "ADMIN"];

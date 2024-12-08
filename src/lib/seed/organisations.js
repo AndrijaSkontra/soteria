@@ -1,13 +1,11 @@
 const organisations = [
   {
     name: "Apple",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
   },
   {
     name: "Google",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png",
   },
   {
     name: "Microsoft",
@@ -16,13 +14,11 @@ const organisations = [
   },
   {
     name: "Amazon",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
   },
   {
     name: "Facebook",
-    logoUrl:
-      "https://logos-world.net/wp-content/uploads/2020/04/Facebook-Logo-2015-present.jpg",
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/04/Facebook-Logo-2015-present.jpg",
   },
   {
     name: "Tesla",
@@ -35,8 +31,7 @@ const organisations = [
   },
   {
     name: "Intel",
-    logoUrl:
-      "https://logowik.com/content/uploads/images/intel-2020-new3327.jpg",
+    logoUrl: "https://logowik.com/content/uploads/images/intel-2020-new3327.jpg",
   },
   {
     name: "Cisco",
@@ -45,8 +40,7 @@ const organisations = [
   },
   {
     name: "Oracle",
-    logoUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg",
   },
 ];
 

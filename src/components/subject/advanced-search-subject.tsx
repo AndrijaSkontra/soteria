@@ -51,20 +51,12 @@ export default function AdvancedSearchSubject() {
           <div className="upper-row flex flex-col md:flex-row w-full gap-x-6 space-y-4 md:space-y-0">
             <div className="grow">
               <Label htmlFor="name">Name</Label>
-              <Input
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+              <Input name="name" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
 
             <div className="grow">
               <Label htmlFor="address">Address</Label>
-              <Input
-                name="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
+              <Input name="address" value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
 
             <div className="grow">
@@ -76,29 +68,17 @@ export default function AdvancedSearchSubject() {
           <div className="lower-row flex flex-col md:flex-row w-full gap-x-6 space-y-4 md:space-y-0">
             <div className="grow">
               <Label htmlFor="oib">OIB</Label>
-              <Input
-                name="oib"
-                value={oib}
-                onChange={(e) => setOib(e.target.value)}
-              />
+              <Input name="oib" value={oib} onChange={(e) => setOib(e.target.value)} />
             </div>
 
             <div className="grow">
               <Label htmlFor="contact">Contact</Label>
-              <Input
-                name="contact"
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-              />
+              <Input name="contact" value={contact} onChange={(e) => setContact(e.target.value)} />
             </div>
 
             <div className="grow">
               <Label htmlFor="email">Email</Label>
-              <Input
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <Input name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
 
             <div className="grow">

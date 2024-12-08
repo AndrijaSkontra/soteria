@@ -9,17 +9,11 @@ const nonComplianceData = [
   },
   {
     title: "Inadequate Fencing",
-    recommendations: [
-      "Install perimeter fencing",
-      "Repair damaged fence sections",
-    ],
+    recommendations: ["Install perimeter fencing", "Repair damaged fence sections"],
   },
   {
     title: "Poor Lighting",
-    recommendations: [
-      "Upgrade to LED lights",
-      "Install additional light posts",
-    ],
+    recommendations: ["Upgrade to LED lights", "Install additional light posts"],
   },
   {
     title: "No Safety Signage",
@@ -35,10 +29,7 @@ const nonComplianceData = [
   },
   {
     title: "Unsafe Surface Materials",
-    recommendations: [
-      "Replace asphalt with rubber",
-      "Ensure surfaces are level",
-    ],
+    recommendations: ["Replace asphalt with rubber", "Ensure surfaces are level"],
   },
   {
     title: "Obstructed Access Paths",

@@ -13,11 +13,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const countries = [
   { value: "Albania", label: "AL" },
@@ -72,23 +68,14 @@ const countries = [
   { value: "United Kingdom", label: "UK" },
   { value: "Vatican City", label: "VA" },
 ];
-export function CountrySelect({
-  setDialogValue,
-}: {
-  setDialogValue: (country: any) => any;
-}) {
+export function CountrySelect({ setDialogValue }: { setDialogValue: (country: any) => any }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild className="w-full">
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="justify-between"
-        >
+        <Button variant="outline" role="combobox" aria-expanded={open} className="justify-between">
           {value
             ? countries.find((framework) => framework.value === value)?.value
             : "Select country"}

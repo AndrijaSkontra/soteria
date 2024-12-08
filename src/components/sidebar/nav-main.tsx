@@ -14,9 +14,7 @@ export function MainNavigation({
   links: NavigationLinkType[];
 }) {
   const basicLinks = links.filter((link) => link.type === "BASIC");
-  const administrationLinks = links.filter(
-    (link) => link.type === "ADMINISTRATION",
-  );
+  const administrationLinks = links.filter((link) => link.type === "ADMINISTRATION");
   return (
     <SidebarMenu>
       {basicLinks.map((basicLink, index) => {

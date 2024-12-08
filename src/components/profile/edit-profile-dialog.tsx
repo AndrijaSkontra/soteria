@@ -5,11 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { EditProfileForm } from "./edit-profile-form";
 import ResponsiveDialog from "../ui/responsive-dialog";
 
-export function EditProfileDialog({
-  userInfo,
-}: {
-  userInfo: UserInformationType;
-}) {
+export function EditProfileDialog({ userInfo }: { userInfo: UserInformationType }) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();

@@ -38,9 +38,7 @@ export default function InstructorTaskTable() {
       <TableBody>
         {data.map((item) => (
           <TableRow key={item.id}>
-            <TableCell className="text-center">
-              {getTaskTypeIcon(item.type)}
-            </TableCell>
+            <TableCell className="text-center">{getTaskTypeIcon(item.type)}</TableCell>
             <TableCell>
               <Link href="#" className="hover:underline">
                 {item.taskName}

@@ -17,11 +17,7 @@ import { CgDetailsMore } from "react-icons/cg";
 import SubjectDetails from "./subject-details";
 import DeleteSubject from "./delete-subject";
 
-export default function SubjectTableDropdown({
-  subject,
-}: {
-  subject: Subject;
-}) {
+export default function SubjectTableDropdown({ subject }: { subject: Subject }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
@@ -41,10 +37,7 @@ export default function SubjectTableDropdown({
               <p>Uredi</p>
             </div>
           </DropdownMenuItem>
-          <DropdownMenuItem
-            className="md:hidden"
-            onClick={() => setIsDetailsOpen(true)}
-          >
+          <DropdownMenuItem className="md:hidden" onClick={() => setIsDetailsOpen(true)}>
             <div className="flex items-center space-x-2">
               <CgDetailsMore />
               <p>Detalji</p>

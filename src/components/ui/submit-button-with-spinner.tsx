@@ -5,13 +5,7 @@ import { Button } from "./button";
 import ClipLoader from "react-spinners/ClipLoader";
 import { getCookie } from "@/lib/get-cookie";
 
-export function SubmitButton({
-  innerText,
-  className,
-}: {
-  innerText: string;
-  className?: string;
-}) {
+export function SubmitButton({ innerText, className }: { innerText: string; className?: string }) {
   const { pending } = useFormStatus();
   const theme = getCookie("theme");
 

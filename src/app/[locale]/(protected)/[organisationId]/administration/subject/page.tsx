@@ -18,20 +18,12 @@ export default async function SubjectPage({
   const searchParamsData = await searchParams;
   const paramsData = await params;
 
-  const roles: Role[] = await getUserOrganisationRolesFromDB(
-    paramsData.organisationId,
-  );
+  const roles: Role[] = await getUserOrganisationRolesFromDB(paramsData.organisationId);
 
   return (
     <div className="p-4 lg:px-8 space-y-4">
-      <SubjectTableActions
-        isAdmin={roles.includes("ADMIN")}
-        orgId={paramsData.organisationId}
-      />
-      <Suspense
-        key={JSON.stringify(searchParamsData)}
-        fallback={<TableSkeletonTenRows />}
-      >
+      <SubjectTableActions isAdmin={roles.includes("ADMIN")} orgId={paramsData.organisationId} />
+      <Suspense key={JSON.stringify(searchParamsData)} fallback={<TableSkeletonTenRows />}>
         <SubjectsTable
           params={paramsData}
           searchParams={searchParamsData}
@@ -40,10 +32,7 @@ export default async function SubjectPage({
           page={searchParamsData.page || DEFAULT_PAGE}
         />
       </Suspense>
-      <TablePagination
-        searchParamsData={searchParamsData}
-        paramsData={paramsData}
-      />
+      <TablePagination searchParamsData={searchParamsData} paramsData={paramsData} />
     </div>
   );
 }

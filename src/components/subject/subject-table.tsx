@@ -22,16 +22,13 @@ export default async function SubjectsTable({
   orgId: string;
   page: number;
   rows: number;
-    params: any;
-    searchParams: any;
+  params: any;
+  searchParams: any;
 }) {
   const roles: Role[] = await getUserOrganisationRolesFromDB(orgId);
   const isAdmin = roles.includes("ADMIN");
 
-  const { subjects, pagesAmount } = await getSubjectsData(
-    searchParams,
-    params,
-  );
+  const { subjects, pagesAmount } = await getSubjectsData(searchParams, params);
 
   return (
     <div className="border border-gray-200 rounded-lg overflow-auto">
@@ -45,9 +42,7 @@ export default async function SubjectsTable({
             <TableHead className="xl:table-cell hidden">E-mail</TableHead>
             <TableHead className="xl:table-cell hidden">Država</TableHead>
             <TableHead className="xl:table-cell hidden">OIB</TableHead>
-            <TableHead className={clsx("text-center", !isAdmin && "hidden")}>
-              Actions
-            </TableHead>
+            <TableHead className={clsx("text-center", !isAdmin && "hidden")}>Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -57,21 +52,11 @@ export default async function SubjectsTable({
                 {Number(index + 1) + Number(page - 1) * Number(rows)}
               </TableCell>
               <TableCell>{subject.name}</TableCell>
-              <TableCell className="xl:table-cell hidden">
-                {subject.address || "-"}
-              </TableCell>
-              <TableCell className="md:table-cell hidden">
-                {subject.contact || "-"}
-              </TableCell>
-              <TableCell className="xl:table-cell hidden">
-                {subject.email || "-"}
-              </TableCell>
-              <TableCell className="xl:table-cell hidden">
-                {subject.country || "-"}
-              </TableCell>
-              <TableCell className="xl:table-cell hidden">
-                {subject.oib || "-"}
-              </TableCell>
+              <TableCell className="xl:table-cell hidden">{subject.address || "-"}</TableCell>
+              <TableCell className="md:table-cell hidden">{subject.contact || "-"}</TableCell>
+              <TableCell className="xl:table-cell hidden">{subject.email || "-"}</TableCell>
+              <TableCell className="xl:table-cell hidden">{subject.country || "-"}</TableCell>
+              <TableCell className="xl:table-cell hidden">{subject.oib || "-"}</TableCell>
               <TableCell className={clsx("text-center", !isAdmin && "hidden")}>
                 <SubjectTableDropdown subject={subject} />
               </TableCell>

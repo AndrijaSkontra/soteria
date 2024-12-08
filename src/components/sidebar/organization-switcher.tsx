@@ -30,8 +30,7 @@ export function OrganizationSwitcher({
 }) {
   const { isMobile } = useSidebar();
 
-  const [activeOrganisationState, setActiveOrganisationState] =
-    useState(activeOrganisation);
+  const [activeOrganisationState, setActiveOrganisationState] = useState(activeOrganisation);
 
   const router = useRouter();
 
@@ -51,9 +50,7 @@ export function OrganizationSwitcher({
                     <AvatarFallback>ORG</AvatarFallback>
                   </Avatar>
                 </div>
-                <span className="truncate font-semibold ml-2">
-                  {activeOrganisationState.name}
-                </span>
+                <span className="truncate font-semibold ml-2">{activeOrganisationState.name}</span>
               </div>
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>

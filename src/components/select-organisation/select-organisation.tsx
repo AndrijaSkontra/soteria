@@ -15,8 +15,7 @@ export default function SelectOrganisation({
 }: {
   organisationsWithRoles: OrganisationWithRoles[];
 }) {
-  const [selectedOrganisationId, setSelectedOrganisationId] =
-    useState<string>("");
+  const [selectedOrganisationId, setSelectedOrganisationId] = useState<string>("");
 
   function handleOrganisationClick(orgWithRoles: OrganisationWithRoles) {
     setSelectedOrganisationId(orgWithRoles.organisation.id);
@@ -63,9 +62,7 @@ export default function SelectOrganisation({
                       />
                       <AvatarFallback>ORG</AvatarFallback>
                     </Avatar>
-                    <p className="font-medium text-xl">
-                      {orgWithRoles.organisation.name}
-                    </p>
+                    <p className="font-medium text-xl">{orgWithRoles.organisation.name}</p>
                   </div>
                 </CardTitle>
               </CardHeader>
@@ -83,14 +80,9 @@ export default function SelectOrganisation({
       <div className="w-full flex justify-center">
         <Link
           href={`/${selectedOrganisationId}/dashboard`}
-          className={clsx(
-            "",
-            selectedOrganisationId === "" && "pointer-events-none",
-          )}
+          className={clsx("", selectedOrganisationId === "" && "pointer-events-none")}
         >
-          <Button disabled={selectedOrganisationId === ""}>
-            Go To Organisation
-          </Button>
+          <Button disabled={selectedOrganisationId === ""}>Go To Organisation</Button>
         </Link>
       </div>
     </div>

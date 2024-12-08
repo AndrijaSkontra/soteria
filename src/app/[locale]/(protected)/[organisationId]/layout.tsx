@@ -6,11 +6,7 @@ import {
   getUserOrganisationsWithRoles,
 } from "@/lib/services/organisation-service";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import {
-  Organisation,
-  OrganisationWithRoles,
-  RouteParams,
-} from "@/types/app-types";
+import { Organisation, OrganisationWithRoles, RouteParams } from "@/types/app-types";
 import { allLinks } from "@/lib/constants/links";
 import Header from "@/components/header/header";
 import { linksToShowOnUI } from "@/lib/utils";
@@ -26,16 +22,11 @@ export default async function OrganisationLayout({
 
   await checkIsOrganisationValid(organisationId);
 
-  const userOrganisationsWithRoles: OrganisationWithRoles[] =
-    await getUserOrganisationsWithRoles();
+  const userOrganisationsWithRoles: OrganisationWithRoles[] = await getUserOrganisationsWithRoles();
 
-  const activeOrganisation: Organisation =
-    await getOrganisationById(organisationId);
+  const activeOrganisation: Organisation = await getOrganisationById(organisationId);
 
-  const roles = getUserOrganisationRoles(
-    activeOrganisation,
-    userOrganisationsWithRoles,
-  );
+  const roles = getUserOrganisationRoles(activeOrganisation, userOrganisationsWithRoles);
 
   return (
     <SidebarProvider>
