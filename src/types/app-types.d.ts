@@ -70,21 +70,6 @@ type SubjectSearchParams = Promise<{
   to: string;
 }>;
 
-type SubjectFilter = {
-  search: string;
-  page: number;
-  rows: number;
-  advSearch: string;
-  name: string;
-  email: string;
-  address: string;
-  oib: string;
-  contact: string;
-  country: string;
-  from: string;
-  to: string;
-};
-
 //
 // type SubjectFormState = {
 //   status: "ADDED" | "PENDING";

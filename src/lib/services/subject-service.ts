@@ -1,6 +1,6 @@
 import prisma from "@/index";
-import { AdvancedSubjectSearch, CreateSubjectDTO, SubjectFilter } from "@/types/app-types";
-import { revalidateTag } from "next/cache";
+import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getUserOrganisationRolesFromDB } from "./organisation-service";
 import { Role } from "@prisma/client";
 import { DEFAULT_PAGE, DEFAULT_ROWS } from "@/lib/constants/app-constants";
@@ -135,15 +135,7 @@ export async function disableSubjectInDB(subjectId: string, orgId: string) {
 }
 
 export async function getSubjectsData(searchParamsData, paramsData) {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  if (!searchParamsData.advSearch || searchParamsData.advSearch === "false") {
-    return await getActiveSubjectsFromDB(
-      paramsData.organisationId,
-      searchParamsData?.search,
-      searchParamsData.rows,
-      searchParamsData.page,
-    );
-  } else {
+  if (!searchParamsData?.search || searchParamsData.search === "") {
     const advSearchData: AdvancedSubjectSearch = {
       name: searchParamsData.name,
       address: searchParamsData.address,
@@ -159,41 +151,12 @@ export async function getSubjectsData(searchParamsData, paramsData) {
       searchParamsData.rows,
       searchParamsData.page,
     );
+  } else {
+    return await getActiveSubjectsFromDB(
+      paramsData.organisationId,
+      searchParamsData?.search,
+      searchParamsData.rows,
+      searchParamsData.page,
+    );
   }
-}
-
-export async function getSubjectPages(
-  searchParamsData: SubjectFilter,
-  paramsData,
-): Promise<number> {
-  let filteredSubjectsCount;
-
-  console.log(searchParamsData?.search, " search params");
-
-  if (!searchParamsData?.search || searchParamsData?.search === "") {
-    filteredSubjectsCount = await prisma.subject.count({
-      where: {
-        organisationId: paramsData.organisationId,
-        active: true,
-      },
-    });
-  } else if (!searchParamsData?.advSearch || searchParamsData.advSearch === "false") {
-    filteredSubjectsCount = await prisma.subject.count({
-      where: {
-        AND: [{ organisationId: paramsData.organisationId }, { active: true }],
-        OR: [
-          { name: { contains: searchParamsData.search } },
-          { address: { contains: searchParamsData.search } },
-          { oib: { contains: searchParamsData.search } },
-          { contact: { contains: searchParamsData.search } },
-          { email: { contains: searchParamsData.search } },
-          { country: { contains: searchParamsData.search } },
-        ],
-      },
-    });
-  }
-
-  const tableRows = searchParamsData.rows || DEFAULT_ROWS;
-
-  return Math.ceil(filteredSubjectsCount / tableRows);
 }

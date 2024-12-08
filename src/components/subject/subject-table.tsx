@@ -10,25 +10,20 @@ import {
 import SubjectTableDropdown from "./subject-table-dropdown";
 import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 import clsx from "clsx";
-import { getSubjectsData } from "@/lib/services/subject-service";
 
 export default async function SubjectsTable({
   orgId,
   page,
   rows,
-  params,
-  searchParams,
+  subjects,
 }: {
   orgId: string;
   page: number;
   rows: number;
-  params: any;
-  searchParams: any;
+  subjects: any;
 }) {
   const roles: Role[] = await getUserOrganisationRolesFromDB(orgId);
   const isAdmin = roles.includes("ADMIN");
-
-  const { subjects, pagesAmount } = await getSubjectsData(searchParams, params);
 
   return (
     <div className="border border-gray-200 rounded-lg overflow-auto">

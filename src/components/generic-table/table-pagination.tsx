@@ -1,19 +1,15 @@
 import PaginationButtons from "./pagination-buttons";
-import { getSubjectPages } from "@/lib/services/subject-service";
 import RowsPerPage from "./rows-per-page";
 
 type Props = {
-  searchParamsData: any;
-  paramsData: any;
+  pagesAmount: number;
 };
 
-export default async function TablePagination({ searchParamsData, paramsData }: Props) {
-  const tablePages: number = await getSubjectPages(searchParamsData, paramsData);
-
+export default async function TablePagination({ pagesAmount }: Props) {
   return (
     <div className="flex flex-row justify-between w-full md:justify-center md:items-center md:space-x-12 md:space-y-0">
       <RowsPerPage />
-      <PaginationButtons tablePages={tablePages} />
+      <PaginationButtons tablePages={pagesAmount} />
     </div>
   );
 }
