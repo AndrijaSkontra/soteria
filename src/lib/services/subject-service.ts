@@ -3,12 +3,13 @@ import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
 import { revalidateTag } from "next/cache";
 import { getUserOrganisationRolesFromDB } from "./organisation-service";
 import { Role } from "@prisma/client";
+import { DEFAULT_PAGE, DEFAULT_ROWS } from "@/lib/constants/app-constants";
 
 export async function getActiveSubjectsFromDB(
   orgId: string,
   searchParam: string | AdvancedSubjectSearch = "",
-  rows: number = 10,
-  page: number = 1,
+  rows: number = DEFAULT_ROWS,
+  page: number = DEFAULT_PAGE,
 ): Promise<{ subjects: any[]; pagesAmount: number }> {
   // removing empty search params (like: "") from searchParam object
   Object.keys(searchParam).forEach((field) => {
@@ -169,4 +170,27 @@ export async function getSubjectsData(searchParamsData, paramsData) {
       searchParamsData.page,
     );
   }
+}
+
+export async function getSubjectPages(
+  searchParamsData,
+  paramsData,
+): Promise<number> {
+  let count;
+
+  //  WARN: only by name spotlight search
+  if (!searchParamsData?.advSearch || searchParamsData.advSearch === "false") {
+    count = await prisma.subject.count({
+      where: {
+        organisationId: paramsData.organisationId,
+        name: {
+          contains: searchParamsData.search,
+        },
+      },
+    });
+  } else {
+    count = 12;
+  }
+
+  return Math.ceil(count / searchParamsData.rows || DEFAULT_ROWS);
 }

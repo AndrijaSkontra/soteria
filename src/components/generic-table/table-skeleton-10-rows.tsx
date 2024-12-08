@@ -22,16 +22,16 @@ export default function TableSkeletonTenRows() {
           {Array.from({ length: 10 }).map((_, idx) => (
             <tr key={idx} className="border border-gray-300">
               <td className="p-2">
-                <div className="w-32 h-4 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-32 h-4 bg-gray-200 rounded animate-pulse mt-2"></div>
               </td>
               <td className="p-2">
-                <div className="hidden xl:table-cell w-32 h-4 bg-gray-200 rounded animate-pulse"></div>
+                <div className="hidden xl:table-cell w-32 h-4 bg-gray-200 rounded animate-pulse mt-2"></div>
               </td>
               <td className="p-2">
-                <div className="hidden xl:table-cell w-32 h-4 bg-gray-200 rounded animate-pulse"></div>
+                <div className="hidden xl:table-cell w-32 h-4 bg-gray-200 rounded animate-pulse mt-2"></div>
               </td>
               <td className="p-2">
-                <div className="w-32 h-4 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-32 h-4 bg-gray-200 rounded animate-pulse mt-2"></div>
               </td>
             </tr>
           ))}

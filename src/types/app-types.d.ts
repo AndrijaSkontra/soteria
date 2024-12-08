@@ -55,7 +55,7 @@ type CreateSubjectDTO = {
   email?: string;
 };
 
-type SubjectSearch = Promise<{
+type SubjectSearchParams = Promise<{
   search: string;
   page: number;
   rows: number;
@@ -69,6 +69,21 @@ type SubjectSearch = Promise<{
   from: string;
   to: string;
 }>;
+
+type SubjectFilter = {
+  search: string;
+  page: number;
+  rows: number;
+  advSearch: string;
+  name: string;
+  email: string;
+  address: string;
+  oib: string;
+  contact: string;
+  country: string;
+  from: string;
+  to: string;
+};
 
 //
 // type SubjectFormState = {
