@@ -29,7 +29,7 @@ export default async function SubjectPage({
         orgId={paramsData.organisationId}
       />
       <Suspense
-        key={`page=${searchParamsData.page}&rows=${searchParamsData.rows}`}
+        key={JSON.stringify(searchParamsData)}
         fallback={<TableSkeletonTenRows />}
       >
         <SubjectsTable

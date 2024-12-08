@@ -11,6 +11,7 @@ export default async function TablePagination({
   searchParamsData,
   paramsData,
 }: Props) {
+
   const tablePages: number = await getSubjectPages(
     searchParamsData,
     paramsData,

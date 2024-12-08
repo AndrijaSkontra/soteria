@@ -1,5 +1,5 @@
 import prisma from "@/index";
-import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
+import { AdvancedSubjectSearch, CreateSubjectDTO, SubjectFilter } from "@/types/app-types";
 import { revalidateTag } from "next/cache";
 import { getUserOrganisationRolesFromDB } from "./organisation-service";
 import { Role } from "@prisma/client";
@@ -173,24 +173,40 @@ export async function getSubjectsData(searchParamsData, paramsData) {
 }
 
 export async function getSubjectPages(
-  searchParamsData,
+  searchParamsData: SubjectFilter,
   paramsData,
 ): Promise<number> {
-  let count;
+  let filteredSubjectsCount;
 
-  //  WARN: only by name spotlight search
-  if (!searchParamsData?.advSearch || searchParamsData.advSearch === "false") {
-    count = await prisma.subject.count({
+  console.log(searchParamsData?.search, " search params")
+
+  if (!searchParamsData?.search || searchParamsData?.search ===  "") {
+    filteredSubjectsCount = await prisma.subject.count({
       where: {
         organisationId: paramsData.organisationId,
-        name: {
-          contains: searchParamsData.search,
-        },
+        active: true,
       },
     });
-  } else {
-    count = 12;
+  } else if (!searchParamsData?.advSearch || searchParamsData.advSearch === "false") {
+    filteredSubjectsCount = await prisma.subject.count({
+  where: {
+    AND: [
+      { organisationId: paramsData.organisationId },
+      { active: true },
+    ],
+    OR: [
+      { name: { contains: searchParamsData.search } },
+      { address: { contains: searchParamsData.search } },
+      { oib: { contains: searchParamsData.search } },
+      { contact: { contains: searchParamsData.search } },
+      { email: { contains: searchParamsData.search } },
+      { country: { contains: searchParamsData.search } },
+    ],
+  },
+});
   }
 
-  return Math.ceil(count / searchParamsData.rows || DEFAULT_ROWS);
+  const tableRows = searchParamsData.rows || DEFAULT_ROWS
+
+  return Math.ceil(filteredSubjectsCount / tableRows);
 }
