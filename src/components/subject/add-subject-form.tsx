@@ -19,7 +19,7 @@ const initialFormState: any = {
  * @see https://react.dev/reference/react/useActionState#
  * @author Andrija Skontra
  */
-export default function AddSubjectForm({ dialogOpen, orgId }) {
+export default function AddSubjectForm({ setDialogOpen, orgId }) {
   const [countryValue, setCountryValue] = useState("");
   const { toast } = useToast();
   const [state, formAction] = useActionState(addSubjectAction, initialFormState);
@@ -32,9 +32,9 @@ export default function AddSubjectForm({ dialogOpen, orgId }) {
         duration: 2000,
       });
       state.status = "PENDING";
-      dialogOpen(false);
+      setDialogOpen(false);
     }
-  }, [dialogOpen, state, toast]);
+  }, [setDialogOpen, state, toast]);
 
   return (
     <form className="space-y-4 mt-4 p-2" action={formAction}>

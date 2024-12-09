@@ -55,7 +55,7 @@ export default function SubjectTableActions({ isAdmin, orgId }) {
                 title="Dodaj subjekta"
                 description="Obavezna polja su označena zvijezdicom"
               >
-                <AddSubjectForm dialogOpen={dialogOpen} orgId={orgId} />
+                <AddSubjectForm setDialogOpen={setDialogOpen} orgId={orgId} />
               </ResponsiveDialog>
             </>
           )}

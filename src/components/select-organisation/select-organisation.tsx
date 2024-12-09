@@ -82,7 +82,9 @@ export default function SelectOrganisation({
           href={`/${selectedOrganisationId}/dashboard`}
           className={clsx("", selectedOrganisationId === "" && "pointer-events-none")}
         >
-          <Button disabled={selectedOrganisationId === ""}>Go To Organisation</Button>
+          <Button disabled={selectedOrganisationId === ""} variant="outline">
+            Go To Organisation
+          </Button>
         </Link>
       </div>
     </div>
