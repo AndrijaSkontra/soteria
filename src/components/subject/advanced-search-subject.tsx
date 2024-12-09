@@ -65,60 +65,62 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
               }}
             >
               <CardContent>
-                <div className="space-y-4">
-                  <div className="upper-row flex flex-col md:flex-row w-full gap-x-6 space-y-4 md:space-y-0">
-                    <div className="grow flex items-center space-x-2">
-                      <p className="text-sm">Name:</p>
-                      <Input name="name" value={name} onChange={(e) => setName(e.target.value)} />
-                    </div>
-
-                    <div className="grow flex items-center space-x-2">
-                      <p className="text-sm">Address:</p>
-                      <Input
-                        name="address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                      />
-                    </div>
-
-                    <div className="grow flex items-center space-x-2">
-                      <p className="text-sm">Country:</p>
-                      <CountrySelect setDialogValue={setCountry} />
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  {/* Name */}
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm">Name:</p>
+                    <Input name="name" value={name} onChange={(e) => setName(e.target.value)} />
                   </div>
 
-                  <div className="lower-row flex flex-col md:flex-row w-full gap-x-6 space-y-4 md:space-y-0">
-                    <div className="grow flex items-center space-x-2">
-                      <p className="text-sm">OIB:</p>
-                      <Input name="oib" value={oib} onChange={(e) => setOib(e.target.value)} />
-                    </div>
+                  {/* Address */}
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm">Address:</p>
+                    <Input
+                      name="address"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </div>
 
-                    <div className="grow flex items-center space-x-2">
-                      <p className="text-sm">Time Range:</p>
-                      <DatePickerWithRange setDateRangeAction={setDateRange} />
-                    </div>
+                  {/* Email */}
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm">Email:</p>
+                    <Input name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  </div>
 
-                    <div className="grow flex items-center space-x-2">
-                      <p className="text-sm">Contact:</p>
-                      <Input
-                        name="contact"
-                        value={contact}
-                        onChange={(e) => setContact(e.target.value)}
-                      />
-                    </div>
+                  {/* OIB */}
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm">OIB:</p>
+                    <Input name="oib" value={oib} onChange={(e) => setOib(e.target.value)} />
+                  </div>
 
-                    <div className="grow flex items-center space-x-2">
-                      <p className="text-sm">Email:</p>
-                      <Input
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
+                  {/* Time Range */}
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm text-nowrap">Time Range:</p>
+                    <DatePickerWithRange setDateRangeAction={setDateRange} className="w-full" />
+                  </div>
 
+                  {/* Contact */}
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm">Contact:</p>
+                    <Input
+                      name="contact"
+                      value={contact}
+                      onChange={(e) => setContact(e.target.value)}
+                    />
+                  </div>
+
+                  {/* Country */}
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm">Country:</p>
+                    <CountrySelect setDialogValue={setCountry} />
+                  </div>
+
+                  {/* Search Button */}
+                  <div>
                     <Button
-                      className="grow"
-                      variant="secondary"
+                      className="w-full"
+                      variant="outline"
                       onClick={handleAdvSearchClick}
                       onKeyDown={("enter", handleAdvSearchClick)}
                     >
