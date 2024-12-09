@@ -13,8 +13,9 @@
 ## Git Commit Guidelines
 
 When making commits, follow this convention:
-•	Begin each commit message with one of the following prefixes: ADDED, CHANGED, or DELETED.
-•	Follow the prefix with a clear and descriptive message detailing the changes made.
+
+• Begin each commit message with one of the following prefixes: ADDED, CHANGED, or DELETED.
+• Follow the prefix with a clear and descriptive message detailing the changes made.
 
 ## Before opening a pull request
 
