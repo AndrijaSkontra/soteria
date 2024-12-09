@@ -62,7 +62,9 @@ export default function SelectOrganisation({
                       />
                       <AvatarFallback>ORG</AvatarFallback>
                     </Avatar>
-                    <p className="font-medium text-xl">{orgWithRoles.organisation.name}</p>
+                    <p className="font-medium text-xl text-gray-600 dark:text-gray-400">
+                      {orgWithRoles.organisation.name}
+                    </p>
                   </div>
                 </CardTitle>
               </CardHeader>

@@ -79,7 +79,12 @@ export default function InspectorLoad() {
           config={chartConfig}
           className="h-[400px] w-[300px] sm:w-[350px] md:w-[600px] lg:w-[750px] xl:w-[900px]"
         >
-          <BarChart accessibilityLayer data={chartData} layout="vertical" className="my-2">
+          <BarChart
+            accessibilityLayer
+            data={chartData}
+            layout="vertical"
+            margin={{ left: 20 }} // give margin left to fit inspector names
+          >
             <CartesianGrid horizontal={false} />
             <XAxis type="number" />
             <YAxis dataKey="month" type="category" tickLine={false} axisLine={false} />
