@@ -4,13 +4,9 @@
    Ensure your `.env` file includes the necessary connection string.
 
 2. **Generate the Authentication Secret**  
-   Run the following command:  
+   Run the following command: `npx auth secret`
 
-   ```bash
-   npx auth secret
-   ```
-
-3. Install Prettier
+3. **Install Prettier**
 
 ## Git Commit Guidelines
 
