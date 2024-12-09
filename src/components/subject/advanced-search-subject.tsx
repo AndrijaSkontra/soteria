@@ -118,12 +118,7 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
 
                   {/* Search Button */}
                   <div>
-                    <Button
-                      className="w-full"
-                      variant="outline"
-                      onClick={handleAdvSearchClick}
-                      onKeyDown={("enter", handleAdvSearchClick)}
-                    >
+                    <Button className="w-full" variant="outline" onClick={handleAdvSearchClick}>
                       Search
                     </Button>
                   </div>

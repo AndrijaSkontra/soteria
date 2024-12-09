@@ -22,3 +22,7 @@ When making commits, follow this convention:
 npx prettier . --write
 npm run build
 ```
+
+> [!NOTE]
+> Ensure that npm run build completes without any errors or warnings.
+

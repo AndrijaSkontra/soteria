@@ -145,7 +145,7 @@ export async function getSubjectsData(searchParamsData, paramsData) {
       country: searchParamsData.country,
     };
 
-    console.log(advSearchData, " adv search");
+    console.log("exe adv search 🤣 this needs fixing");
 
     return await getActiveSubjectsFromDB(
       paramsData.organisationId,

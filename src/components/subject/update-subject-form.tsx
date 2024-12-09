@@ -44,7 +44,7 @@ export default function UpdateSubjectForm({
       });
       state.status = "PENDING";
     }
-  }, [state]);
+  }, [state, subject.name, toast]);
 
   return (
     <form className="space-y-4 mt-4" action={formAction}>

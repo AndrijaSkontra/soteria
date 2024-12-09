@@ -34,7 +34,7 @@ export default function AddSubjectForm({ dialogOpen, orgId }) {
       state.status = "PENDING";
       dialogOpen(false);
     }
-  }, [state]);
+  }, [dialogOpen, state, toast]);
 
   return (
     <form className="space-y-4 mt-4 p-2" action={formAction}>

@@ -1,4 +1,4 @@
-import { Role, Subject } from "@prisma/client";
+import { Role } from "@prisma/client";
 import {
   Table,
   TableHeader,
