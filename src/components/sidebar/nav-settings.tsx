@@ -33,7 +33,7 @@ export function NavSettings() {
   const t = useTranslations("Settings");
 
   function switchTheme() {
-    if (theme === "light") {
+    if (theme === "light" || theme === null) {
       createCookie("theme", "dark");
     } else {
       createCookie("theme", "light");
