@@ -1,6 +1,6 @@
 import prisma from "@/index";
 import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { getUserOrganisationRolesFromDB } from "./organisation-service";
 import { Role } from "@prisma/client";
 import { DEFAULT_PAGE, DEFAULT_ROWS } from "@/lib/constants/app-constants";
@@ -145,6 +145,8 @@ export async function getSubjectsData(searchParamsData, paramsData) {
       country: searchParamsData.country,
     };
 
+    console.log(advSearchData, " adv search");
+
     return await getActiveSubjectsFromDB(
       paramsData.organisationId,
       advSearchData,
@@ -152,6 +154,7 @@ export async function getSubjectsData(searchParamsData, paramsData) {
       searchParamsData.page,
     );
   } else {
+    console.log(" this is code executing");
     return await getActiveSubjectsFromDB(
       paramsData.organisationId,
       searchParamsData?.search,

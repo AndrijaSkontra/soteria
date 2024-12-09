@@ -17,6 +17,14 @@ export default function SubjectTableActions({ isAdmin, orgId }) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isAdvSearchOn, setAdvSearchOn] = useState(false);
 
+  const handleSearch = () => {
+    if (searchInput !== "") {
+      urlSearchParams.set("search", searchInput);
+      urlSearchParams.set("page", "1");
+      router.push(`${pathname}?${urlSearchParams.toString()}`);
+    }
+  };
+
   return (
     <>
       <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 items-center md:space-x-2">
@@ -25,19 +33,14 @@ export default function SubjectTableActions({ isAdmin, orgId }) {
           disabled={isAdvSearchOn}
           onChange={(ev) => setSearchInput(ev.target.value)}
           value={searchInput}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
         />
         <div className="flex items-center space-x-2 w-full md:w-auto">
-          <Button
-            className="w-full md:w-auto"
-            disabled={isAdvSearchOn}
-            onClick={() => {
-              if (searchInput !== "") {
-                urlSearchParams.set("search", searchInput);
-                urlSearchParams.set("page", "1");
-                router.push(`${pathname}?${urlSearchParams.toString()}`);
-              }
-            }}
-          >
+          <Button className="w-full md:w-auto" disabled={isAdvSearchOn} onClick={handleSearch}>
             Pretraži
           </Button>
           <CleanSearchButton setSearchInput={setSearchInput} />

@@ -29,6 +29,7 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
   const urlSearchParams = new URLSearchParams(searchParams);
 
   async function handleAdvSearchClick() {
+    urlSearchParams.set("search", "");
     urlSearchParams.set("from", dateRange.from.toISOString());
     urlSearchParams.set("to", dateRange.to.toISOString());
     urlSearchParams.set("country", country);
@@ -55,7 +56,14 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
             transition={{ duration: 0.3 }}
             className="text-center overflow-hidden"
           >
-            <Card className="pt-4">
+            <Card
+              className="pt-4"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleAdvSearchClick();
+                }
+              }}
+            >
               <CardContent>
                 <div className="space-y-4">
                   <div className="upper-row flex flex-col md:flex-row w-full gap-x-6 space-y-4 md:space-y-0">
@@ -86,6 +94,11 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
                     </div>
 
                     <div className="grow flex items-center space-x-2">
+                      <p className="text-sm">Time Range:</p>
+                      <DatePickerWithRange setDateRangeAction={setDateRange} />
+                    </div>
+
+                    <div className="grow flex items-center space-x-2">
                       <p className="text-sm">Contact:</p>
                       <Input
                         name="contact"
@@ -103,11 +116,12 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
                       />
                     </div>
 
-                    <div className="grow flex items-center space-x-2">
-                      <p className="text-sm">Time Range:</p>
-                      <DatePickerWithRange setDateRangeAction={setDateRange} />
-                    </div>
-                    <Button className="grow" variant="outline" onClick={handleAdvSearchClick}>
+                    <Button
+                      className="grow"
+                      variant="secondary"
+                      onClick={handleAdvSearchClick}
+                      onKeyDown={("enter", handleAdvSearchClick)}
+                    >
                       Search
                     </Button>
                   </div>
