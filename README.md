@@ -5,8 +5,10 @@
 
 2. **Generate the Authentication Secret**  
    Run the following command:  
+
    ```bash
    npx auth secret
+   ```
 
 3. Install Prettier
 
