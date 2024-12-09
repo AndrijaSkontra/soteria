@@ -65,60 +65,56 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
               }}
             >
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  {/* Name */}
-                  <div className="flex items-center space-x-2">
-                    <p className="text-sm">Name:</p>
-                    <Input name="name" value={name} onChange={(e) => setName(e.target.value)} />
-                  </div>
+                <div className="grid gap-4 grid-cols-2 md:grid-cols-6 2xl:grid-cols-8">
+                  <Input
+                    className="col-span-2"
+                    name="name"
+                    value={name}
+                    placeholder="Name"
+                    onChange={(e) => setName(e.target.value)}
+                  />
 
-                  {/* Address */}
-                  <div className="flex items-center space-x-2">
-                    <p className="text-sm">Address:</p>
-                    <Input
-                      name="address"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                    />
-                  </div>
+                  <Input
+                    className="col-span-2"
+                    name="address"
+                    placeholder="Address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
 
-                  {/* Email */}
-                  <div className="flex items-center space-x-2">
-                    <p className="text-sm">Email:</p>
-                    <Input name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                  </div>
+                  <Input
+                    className="col-span-2"
+                    name="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
 
-                  {/* OIB */}
-                  <div className="flex items-center space-x-2">
-                    <p className="text-sm">OIB:</p>
-                    <Input name="oib" value={oib} onChange={(e) => setOib(e.target.value)} />
-                  </div>
-
-                  {/* Time Range */}
-                  <div className="flex items-center space-x-2">
-                    <p className="text-sm text-nowrap">Time Range:</p>
-                    <DatePickerWithRange setDateRangeAction={setDateRange} className="w-full" />
-                  </div>
-
-                  {/* Contact */}
-                  <div className="flex items-center space-x-2">
-                    <p className="text-sm">Contact:</p>
-                    <Input
-                      name="contact"
-                      value={contact}
-                      onChange={(e) => setContact(e.target.value)}
-                    />
-                  </div>
-
-                  {/* Country */}
-                  <div className="flex items-center space-x-2">
-                    <p className="text-sm">Country:</p>
+                  <div className="col-span-2">
                     <CountrySelect setDialogValue={setCountry} />
                   </div>
 
-                  {/* Search Button */}
-                  <div>
-                    <Button className="w-full" variant="outline" onClick={handleAdvSearchClick}>
+                  <Input
+                    className="col-span-2"
+                    name="contact"
+                    placeholder="Contact"
+                    value={contact}
+                    onChange={(e) => setContact(e.target.value)}
+                  />
+
+                  <Input
+                    className="col-span-2"
+                    name="oib"
+                    placeholder="OIB"
+                    value={oib}
+                    onChange={(e) => setOib(e.target.value)}
+                  />
+
+                  <div className="col-span-full md:col-span-4 2xl:col-span-2">
+                    <DatePickerWithRange setDateRangeAction={setDateRange} className="w-full" />
+                  </div>
+                  <div className="col-span-2 md:col-span-2 2xl:col-span-2">
+                    <Button className="w-full" variant="secondary" onClick={handleAdvSearchClick}>
                       Search
                     </Button>
                   </div>
