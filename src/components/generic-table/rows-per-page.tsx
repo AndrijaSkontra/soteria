@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SELECT_ROWS_PER_PAGE_WIDTH } from "@/lib/constants/app-constants";
 
 export default function RowsPerPage() {
   const pathname = usePathname();
@@ -33,7 +34,7 @@ export default function RowsPerPage() {
         defaultValue={String(rowsPerPage)}
         value={String(rowsPerPage)}
       >
-        <SelectTrigger className="w-[70px] bg-white">
+        <SelectTrigger className={`${SELECT_ROWS_PER_PAGE_WIDTH} bg-white`}>
           <SelectValue placeholder={String(rowsPerPage)} />
         </SelectTrigger>
         <SelectContent>

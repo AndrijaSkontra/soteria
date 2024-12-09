@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { DATE_SELECT_DASHBOARD_WIDTH } from "@/lib/constants/app-constants";
 
 export default async function DashboardPage({
   params,
@@ -23,9 +24,9 @@ export default async function DashboardPage({
 
   return (
     <div className="px-4 lg:px-32">
-      <div className="flex w-full justify-end">
+      <div className="flex w-full justify-end sticky top-4 z-50">
         <Select>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className={`${DATE_SELECT_DASHBOARD_WIDTH}`}>
             <SelectValue placeholder="This Month" defaultValue="This Month" />
           </SelectTrigger>
           <SelectContent>
