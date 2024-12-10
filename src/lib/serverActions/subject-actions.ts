@@ -22,7 +22,7 @@ export async function updateSubjectAction(prevState: any, formData: FormData) {
 
   if (!validatedFields.success) {
     return {
-      status: "ERROR",
+      status: "NOCHANGE",
       errors: validatedFields.error.format(),
     };
   }

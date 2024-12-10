@@ -26,28 +26,39 @@ export default function UpdateSubjectForm({
   const params = useParams();
   const [countryValue, setCountryValue] = useState("");
   const { toast } = useToast();
-  const [state, formAction] = useActionState(updateSubjectAction, initialFormState);
+  const [state, formAction] = useActionState(async (prevState, formData) => {
+    const newState = await updateSubjectAction(prevState, formData);
 
-  useEffect(() => {
-    if (state.status === "ERROR") {
+    if (newState.status === "ERROR") {
       toast({
         variant: "destructive",
         title: "You don't have permissions to edit this subject!",
         duration: 2000,
       });
-      state.status = "PENDING";
+      newState.status = "PENDING";
     }
-    if (state.status === "UPDATED") {
+    if (newState.status === "UPDATED") {
       toast({
-        title: `Updated: ${subject.name}`,
+        title: "UPDATED",
+        description: (
+          <p>
+            Subject <strong>{subject.name}</strong> updated
+          </p>
+        ),
         duration: 2000,
       });
-      state.status = "PENDING";
+      newState.status = "PENDING";
     }
-  }, [state, subject.name, toast]);
+
+    return newState;
+  }, initialFormState);
 
   return (
-    <form className="space-y-4 mt-4" action={formAction}>
+    <form
+      className="space-y-4 mt-4"
+      action={formAction}
+      onSubmit={() => console.log(state.status, " status of update")}
+    >
       <div className="flex flex-col space-y-1">
         <Label htmlFor="name" className="mb-1">
           Naziv
