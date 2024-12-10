@@ -16,8 +16,7 @@ const dataAmount = readlineSync.question(
       1. Minimal
       2. Moderate
       3. Extensive
-  Enter your choice (1/2/3):
-`,
+  Enter your choice (1/2/3): `,
 );
 
 async function main() {
