@@ -60,7 +60,7 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
     urlSearchParams.set("oib", oib);
     urlSearchParams.set("contact", contact);
     urlSearchParams.set("email", email);
-    router.push(`${pathname}?${urlSearchParams.toString()}`);
+    router.replace(`${pathname}?${urlSearchParams.toString()}`);
   }
 
   return (

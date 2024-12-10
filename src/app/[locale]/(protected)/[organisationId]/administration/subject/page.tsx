@@ -20,17 +20,19 @@ export default async function SubjectPage({
   const roles: Role[] = await getUserOrganisationRolesFromDB(paramsData.organisationId);
 
   return (
-    <div className="p-4 lg:px-8 space-y-4" key={Math.random()}>
+    <div className="p-4 lg:px-8 space-y-4">
       <SubjectTableActions isAdmin={roles.includes("ADMIN")} orgId={paramsData.organisationId} />
-      <Suspense fallback={<TableSkeletonTenRows />}>
-        <SubjectTableAndPagination
-          paramsData={paramsData}
-          searchParamsData={searchParamsData}
-          orgId={paramsData.organisationId}
-          rows={searchParamsData.rows || DEFAULT_ROWS}
-          page={searchParamsData.page || DEFAULT_PAGE}
-        />
-      </Suspense>
+      <div key={Math.random()} className="space-y-4">
+        <Suspense fallback={<TableSkeletonTenRows />}>
+          <SubjectTableAndPagination
+            paramsData={paramsData}
+            searchParamsData={searchParamsData}
+            orgId={paramsData.organisationId}
+            rows={searchParamsData.rows || DEFAULT_ROWS}
+            page={searchParamsData.page || DEFAULT_PAGE}
+          />
+        </Suspense>
+      </div>
     </div>
   );
 }

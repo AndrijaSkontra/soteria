@@ -21,7 +21,7 @@ export default function SubjectTableActions({ isAdmin, orgId }) {
     if (searchInput !== "") {
       urlSearchParams.set("search", searchInput);
       urlSearchParams.set("page", "1");
-      router.push(`${pathname}?${urlSearchParams.toString()}`);
+      router.replace(`${pathname}?${urlSearchParams.toString()}`);
     }
   };
 

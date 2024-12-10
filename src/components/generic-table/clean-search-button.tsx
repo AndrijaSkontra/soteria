@@ -13,7 +13,7 @@ export default function CleanSearchButton({ setSearchInput }) {
       variant="outline"
       onClick={() => {
         setSearchInput("");
-        router.push(`${pathname}?`);
+        router.replace(`${pathname}?`);
       }}
     >
       Očisti

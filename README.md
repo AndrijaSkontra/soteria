@@ -12,7 +12,7 @@
 
 When making commits, follow this convention:
 
-• Begin each commit message with one of the following prefixes: ADDED, CHANGED, or DELETED.
+• Begin each commit message with one of the following prefixes: ADDED, CHANGED, DELETED or FIXED.
 
 • Follow the prefix with a clear and descriptive message detailing the changes made.
 

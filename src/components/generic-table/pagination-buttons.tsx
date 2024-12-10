@@ -18,13 +18,13 @@ export default function PaginationButtons({ tablePages }) {
   useEffect(() => {
     if (Number(currentPage) > tablePages) {
       urlSearchParams.set("page", String(tablePages));
-      router.push(`${pathname}?${urlSearchParams}`);
+      router.replace(`${pathname}?${urlSearchParams}`);
     }
   }, [currentPage, tablePages, pathname, router, urlSearchParams]);
 
   function changePage(pageNumber: number) {
     urlSearchParams.set("page", String(pageNumber));
-    router.push(`${pathname}?${urlSearchParams}`);
+    router.replace(`${pathname}?${urlSearchParams}`);
   }
 
   return (

@@ -13,7 +13,7 @@ export function EditProfileDialog({ userInfo }: { userInfo: UserInformationType 
   function profileDialogOpen(isOpen: boolean) {
     const params = new URLSearchParams(searchParams);
     params.set("edit", String(isOpen));
-    router.push(`${pathname}?${params.toString()}`);
+    router.replace(`${pathname}?${params.toString()}`);
   }
 
   return (

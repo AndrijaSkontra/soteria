@@ -23,7 +23,7 @@ export default function RowsPerPage() {
 
   function setRowsPerPage(rows: number) {
     urlSearchParams.set("rows", String(rows));
-    router.push(`${pathname}?${urlSearchParams}`);
+    router.replace(`${pathname}?${urlSearchParams}`);
   }
 
   return (
