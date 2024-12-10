@@ -11,7 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { DATE_SELECT_DASHBOARD_WIDTH } from "@/lib/constants/app-constants";
 
 export default async function DashboardPage({
   params,

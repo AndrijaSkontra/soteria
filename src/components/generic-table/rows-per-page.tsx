@@ -9,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SELECT_ROWS_PER_PAGE_WIDTH } from "@/lib/constants/app-constants";
 
 export default function RowsPerPage() {
   const pathname = usePathname();

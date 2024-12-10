@@ -8,11 +8,11 @@ const users = [
     contactNumber: "385 12 345 6789",
   },
   {
-    email: "jane.smith@example.com",
-    password: "password123",
+    email: "mateo.jukic@kodelab.hr",
+    password: "Kodelab123#",
     active: true,
-    firstName: "Jane",
-    lastName: "Smith",
+    firstName: "Mateo",
+    lastName: "Jukic",
     contactNumber: "385 12 345 6789",
   },
   {

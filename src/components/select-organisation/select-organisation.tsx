@@ -9,7 +9,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { HiOutlineEmojiSad } from "react-icons/hi";
 import RoleBadge from "@/components/ui/role-badge";
 import { OrganisationWithRoles } from "@/types/app-types";
-import { SELECT_ORGANISATION_HEIGHT } from "@/lib/constants/app-constants";
 
 export default function SelectOrganisation({
   organisationsWithRoles,
