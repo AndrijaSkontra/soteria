@@ -17,7 +17,6 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
   const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
-
   const [dateRange, setDateRange] = useState({
     from: addDays(new Date(), -20),
     to: new Date(),
@@ -31,6 +30,7 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
     [searchParams],
   );
 
+  // this will sync input fields with url search params
   useEffect(() => {
     setName(urlSearchParams.get("name") || "");
     setAddress(urlSearchParams.get("address") || "");
@@ -99,7 +99,7 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
                   </div>
 
                   <div className="col-span-2">
-                    <p className="text-xs text-start">Adresa:</p>
+                    <p className="text-xs text-start">Adresa</p>
                     <Input
                       className="col-span-2"
                       name="address"
@@ -108,44 +108,52 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
                     />
                   </div>
 
-                  <Input
-                    className="col-span-2"
-                    name="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+                  <div className="col-span-2">
+                    <p className="text-xs text-start">Email</p>
+                    <Input
+                      className="col-span-2"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
 
                   <div className="col-span-2">
+                    <p className="text-xs text-start">Država</p>
                     <CountrySelect setDialogValue={setCountry} />
                   </div>
 
-                  <Input
-                    className="col-span-2"
-                    name="contact"
-                    type="number"
-                    placeholder="Contact"
-                    value={contact}
-                    onChange={(e) => setContact(e.target.value)}
-                  />
+                  <div className="col-span-2">
+                    <p className="text-xs text-start">Kontakt</p>
+                    <Input
+                      className="col-span-2"
+                      name="contact"
+                      type="number"
+                      value={contact}
+                      onChange={(e) => setContact(e.target.value)}
+                    />
+                  </div>
 
-                  <Input
-                    className="col-span-2"
-                    name="oib"
-                    type="number"
-                    placeholder="OIB"
-                    value={oib}
-                    onChange={(e) => setOib(e.target.value)}
-                  />
+                  <div className="col-span-2">
+                    <p className="text-xs text-start">OIB</p>
+                    <Input
+                      className="col-span-2"
+                      name="oib"
+                      type="number"
+                      value={oib}
+                      onChange={(e) => setOib(e.target.value)}
+                    />
+                  </div>
 
                   <div className="col-span-full md:col-span-4 2xl:col-span-2">
+                    <p className="text-xs text-start">Date:</p>
                     <DatePickerWithRange
                       dateRange={dateRange}
                       setDateRangeAction={setDateRange}
                       className="w-full"
                     />
                   </div>
-                  <div className="col-span-2 md:col-span-2 2xl:col-span-2">
+                  <div className="col-span-2 md:col-span-2 2xl:col-span-2 flex items-end">
                     <Button className="w-full" variant="secondary" onClick={handleAdvSearchClick}>
                       Search
                     </Button>
