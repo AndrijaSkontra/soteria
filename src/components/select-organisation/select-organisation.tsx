@@ -40,7 +40,7 @@ export default function SelectOrganisation({
       <p className="text-sm text-gray-400">
         After selecting the organisation you can continue to use the application
       </p>
-      <ScrollArea className={`${SELECT_ORGANISATION_HEIGHT} sm:p-10`}>
+      <ScrollArea className="h-[500px] sm:p-10">
         {organisationsWithRoles.map((orgWithRoles) => {
           return (
             <Card

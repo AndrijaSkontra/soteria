@@ -26,7 +26,7 @@ export default async function DashboardPage({
     <div className="px-4 lg:px-32">
       <div className="flex w-full justify-end sticky top-4 z-50">
         <Select>
-          <SelectTrigger className={`${DATE_SELECT_DASHBOARD_WIDTH}`}>
+          <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="This Month" defaultValue="This Month" />
           </SelectTrigger>
           <SelectContent>

@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CHANGE_PASSWORD_DIALOG_MAX_WIDTH } from "@/lib/constants/app-constants";
 
 export function ChangePasswordDialog() {
   return (
@@ -18,7 +17,7 @@ export function ChangePasswordDialog() {
       <DialogTrigger asChild>
         <Button variant="outline">Change Password</Button>
       </DialogTrigger>
-      <DialogContent className={`sm:max-${CHANGE_PASSWORD_DIALOG_MAX_WIDTH}`}>
+      <DialogContent className={`sm:max-w-[425px]`}>
         <DialogHeader>
           <DialogTitle>Change Password</DialogTitle>
           <DialogDescription>

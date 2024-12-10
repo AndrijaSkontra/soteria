@@ -34,7 +34,7 @@ export default function RowsPerPage() {
         defaultValue={String(rowsPerPage)}
         value={String(rowsPerPage)}
       >
-        <SelectTrigger className={`${SELECT_ROWS_PER_PAGE_WIDTH} bg-white`}>
+        <SelectTrigger className={`w-[70px] bg-white`}>
           <SelectValue placeholder={String(rowsPerPage)} />
         </SelectTrigger>
         <SelectContent>
