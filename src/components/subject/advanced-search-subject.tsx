@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "../ui/input";
 import { DatePickerWithRange } from "../generic-table/date-picker-with-range";
@@ -9,6 +9,7 @@ import { addDays } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
 import { Switch } from "../ui/switch";
 import { Button } from "../ui/button";
+import { createCookie } from "@/lib/serverActions/cookie-actions";
 
 export default function AdvancedSearchSubject({ isOn, setIsOn }) {
   const [name, setName] = useState("");
@@ -26,7 +27,29 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const urlSearchParams = new URLSearchParams(searchParams);
+  const urlSearchParams = useMemo(
+    () => new URLSearchParams(searchParams.toString()),
+    [searchParams],
+  );
+
+  useEffect(() => {
+    setName(urlSearchParams.get("name") || "");
+    setAddress(urlSearchParams.get("address") || "");
+    setOib(urlSearchParams.get("oib") || "");
+    setContact(urlSearchParams.get("contact") || "");
+    setEmail(urlSearchParams.get("email") || "");
+    setCountry(urlSearchParams.get("country") || "");
+
+    const from = urlSearchParams.get("from");
+    const to = urlSearchParams.get("to");
+
+    if (from && to) {
+      setDateRange({
+        from: new Date(from),
+        to: new Date(to),
+      });
+    }
+  }, [searchParams, urlSearchParams]);
 
   async function handleAdvSearchClick() {
     urlSearchParams.set("search", "");
@@ -44,7 +67,13 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
   return (
     <>
       <div className="flex space-x-2 items-center">
-        <Switch checked={isOn} onCheckedChange={() => setIsOn(!isOn)} />
+        <Switch
+          checked={isOn}
+          onCheckedChange={async () => {
+            await createCookie("advanced-search-subjects", String(!isOn));
+            setIsOn(!isOn);
+          }}
+        />
         <p className="text-center text-sm">Advanced search</p>
       </div>
       <AnimatePresence>
@@ -97,6 +126,7 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
                   <Input
                     className="col-span-2"
                     name="contact"
+                    type="number"
                     placeholder="Contact"
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
@@ -105,13 +135,18 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
                   <Input
                     className="col-span-2"
                     name="oib"
+                    type="number"
                     placeholder="OIB"
                     value={oib}
                     onChange={(e) => setOib(e.target.value)}
                   />
 
                   <div className="col-span-full md:col-span-4 2xl:col-span-2">
-                    <DatePickerWithRange setDateRangeAction={setDateRange} className="w-full" />
+                    <DatePickerWithRange
+                      dateRange={dateRange}
+                      setDateRangeAction={setDateRange}
+                      className="w-full"
+                    />
                   </div>
                   <div className="col-span-2 md:col-span-2 2xl:col-span-2">
                     <Button className="w-full" variant="secondary" onClick={handleAdvSearchClick}>

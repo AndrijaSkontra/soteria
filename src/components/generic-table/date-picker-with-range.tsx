@@ -12,14 +12,13 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 
 export function DatePickerWithRange({
   className,
+  dateRange,
   setDateRangeAction,
 }: React.HTMLAttributes<HTMLDivElement> & {
+  dateRange;
   setDateRangeAction: (arg: any) => void;
 }) {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    to: new Date(),
-    from: addDays(new Date(new Date()), -20),
-  });
+  const [date, setDate] = React.useState<DateRange | undefined>(dateRange);
 
   return (
     <div className={cn("grid gap-2", className)}>
