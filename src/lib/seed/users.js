@@ -1,18 +1,18 @@
 const users = [
   {
-    email: "john.doe@example.com",
-    password: "password123",
-    active: true,
-    firstName: "John",
-    lastName: "Doe",
-    contactNumber: "385 12 345 6789",
-  },
-  {
     email: "mateo.jukic@kodelab.hr",
     password: "Kodelab123#",
     active: true,
     firstName: "Mateo",
     lastName: "Jukic",
+    contactNumber: "385 12 345 6789",
+  },
+  {
+    email: "john.doe@example.com",
+    password: "password123",
+    active: true,
+    firstName: "John",
+    lastName: "Doe",
     contactNumber: "385 12 345 6789",
   },
   {
