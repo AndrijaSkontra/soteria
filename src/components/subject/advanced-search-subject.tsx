@@ -93,21 +93,20 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
             >
               <CardContent>
                 <div className="grid gap-4 grid-cols-2 md:grid-cols-6 2xl:grid-cols-8">
-                  <Input
-                    className="col-span-2"
-                    name="name"
-                    value={name}
-                    placeholder="Name"
-                    onChange={(e) => setName(e.target.value)}
-                  />
+                  <div className="col-span-2">
+                    <p className="text-xs text-start">Name</p>
+                    <Input name="name" value={name} onChange={(e) => setName(e.target.value)} />
+                  </div>
 
-                  <Input
-                    className="col-span-2"
-                    name="address"
-                    placeholder="Address"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
+                  <div className="col-span-2">
+                    <p className="text-xs text-start">Adresa:</p>
+                    <Input
+                      className="col-span-2"
+                      name="address"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </div>
 
                   <Input
                     className="col-span-2"
