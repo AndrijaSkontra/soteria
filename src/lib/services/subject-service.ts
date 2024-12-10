@@ -99,40 +99,48 @@ export async function getSubjectsData(searchParamsData, paramsData) {
   }
 }
 
+/**
+ * Get all active subjects based on the filter (searchParam).
+ * If searchParams is simple string it will search all fields inside the subject.
+ * If searchParams is AdvancedSubjectSearch it will search only specified fields.
+ * @author Andrija Skontra
+ */
 export async function getActiveSubjectsFromDB(
   orgId: string,
   searchParam: string | AdvancedSubjectSearch = "",
   rows: number = DEFAULT_ROWS,
   page: number = DEFAULT_PAGE,
 ): Promise<{ subjects: Subject[]; pagesAmount: number }> {
-  // removing empty search params (like: "") from searchParam object
-  Object.keys(searchParam).forEach((field) => {
-    if (searchParam[field] === "") {
-      delete searchParam[field];
-    }
-  });
+  const skipPages = (page - 1) * rows;
 
-  const skip = (page - 1) * rows;
-
-  const stringFields = ["name", "address", "oib", "contact", "email", "country"];
-
+  // this whereClause filters subjects
   const whereClause: any = {
     active: true,
     organisationId: orgId,
   };
 
+  // if when we use spotlight search (search all fields)
   if (typeof searchParam === "string" && searchParam.trim().length > 0) {
+    // check does any field contain searchParam
+    const stringFields = ["name", "address", "oib", "contact", "email", "country"];
     whereClause.OR = stringFields.map((field) => ({
       [field]: {
         contains: searchParam,
         mode: "insensitive",
       },
     }));
+    // if advanced search was used
   } else if (
     typeof searchParam === "object" &&
     searchParam !== null &&
     Object.keys(searchParam).length > 0
   ) {
+    // removing empty search params (like: "") from searchParam: AdvancedSearchSubject object
+    Object.keys(searchParam).forEach((field) => {
+      if (searchParam[field] === "") {
+        delete searchParam[field];
+      }
+    });
     whereClause.AND = Object.keys(searchParam).map((field) => ({
       [field]: {
         contains: searchParam[field],
@@ -144,7 +152,7 @@ export async function getActiveSubjectsFromDB(
   try {
     const subjects = await prisma.subject.findMany({
       where: whereClause,
-      skip,
+      skip: skipPages,
       take: Number(rows),
     });
 

@@ -5,11 +5,7 @@ import { useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
 
-type Props = {
-  tablePages: number;
-};
-
-export default function PaginationButtons({ tablePages }: Props) {
+export default function PaginationButtons({ tablePages }) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
