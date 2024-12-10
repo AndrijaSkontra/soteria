@@ -17,7 +17,17 @@ import { CgDetailsMore } from "react-icons/cg";
 import SubjectDetails from "./subject-details";
 import DeleteSubject from "./delete-subject";
 
-export default function SubjectTableDropdown({ subject }: { subject: Subject }) {
+type SubjectTableDropdownType = {
+  subject: Subject;
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
+};
+
+export default function SubjectTableDropdown({
+  subject,
+  onEdit,
+  onDelete,
+}: SubjectTableDropdownType) {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
@@ -31,7 +41,7 @@ export default function SubjectTableDropdown({ subject }: { subject: Subject }) 
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onClick={() => setIsEditOpen(true)}>
+          <DropdownMenuItem onClick={() => onEdit!(subject.id)}>
             <div className="flex items-center space-x-2">
               <FaRegEdit />
               <p>Uredi</p>
