@@ -9,7 +9,6 @@ import { addDays } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
 import { Switch } from "../ui/switch";
 import { Button } from "../ui/button";
-import { createCookie } from "@/lib/serverActions/cookie-actions";
 
 export default function AdvancedSearchSubject({ isOn, setIsOn }) {
   const [name, setName] = useState("");
@@ -70,7 +69,6 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
         <Switch
           checked={isOn}
           onCheckedChange={async () => {
-            await createCookie("advanced-search-subjects", String(!isOn));
             setIsOn(!isOn);
           }}
         />
