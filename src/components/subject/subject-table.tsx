@@ -1,4 +1,5 @@
-import { Role } from "@prisma/client";
+"use client";
+import { Role, Subject } from "@prisma/client";
 import {
   Table,
   TableHeader,
@@ -8,22 +9,29 @@ import {
   TableHead,
 } from "@/components/ui/table";
 import SubjectTableDropdown from "./subject-table-dropdown";
-import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 import clsx from "clsx";
+import { useState } from "react";
+import ResponsiveDialog from "../ui/responsive-dialog";
+import DeleteSubject from "./delete-subject";
+import SubjectDetails from "./subject-details";
+import UpdateSubjectForm from "./update-subject-form";
 
-export default async function SubjectsTable({
-  orgId,
+export default function SubjectsTable({
   page,
   rows,
   subjects,
+  roles,
 }: {
-  orgId: string;
   page: number;
   rows: number;
-  subjects: any;
+  subjects: Subject[];
+  roles: Role[];
 }) {
-  const roles: Role[] = await getUserOrganisationRolesFromDB(orgId);
   const isAdmin = roles.includes("ADMIN");
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [currentSubject, setCurrentSubject] = useState(null);
 
   return (
     <div className="border border-gray-200 rounded-lg overflow-auto">
@@ -53,12 +61,43 @@ export default async function SubjectsTable({
               <TableCell className="xl:table-cell hidden">{subject.country || "-"}</TableCell>
               <TableCell className="xl:table-cell hidden">{subject.oib || "-"}</TableCell>
               <TableCell className={clsx("text-center", !isAdmin && "hidden")}>
-                <SubjectTableDropdown subject={subject} />
+                <SubjectTableDropdown
+                  subject={subject}
+                  setIsEditOpen={setIsEditModalOpen}
+                  setIsDeleteOpen={setIsDeleteModalOpen}
+                  setIsDetailsOpen={setIsDetailsModalOpen}
+                  setCurrentSubject={setCurrentSubject}
+                />
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
+      <ResponsiveDialog
+        isOpen={isDetailsModalOpen}
+        setIsOpenAction={setIsDetailsModalOpen}
+        title={`Details`}
+        description="Subject info"
+      >
+        <SubjectDetails subject={currentSubject} />
+      </ResponsiveDialog>
+      <ResponsiveDialog
+        isOpen={isEditModalOpen}
+        setIsOpenAction={setIsEditModalOpen}
+        title={`Edit`}
+        description="Change data about the subject"
+      >
+        <UpdateSubjectForm setIsOpenAction={setIsEditModalOpen} subject={currentSubject} />
+      </ResponsiveDialog>
+      <ResponsiveDialog
+        isOpen={isDeleteModalOpen}
+        setIsOpenAction={setIsDeleteModalOpen}
+        title={`Remove`}
+        description="Are you sure you want to remove this subject?"
+      >
+        <DeleteSubject setIsDeleteOpen={setIsDeleteModalOpen} subject={currentSubject} />
+      </ResponsiveDialog>
     </div>
   );
 }

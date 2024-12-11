@@ -68,9 +68,15 @@ const countries = [
   { value: "United Kingdom", label: "UK" },
   { value: "Vatican City", label: "VA" },
 ];
-export function CountrySelect({ setDialogValue }: { setDialogValue: (country: any) => any }) {
+export function CountrySelect({
+  setDialogValue,
+  defaultCountry,
+}: {
+  setDialogValue: (country: any) => any;
+  defaultCountry?: string;
+}) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(defaultCountry || "");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

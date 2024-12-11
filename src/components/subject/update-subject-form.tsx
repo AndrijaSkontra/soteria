@@ -21,7 +21,7 @@ export default function UpdateSubjectForm({
   subject,
 }: {
   setIsOpenAction: (boolean) => void;
-  subject: Subject;
+  subject: Subject | any;
 }) {
   const params = useParams();
   const [countryValue, setCountryValue] = useState("");
@@ -63,7 +63,7 @@ export default function UpdateSubjectForm({
         <Label htmlFor="name" className="mb-1">
           Naziv
         </Label>
-        <Input id="name" name="name" placeholder="Org d.o.o." />
+        <Input id="name" name="name" defaultValue={subject.name} placeholder="Org d.o.o." />
         {state.errors?.name?._errors.map((error, index) => {
           return (
             <p key={index} className="text-red-500 text-xs">
@@ -76,7 +76,12 @@ export default function UpdateSubjectForm({
         <Label htmlFor="address" className="mb-1">
           Adresa
         </Label>
-        <Input id="address" name="address" placeholder="Ulica Bana Jelačića 10, Zagreb" />
+        <Input
+          id="address"
+          defaultValue={subject.address || ""}
+          name="address"
+          placeholder="Ulica Bana Jelačića 10, Zagreb"
+        />
         {state.errors?.address?._errors.map((error, index) => {
           return (
             <p key={index} className="text-red-500 text-xs">
@@ -89,7 +94,7 @@ export default function UpdateSubjectForm({
         <Label htmlFor="country" className="mb-1">
           Država
         </Label>
-        <CountrySelect setDialogValue={setCountryValue} />
+        <CountrySelect setDialogValue={setCountryValue} defaultCountry={subject.country || ""} />
         <Input
           id="country"
           name="country"
@@ -111,7 +116,12 @@ export default function UpdateSubjectForm({
           <Label htmlFor="contactNumber" className="mb-1">
             Kontakt broj
           </Label>
-          <Input id="contactNumber" name="contactNumber" placeholder="091 234 5678" />
+          <Input
+            id="contactNumber"
+            name="contactNumber"
+            placeholder="091 234 5678"
+            defaultValue={subject.contact || ""}
+          />
           {state.errors?.contactNumber?._errors.map((error, index) => {
             return (
               <p key={index} className="text-red-500 text-xs">
@@ -124,7 +134,7 @@ export default function UpdateSubjectForm({
           <Label htmlFor="oib" className="mb-1">
             OIB
           </Label>
-          <Input id="oib" name="oib" placeholder="1234567890" />
+          <Input id="oib" name="oib" placeholder="1234567890" defaultValue={subject.oib || ""} />
           {state.errors?.oib?._errors.map((error, index) => {
             return (
               <p key={index} className="text-red-500 text-xs">
@@ -137,7 +147,12 @@ export default function UpdateSubjectForm({
           <Label htmlFor="email" className="mb-1">
             E-mail
           </Label>
-          <Input id="email" name="email" placeholder="mateo.horvat@primjer.hr" />
+          <Input
+            id="email"
+            name="email"
+            placeholder="mateo.horvat@primjer.hr"
+            defaultValue={subject.email || ""}
+          />
           {state.errors?.email?._errors.map((error, index) => {
             return (
               <p key={index} className="text-red-500 text-xs">
