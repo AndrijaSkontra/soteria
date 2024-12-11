@@ -21,7 +21,7 @@ export function SubmitButton({ innerText, className }: { innerText: string; clas
           onClick={(e) => e.preventDefault()}
         >
           <p>{innerText}</p>
-          <ClipLoader color={theme === "dark" ? "#000000" : "#ffffff"} />
+          <ClipLoader size={20} color={theme === "dark" ? "#000000" : "#ffffff"} />
         </Button>
       )}
     </>

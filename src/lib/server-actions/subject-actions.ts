@@ -114,7 +114,7 @@ function getValidationForAddingSubject() {
     contactNumber: z
       .string()
       .trim()
-      .regex(/^\+?[1-9]\d{9,14}$/, {
+      .regex(/^\+?[1-9]\d{7,14}$/, {
         message: "Invalid contact number",
       })
       .optional()
@@ -122,8 +122,7 @@ function getValidationForAddingSubject() {
     oib: z
       .string()
       .trim()
-      .length(11, { message: "OIB must be exactly 11 digits" })
-      .regex(/^\d+$/, { message: "OIB must contain only digits" })
+      .regex(/^\+?[1-9]\d{7,14}$/, { message: "OIB must contain only digits" })
       .optional()
       .or(z.literal("")),
     email: z.string().email({ message: "Invalid email address" }).optional().or(z.literal("")),
@@ -150,7 +149,7 @@ function getValidationForUpdatingSubject() {
     contactNumber: z
       .string()
       .trim()
-      .regex(/^\+?[1-9]\d{9,14}$/, {
+      .regex(/^\+?[1-9]\d{7,14}$/, {
         message: "Invalid contact number",
       })
       .optional()
@@ -158,8 +157,7 @@ function getValidationForUpdatingSubject() {
     oib: z
       .string()
       .trim()
-      .length(11, { message: "OIB must be exactly 11 digits" })
-      .regex(/^\d+$/, { message: "OIB must contain only digits" })
+      .regex(/^\+?[1-9]\d{7,14}$/, { message: "OIB must contain only digits" })
       .optional()
       .or(z.literal("")),
     email: z.string().email({ message: "Invalid email address" }).optional().or(z.literal("")),
