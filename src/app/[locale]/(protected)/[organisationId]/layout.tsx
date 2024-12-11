@@ -35,7 +35,6 @@ export default async function OrganisationLayout({
         organisationsWithRoles={userOrganisationsWithRoles}
         activeOrganisation={activeOrganisation}
         navigationLinks={linksToShowOnUI(roles, allLinks)}
-        isAdmin={roles.includes(Role.ADMIN)}
       />
       <SidebarInset>
         <Header organisationName={activeOrganisation.name} />

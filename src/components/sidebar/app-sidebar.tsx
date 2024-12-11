@@ -12,14 +12,12 @@ type AppSidebarProps = {
   organisationsWithRoles: OrganisationWithRoles[];
   activeOrganisation: Organisation;
   navigationLinks: NavigationLinkType[];
-  isAdmin: boolean;
 };
 
 export function AppSidebar({
   organisationsWithRoles,
   activeOrganisation,
   navigationLinks,
-  isAdmin,
 }: AppSidebarProps) {
   return (
     <Sidebar>
@@ -30,11 +28,7 @@ export function AppSidebar({
         />
       </SidebarHeader>
       <SidebarContent>
-        <MainNavigation
-          links={navigationLinks}
-          organisationId={activeOrganisation.id}
-          isAdmin={isAdmin}
-        />
+        <MainNavigation links={navigationLinks} organisationId={activeOrganisation.id} />
       </SidebarContent>
       <SidebarFooter>
         <div className="p-2">

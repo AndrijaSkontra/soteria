@@ -1,3 +1,4 @@
+import PermissionDenied from "@/components/ui/permission-denied";
 import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 import { RouteParams } from "@/types/app-types";
 import { Role } from "@prisma/client";
@@ -11,12 +12,10 @@ export default async function AdminLayout({ children, params }: AdminLayoutProps
   const orgId = (await params).organisationId;
   const roles: Role[] = await getUserOrganisationRolesFromDB(orgId);
 
-  const isAdmin = roles.includes(Role.ADMIN);
+  const isAllowed = roles.includes(Role.ADMIN) || roles.includes(Role.MANAGER);
 
-  console.log("IS ADMIN: " + !!isAdmin);
-
-  if (!isAdmin) {
-    return <div>Persmission denied</div>;
+  if (!isAllowed) {
+    return <PermissionDenied />;
   }
 
   return <div>{children}</div>;
