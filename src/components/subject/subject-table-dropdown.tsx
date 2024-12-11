@@ -10,6 +10,8 @@ import { FaRegEdit } from "react-icons/fa";
 import { Separator } from "../ui/separator";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { CgDetailsMore } from "react-icons/cg";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useMemo } from "react";
 
 export default function SubjectTableDropdown({
   setCurrentSubject,
@@ -18,6 +20,13 @@ export default function SubjectTableDropdown({
   setIsDeleteOpen,
   setIsDetailsOpen,
 }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const urlSearchParams = useMemo(
+    () => new URLSearchParams(searchParams.toString()),
+    [searchParams],
+  );
   return (
     <>
       <DropdownMenu>
@@ -29,8 +38,8 @@ export default function SubjectTableDropdown({
         <DropdownMenuContent>
           <DropdownMenuItem
             onClick={() => {
-              setCurrentSubject(subject);
-              setIsEditOpen(true);
+              urlSearchParams.set("edit", subject.id);
+              router.replace(`${pathname}?${urlSearchParams.toString()}`);
             }}
           >
             <div className="flex items-center space-x-2">
@@ -41,8 +50,8 @@ export default function SubjectTableDropdown({
           <DropdownMenuItem
             className="md:hidden"
             onClick={() => {
-              setCurrentSubject(subject);
-              setIsDetailsOpen(true);
+              urlSearchParams.set("details", subject.id);
+              router.replace(`${pathname}?${urlSearchParams.toString()}`);
             }}
           >
             <div className="flex items-center space-x-2">
@@ -53,8 +62,8 @@ export default function SubjectTableDropdown({
           <Separator />
           <DropdownMenuItem
             onClick={() => {
-              setCurrentSubject(subject);
-              setIsDeleteOpen(true);
+              urlSearchParams.set("delete", subject.id);
+              router.replace(`${pathname}?${urlSearchParams.toString()}`);
             }}
           >
             <div className="flex items-center space-x-2">

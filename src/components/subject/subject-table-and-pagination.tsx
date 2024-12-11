@@ -5,6 +5,7 @@ import { getSubjectsData } from "@/lib/services/subject-service";
 import { EmptyTable } from "../generic-table/empty-table";
 import { Role } from "@prisma/client";
 import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
+import ResponsiveDialog from "../ui/responsive-dialog";
 
 export default async function SubjectTableAndPagination({
   paramsData,
@@ -29,6 +30,14 @@ export default async function SubjectTableAndPagination({
           description="There are no subjects you are looking for..."
         />
       )}
+      <ResponsiveDialog
+        isOpen={searchParamsData.edit}
+        title={`Edit`}
+        description="Change data about the subject"
+      >
+        {/* <UpdateSubjectForm setIsOpenAction={setIsEditModalOpen} subject={currentSubject} /> */}
+        <p>hello</p>
+      </ResponsiveDialog>
     </>
   );
 }

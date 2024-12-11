@@ -31,6 +31,16 @@ npm run build
 - data access files: `src/lib/services/`
 - constants: `src/lib/constants/`
 - seed database `scripts: src/lib/seed/`
+- app types are in: `app-typed.d.ts`
+- component props should be right above the component like this:
+```tsx
+type AdminLayoutProps = {
+  children: React.ReactNode;
+  params: RouteParams;
+};
+
+export default async function AdminLayout({ children, params }: AdminLayoutProps) {
+```
 
 ### Toasts
 

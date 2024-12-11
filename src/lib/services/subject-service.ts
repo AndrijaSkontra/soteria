@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { getUserOrganisationRolesFromDB } from "./organisation-service";
 import { Role, Subject } from "@prisma/client";
 import { DEFAULT_PAGE, DEFAULT_ROWS } from "@/lib/constants/app-constants";
+import { sleep } from "../sleep";
 
 export async function addSubjectToDB(organisationId: string, createSubjectDto: CreateSubjectDTO) {
   const roles: Role[] = await getUserOrganisationRolesFromDB(organisationId);
@@ -73,6 +74,7 @@ export async function disableSubjectInDB(subjectId: string, orgId: string) {
 }
 
 export async function getSubjectsData(searchParamsData, paramsData) {
+  await sleep(1000);
   if (searchParamsData?.search) {
     return await getActiveSubjectsFromDB(
       paramsData.organisationId,
@@ -166,4 +168,8 @@ export async function getActiveSubjectsFromDB(
   } catch {
     return { subjects: [], pagesAmount: 0 };
   }
+}
+
+export async function getSubject(subjectId: string): Promise<Subject | null> {
+  return prisma.subject.findFirst({ where: { id: subjectId } });
 }
