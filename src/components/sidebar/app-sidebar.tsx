@@ -7,15 +7,20 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/compone
 import { NavSettings } from "@/components/sidebar/nav-settings";
 import { NavigationLinkType, Organisation, OrganisationWithRoles } from "@/types/app-types";
 import LanguageSwitcher from "./language-switcher";
+
+type AppSidebarProps = {
+  organisationsWithRoles: OrganisationWithRoles[];
+  activeOrganisation: Organisation;
+  navigationLinks: NavigationLinkType[];
+  isAdmin: boolean;
+};
+
 export function AppSidebar({
   organisationsWithRoles,
   activeOrganisation,
   navigationLinks,
-}: {
-  organisationsWithRoles: OrganisationWithRoles[];
-  activeOrganisation: Organisation;
-  navigationLinks: NavigationLinkType[];
-}) {
+  isAdmin,
+}: AppSidebarProps) {
   return (
     <Sidebar>
       <SidebarHeader>
@@ -25,7 +30,11 @@ export function AppSidebar({
         />
       </SidebarHeader>
       <SidebarContent>
-        <MainNavigation links={navigationLinks} organisationId={activeOrganisation.id} />
+        <MainNavigation
+          links={navigationLinks}
+          organisationId={activeOrganisation.id}
+          isAdmin={isAdmin}
+        />
       </SidebarContent>
       <SidebarFooter>
         <div className="p-2">

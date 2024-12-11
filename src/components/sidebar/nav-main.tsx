@@ -6,13 +6,13 @@ import AdministrationLink from "./administration-link";
 import NavigationLink from "@/components/sidebar/navigation-link";
 import { NavigationLinkType } from "@/types/app-types";
 
-export function MainNavigation({
-  organisationId,
-  links,
-}: {
+type MainNavigationProps = {
   organisationId: string;
   links: NavigationLinkType[];
-}) {
+  isAdmin: boolean;
+};
+
+export function MainNavigation({ organisationId, links, isAdmin }: MainNavigationProps) {
   const basicLinks = links.filter((link) => link.type === "BASIC");
   const administrationLinks = links.filter((link) => link.type === "ADMINISTRATION");
   return (
@@ -27,7 +27,7 @@ export function MainNavigation({
           />
         );
       })}
-      {administrationLinks.length > 0 && (
+      {isAdmin && administrationLinks.length > 0 && (
         <AdministrationLinks>
           {administrationLinks.map((admLink, index) => {
             return (

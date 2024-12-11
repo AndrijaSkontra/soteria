@@ -10,6 +10,7 @@ import { Organisation, OrganisationWithRoles, RouteParams } from "@/types/app-ty
 import { allLinks } from "@/lib/constants/links";
 import Header from "@/components/header/header";
 import { linksToShowOnUI } from "@/lib/utils";
+import { Role } from "@prisma/client";
 
 export default async function OrganisationLayout({
   children,
@@ -34,6 +35,7 @@ export default async function OrganisationLayout({
         organisationsWithRoles={userOrganisationsWithRoles}
         activeOrganisation={activeOrganisation}
         navigationLinks={linksToShowOnUI(roles, allLinks)}
+        isAdmin={roles.includes(Role.ADMIN)}
       />
       <SidebarInset>
         <Header organisationName={activeOrganisation.name} />
