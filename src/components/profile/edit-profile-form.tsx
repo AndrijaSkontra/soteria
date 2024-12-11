@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button-with-spinner";
 import { useActionState } from "react";
-import { updateUserAction } from "@/lib/serverActions/user-actions";
+import { updateUserAction } from "@/lib/server-actions/user-actions";
 import { UserInformationType } from "@/types/app-types";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Button } from "../ui/button";

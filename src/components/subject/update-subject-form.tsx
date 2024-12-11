@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActionState, useState } from "react";
-import { updateSubjectAction } from "@/lib/serverActions/subject-actions";
+import { updateSubjectAction } from "@/lib/server-actions/subject-actions";
 import { useToast } from "@/hooks/use-toast";
 import { CountrySelect } from "@/components/ui/select-country";
 import { SubmitButton } from "../ui/submit-button-with-spinner";
 import { Subject } from "@prisma/client";
 import { useParams } from "next/navigation";
+import { UpdateSubjectSuccessToast } from "../toasts/update-subject-success";
 
 const initialFormState: any = {
   status: "PENDING",
@@ -39,12 +40,7 @@ export default function UpdateSubjectForm({
     }
     if (newState.status === "UPDATED") {
       toast({
-        title: "UPDATED",
-        description: (
-          <p>
-            Subject <strong>{subject.name}</strong> updated
-          </p>
-        ),
+        description: <UpdateSubjectSuccessToast subject={subject} />,
         duration: 2000,
       });
       newState.status = "PENDING";

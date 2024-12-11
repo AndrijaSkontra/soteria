@@ -24,3 +24,32 @@ npm run build
 ```
 > Ensure that npm run build completes without any errors or warnings.
 
+## Clean Code Guidelines
+
+- files and directories use [kebab case](https://www.freecodecamp.org/news/programming-naming-conventions-explained/#heading-what-is-kebab-case)
+- "use server" functions: `src/lib/server-actions/`
+- data access files: `src/lib/services/`
+- constants: `src/lib/constants/`
+- seed database `scripts: src/lib/seed/`
+
+### Toasts
+
+```tsx
+// src/components/toasts/update-subject-success.tsx
+export function UpdateSubjectSuccessToast({ subject }) {
+  return (
+    <div>
+      <p className="text-md font-bold">UPDATED</p>
+      <p>
+        Subject <strong>{subject.name}</strong> updated
+      </p>
+    </div>
+  );
+}
+
+// usage
+toast({
+  description: <UpdateSubjectSuccessToast subject={subject} />,
+  duration: 2000,
+});
+```

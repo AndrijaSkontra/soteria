@@ -2,7 +2,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActionState, useEffect, useState } from "react";
-import { addSubjectAction } from "@/lib/serverActions/subject-actions";
+import { addSubjectAction } from "@/lib/server-actions/subject-actions";
 import { useToast } from "@/hooks/use-toast";
 import { CountrySelect } from "../ui/select-country";
 import { SubmitButton } from "../ui/submit-button-with-spinner";

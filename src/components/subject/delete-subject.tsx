@@ -1,5 +1,5 @@
 "use client";
-import { disableSubject } from "@/lib/serverActions/subject-actions";
+import { disableSubject } from "@/lib/server-actions/subject-actions";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useParams } from "next/navigation";

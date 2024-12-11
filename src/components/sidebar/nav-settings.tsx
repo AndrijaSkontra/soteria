@@ -21,7 +21,7 @@ import {
 import { useRouter } from "@/i18n/routing";
 import { IoMoonOutline, IoSettingsOutline, IoSunnyOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
-import { createCookie } from "@/lib/serverActions/cookie-actions";
+import { createCookie } from "@/lib/server-actions/cookie-actions";
 import { getCookie } from "@/lib/get-cookie";
 import { useTranslations } from "next-intl";
 

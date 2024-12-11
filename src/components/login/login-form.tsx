@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useActionState } from "react";
-import { loginAction } from "@/lib/serverActions/auth-actions";
+import { loginAction } from "@/lib/server-actions/auth-actions";
 import { useRouter } from "@/i18n/routing";
 import { SubmitButton } from "../ui/submit-button-with-spinner";
 
