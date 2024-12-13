@@ -1,7 +1,8 @@
+import { Role } from "@prisma/client";
+
 import PermissionDenied from "@/components/ui/permission-denied";
 import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 import { RouteParams } from "@/types/app-types";
-import { Role } from "@prisma/client";
 
 type AdminLayoutProps = {
   children: React.ReactNode;

@@ -1,14 +1,16 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "../ui/input";
+
 import { DatePickerWithRange } from "../generic-table/date-picker-with-range";
-import { CountrySelect } from "../ui/select-country";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { addDays } from "date-fns";
-import { motion, AnimatePresence } from "framer-motion";
-import { Switch } from "../ui/switch";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { CountrySelect } from "../ui/select-country";
+import { Switch } from "../ui/switch";
+import { addDays } from "date-fns";
+import { AnimatePresence, motion } from "framer-motion";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useMemo, useState } from "react";
+
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function AdvancedSearchSubject({ isOn, setIsOn }) {
   const [name, setName] = useState("");

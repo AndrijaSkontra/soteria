@@ -1,7 +1,8 @@
 "use client";
-import { usePathname, useRouter } from "@/i18n/routing";
+
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+
 import {
   Select,
   SelectContent,
@@ -9,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { usePathname, useRouter } from "@/i18n/routing";
 
 export default function RowsPerPage() {
   const pathname = usePathname();

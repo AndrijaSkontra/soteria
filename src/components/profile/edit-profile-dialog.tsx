@@ -1,9 +1,11 @@
 "use client";
+
+import ResponsiveDialog from "../ui/responsive-dialog";
+import { EditProfileForm } from "./edit-profile-form";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import { UserInformationType } from "@/types/app-types";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { EditProfileForm } from "./edit-profile-form";
-import ResponsiveDialog from "../ui/responsive-dialog";
 
 export function EditProfileDialog({ userInfo }: { userInfo: UserInformationType }) {
   const pathname = usePathname();

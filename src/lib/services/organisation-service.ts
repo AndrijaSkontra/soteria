@@ -1,10 +1,11 @@
+import { isUserInOrganisation } from "./user-service";
+import { Role } from "@prisma/client";
+import { getLocale } from "next-intl/server";
+
+import { redirect } from "@/i18n/routing";
 import prisma from "@/index";
 import { getUserId } from "@/lib/get-user-id";
 import { Organisation, OrganisationWithRoles } from "@/types/app-types";
-import { Role } from "@prisma/client";
-import { isUserInOrganisation } from "./user-service";
-import { getLocale } from "next-intl/server";
-import { redirect } from "@/i18n/routing";
 
 export async function doesOrganisationExist(organisationId: string): Promise<boolean> {
   try {

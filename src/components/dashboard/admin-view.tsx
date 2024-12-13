@@ -1,6 +1,7 @@
-import { IoBasketballOutline } from "react-icons/io5";
 import { BsPeople } from "react-icons/bs";
 import { FaPerson } from "react-icons/fa6";
+import { IoBasketballOutline } from "react-icons/io5";
+
 import AdminViewCard from "@/components/dashboard/admin-view-card";
 
 export default function AdminView() {

@@ -1,7 +1,18 @@
 "use client";
-import { FaRegCalendarPlus } from "react-icons/fa6";
-import { FaRegCalendarAlt } from "react-icons/fa";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { useLocale } from "next-intl";
 import { AiOutlineSafety } from "react-icons/ai";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegCalendarPlus } from "react-icons/fa6";
+import { HiOutlineCog } from "react-icons/hi";
+
 import {
   Table,
   TableBody,
@@ -10,17 +21,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatDate } from "@/lib/format-date";
-import { useLocale } from "next-intl";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
 import { Link } from "@/i18n/routing";
-import { HiOutlineCog } from "react-icons/hi";
+import { formatDate } from "@/lib/format-date";
 
 export default function InstructorTaskTable() {
   const locale = useLocale();

@@ -1,11 +1,12 @@
-import React from "react";
-import SubjectsTable from "./subject-table";
-import TablePagination from "../generic-table/table-pagination";
-import { getSubjectsData } from "@/lib/services/subject-service";
 import { EmptyTable } from "../generic-table/empty-table";
-import { Role } from "@prisma/client";
-import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
+import TablePagination from "../generic-table/table-pagination";
 import ResponsiveDialog from "../ui/responsive-dialog";
+import SubjectsTable from "./subject-table";
+import { Role } from "@prisma/client";
+import React from "react";
+
+import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
+import { getSubjectsData } from "@/lib/services/subject-service";
 
 export default async function SubjectTableAndPagination({
   paramsData,

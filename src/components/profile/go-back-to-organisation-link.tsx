@@ -1,8 +1,9 @@
 "use client";
-import Link from "next/link";
+
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
-import { useSearchParams } from "next/navigation";
 import { useLocale } from "next-intl";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function GoBackToOrganisationLink() {
   const searchParams = useSearchParams();

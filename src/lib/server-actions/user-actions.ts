@@ -1,10 +1,11 @@
 "use server";
 
-import { z } from "zod";
 import { updateUserDataInDatabase } from "../services/user-service";
-import { UserInformationType } from "@/types/app-types";
-import { revalidatePath } from "next/cache";
 import { getLocale } from "next-intl/server";
+import { revalidatePath } from "next/cache";
+import { z } from "zod";
+
+import { UserInformationType } from "@/types/app-types";
 
 export async function updateUserAction(
   prevState: {

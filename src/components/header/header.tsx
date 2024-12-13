@@ -1,6 +1,6 @@
+import Breadcrumbs from "@/components/header/breadcrumbs";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import Breadcrumbs from "@/components/header/breadcrumbs";
 
 export default async function Header({ organisationName }: { organisationName: string }) {
   return (

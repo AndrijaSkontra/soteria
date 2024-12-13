@@ -1,7 +1,8 @@
-import { Toaster } from "@/components/ui/toaster";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
+
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({
   subsets: ["latin"],

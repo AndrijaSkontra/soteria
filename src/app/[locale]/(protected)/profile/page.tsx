@@ -1,10 +1,10 @@
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { UserInformationType } from "@/types/app-types";
-import { getUserInformation } from "@/lib/services/user-service";
-import UserInformation from "@/components/profile/user-information";
-import GoBackToOrganisationLink from "@/components/profile/go-back-to-organisation-link";
-import { EditProfileDialog } from "@/components/profile/edit-profile-dialog";
 import { ChangePasswordDialog } from "@/components/profile/change-profile-dialog";
+import { EditProfileDialog } from "@/components/profile/edit-profile-dialog";
+import GoBackToOrganisationLink from "@/components/profile/go-back-to-organisation-link";
+import UserInformation from "@/components/profile/user-information";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { getUserInformation } from "@/lib/services/user-service";
+import { UserInformationType } from "@/types/app-types";
 
 export default async function ProfilePage() {
   const userInfo: UserInformationType = await getUserInformation();

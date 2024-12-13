@@ -1,12 +1,14 @@
 "use client";
+
+import { PasswordInput } from "../ui/password-input";
+import { SubmitButton } from "../ui/submit-button-with-spinner";
 import Link from "next/link";
+import { useActionState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useActionState } from "react";
-import { loginAction } from "@/lib/server-actions/auth-actions";
 import { useRouter } from "@/i18n/routing";
-import { SubmitButton } from "../ui/submit-button-with-spinner";
+import { loginAction } from "@/lib/server-actions/auth-actions";
 
 const initialState = {
   message: "",
@@ -38,7 +40,7 @@ export function LoginForm() {
                 Forgot your password?
               </Link>
             </div>
-            <Input id="password" name="password" type="password" required />
+            <PasswordInput id="password" name="password" required />
           </div>
           <div className="flex w-full justify-center items-center">
             {state.message !== "login success" && (

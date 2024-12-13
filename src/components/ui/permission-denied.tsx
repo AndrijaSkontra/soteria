@@ -1,6 +1,7 @@
+import { Button } from "./button";
 import { AlertCircle } from "lucide-react";
 import React from "react";
-import { Button } from "./button";
+
 import { Link } from "@/i18n/routing";
 
 export default function PermissionDenied() {

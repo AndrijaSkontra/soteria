@@ -1,6 +1,10 @@
 "use client";
+
 import { ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Fragment } from "react";
 import { RiAdminLine } from "react-icons/ri";
+
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   SidebarMenu,
@@ -8,8 +12,6 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
 } from "@/components/ui/sidebar";
-import { Fragment } from "react";
-import { useTranslations } from "next-intl";
 
 export default function AdministrationLinks({
   children,

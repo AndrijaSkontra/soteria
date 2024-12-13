@@ -1,16 +1,17 @@
+import ResponsiveDialog from "../ui/responsive-dialog";
+import SubjectTableDropdown from "./subject-table-dropdown";
+import UpdateSubjectForm from "./update-subject-form";
 import { Role, Subject } from "@prisma/client";
+import clsx from "clsx";
+
 import {
   Table,
-  TableHeader,
   TableBody,
-  TableRow,
   TableCell,
   TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
-import SubjectTableDropdown from "./subject-table-dropdown";
-import clsx from "clsx";
-import ResponsiveDialog from "../ui/responsive-dialog";
-import UpdateSubjectForm from "./update-subject-form";
 
 export default function SubjectsTable({
   page,

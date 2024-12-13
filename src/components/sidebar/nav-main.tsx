@@ -1,9 +1,10 @@
 "use client";
 
-import { SidebarMenu } from "@/components/ui/sidebar";
-import AdministrationLinks from "@/components/sidebar/administration-links";
 import AdministrationLink from "./administration-link";
+
+import AdministrationLinks from "@/components/sidebar/administration-links";
 import NavigationLink from "@/components/sidebar/navigation-link";
+import { SidebarMenu } from "@/components/ui/sidebar";
 import { NavigationLinkType } from "@/types/app-types";
 
 type MainNavigationProps = {

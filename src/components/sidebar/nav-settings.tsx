@@ -1,7 +1,10 @@
 "use client";
 
-import { signOut } from "next-auth/react";
 import { BadgeCheck, ChevronsUpDown, LogOut } from "lucide-react";
+import { signOut } from "next-auth/react";
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import { IoMoonOutline, IoSettingsOutline, IoSunnyOutline } from "react-icons/io5";
 
 import {
   DropdownMenu,
@@ -19,11 +22,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useRouter } from "@/i18n/routing";
-import { IoMoonOutline, IoSettingsOutline, IoSunnyOutline } from "react-icons/io5";
-import { usePathname } from "next/navigation";
-import { createCookie } from "@/lib/server-actions/cookie-actions";
 import { getCookie } from "@/lib/get-cookie";
-import { useTranslations } from "next-intl";
+import { createCookie } from "@/lib/server-actions/cookie-actions";
 
 export function NavSettings() {
   const theme = getCookie("theme");

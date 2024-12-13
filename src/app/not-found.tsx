@@ -1,6 +1,7 @@
 "use client";
-import Link from "next/link";
+
 import "./globals.css";
+import Link from "next/link";
 
 export default function Component() {
   return (

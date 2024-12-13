@@ -1,10 +1,12 @@
 "use client";
-import { Link } from "@/i18n/routing";
+
 import { SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar";
-import { NavigationLinkType } from "@/types/app-types";
+import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import clsx from "clsx";
+
+import { Link } from "@/i18n/routing";
+import { NavigationLinkType } from "@/types/app-types";
 
 export default function NavigationLink({ title, icon, url }: NavigationLinkType) {
   const t = useTranslations("NavigationLinks");

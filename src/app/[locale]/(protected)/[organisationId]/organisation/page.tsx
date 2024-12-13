@@ -1,5 +1,6 @@
-import { RouteParams } from "@/types/app-types";
 import { getTranslations } from "next-intl/server";
+
+import { RouteParams } from "@/types/app-types";
 
 export default async function OrganisationPage({ params }: { params: RouteParams }) {
   const t = await getTranslations("HomePage");

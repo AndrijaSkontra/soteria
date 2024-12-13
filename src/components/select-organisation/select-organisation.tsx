@@ -1,13 +1,15 @@
 "use client";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from "@/i18n/routing";
-import { useState } from "react";
+
 import clsx from "clsx";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useState } from "react";
 import { HiOutlineEmojiSad } from "react-icons/hi";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import RoleBadge from "@/components/ui/role-badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Link } from "@/i18n/routing";
 import { OrganisationWithRoles } from "@/types/app-types";
 
 export default function SelectOrganisation({

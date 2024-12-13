@@ -1,12 +1,13 @@
 "use client";
 
+import LanguageSwitcher from "./language-switcher";
 import * as React from "react";
+
 import { MainNavigation } from "@/components/sidebar/nav-main";
+import { NavSettings } from "@/components/sidebar/nav-settings";
 import { OrganizationSwitcher } from "@/components/sidebar/organization-switcher";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/components/ui/sidebar";
-import { NavSettings } from "@/components/sidebar/nav-settings";
 import { NavigationLinkType, Organisation, OrganisationWithRoles } from "@/types/app-types";
-import LanguageSwitcher from "./language-switcher";
 
 type AppSidebarProps = {
   organisationsWithRoles: OrganisationWithRoles[];

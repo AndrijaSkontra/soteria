@@ -1,7 +1,9 @@
 "use client";
 
-import * as React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { ChevronsUpDown } from "lucide-react";
+import * as React from "react";
+import { useState } from "react";
 
 import {
   DropdownMenu,
@@ -16,9 +18,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Organisation, OrganisationWithRoles } from "@/types/app-types";
 
 export function OrganizationSwitcher({

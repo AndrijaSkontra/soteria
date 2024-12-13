@@ -1,8 +1,9 @@
 "use server";
 
+import { z } from "zod";
+
 import { signIn } from "@/auth";
 import { ensureError } from "@/lib/ensure-error";
-import { z } from "zod";
 
 export async function loginAction(
   prevState: {

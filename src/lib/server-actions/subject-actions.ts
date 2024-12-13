@@ -1,12 +1,13 @@
 "use server";
 
+import { addSubjectLogToDB } from "../services/subject-log-service";
 import { z } from "zod";
+
 import {
   addSubjectToDB,
   disableSubjectInDB,
   updateSubjectInDB,
 } from "@/lib/services/subject-service";
-import { addSubjectLogToDB } from "../services/subject-log-service";
 
 export async function disableSubject(subjectId: string, orgId: string) {
   await disableSubjectInDB(subjectId, orgId);

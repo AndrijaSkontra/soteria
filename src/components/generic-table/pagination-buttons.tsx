@@ -1,9 +1,11 @@
 "use client";
-import { usePathname, useRouter } from "@/i18n/routing";
+
+import { ChevronLeft, ChevronRight, ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
+
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
+import { usePathname, useRouter } from "@/i18n/routing";
 
 export default function PaginationButtons({ tablePages }) {
   const pathname = usePathname();

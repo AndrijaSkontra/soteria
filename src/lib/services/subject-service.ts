@@ -1,10 +1,11 @@
-import prisma from "@/index";
-import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
-import { revalidatePath } from "next/cache";
+import { sleep } from "../sleep";
 import { getUserOrganisationRolesFromDB } from "./organisation-service";
 import { Role, Subject } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+
+import prisma from "@/index";
 import { DEFAULT_PAGE, DEFAULT_ROWS } from "@/lib/constants/app-constants";
-import { sleep } from "../sleep";
+import { AdvancedSubjectSearch, CreateSubjectDTO } from "@/types/app-types";
 
 export async function addSubjectToDB(organisationId: string, createSubjectDto: CreateSubjectDTO) {
   const roles: Role[] = await getUserOrganisationRolesFromDB(organisationId);

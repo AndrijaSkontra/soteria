@@ -1,7 +1,8 @@
-import { NavigationLinkType } from "@/types/app-types";
 import { Role } from "@prisma/client";
-import { clsx, type ClassValue } from "clsx";
+import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+
+import { NavigationLinkType } from "@/types/app-types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

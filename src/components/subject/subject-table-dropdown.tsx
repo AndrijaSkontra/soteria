@@ -1,25 +1,21 @@
 "use client";
+
+import { Separator } from "../ui/separator";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useMemo } from "react";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { CgDetailsMore } from "react-icons/cg";
+import { FaRegEdit } from "react-icons/fa";
+import { FaRegTrashCan } from "react-icons/fa6";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaRegEdit } from "react-icons/fa";
-import { Separator } from "../ui/separator";
-import { FaRegTrashCan } from "react-icons/fa6";
-import { CgDetailsMore } from "react-icons/cg";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
 
-export default function SubjectTableDropdown({
-  setCurrentSubject,
-  subject,
-  setIsEditOpen,
-  setIsDeleteOpen,
-  setIsDetailsOpen,
-}) {
+export default function SubjectTableDropdown({ subject }) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();

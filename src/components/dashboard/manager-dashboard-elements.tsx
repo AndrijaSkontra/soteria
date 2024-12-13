@@ -1,7 +1,8 @@
 import clsx from "clsx";
-import { Separator } from "@/components/ui/separator";
-import TasksByStatus from "@/components/dashboard/task-by-status";
+
 import InspectorLoad from "@/components/dashboard/inspector-load";
+import TasksByStatus from "@/components/dashboard/task-by-status";
+import { Separator } from "@/components/ui/separator";
 
 export default function ManagerDashboardElements({ isManager }: { isManager: boolean }) {
   return (

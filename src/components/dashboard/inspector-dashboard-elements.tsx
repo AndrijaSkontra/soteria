@@ -1,7 +1,8 @@
-import clsx from "clsx";
-import { Separator } from "@/components/ui/separator";
-import InstructorTaskTable from "./inspector-task-table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import InstructorTaskTable from "./inspector-task-table";
+import clsx from "clsx";
+
+import { Separator } from "@/components/ui/separator";
 
 export default function InspectorDashboardElements({ isInspector }: { isInspector: boolean }) {
   return (

@@ -22,6 +22,7 @@ When making commits, follow this convention:
 npx prettier . --write
 npm run build
 ```
+
 > Ensure that npm run build completes without any errors or warnings.
 
 ## Clean Code Guidelines
@@ -33,6 +34,7 @@ npm run build
 - seed database `scripts: src/lib/seed/`
 - app types are in: `app-typed.d.ts`
 - component props should be right above the component like this:
+
 ```tsx
 type AdminLayoutProps = {
   children: React.ReactNode;
@@ -63,3 +65,7 @@ toast({
   duration: 2000,
 });
 ```
+
+### Forms
+
+Use server side validation with zod and useActionState hook; good [example](https://dev.to/bookercodes/learn-useactionstate-quickly-4jj7)

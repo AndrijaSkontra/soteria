@@ -1,8 +1,9 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
 import { Button } from "./button";
+import { useFormStatus } from "react-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+
 import { getCookie } from "@/lib/get-cookie";
 
 export function SubmitButton({ innerText, className }: { innerText: string; className?: string }) {

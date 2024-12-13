@@ -1,17 +1,18 @@
+import { SidebarMenu, SidebarMenuItem } from "../ui/sidebar";
+import { ChevronsUpDownIcon } from "lucide-react";
+import { useLocale } from "next-intl";
+import Image from "next/image";
+import { useParams } from "next/navigation";
+import { useTransition } from "react";
+import { MdOutlineLanguage } from "react-icons/md";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { SidebarMenu, SidebarMenuItem } from "../ui/sidebar";
-import Image from "next/image";
 import { usePathname, useRouter } from "@/i18n/routing";
-import { useParams } from "next/navigation";
-import { useTransition } from "react";
-import { useLocale } from "next-intl";
-import { ChevronsUpDownIcon } from "lucide-react";
-import { MdOutlineLanguage } from "react-icons/md";
 
 export default function LanguageSwitcher() {
   const router = useRouter();

@@ -1,4 +1,7 @@
 "use client";
+
+import { ChevronRight } from "lucide-react";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,7 +9,7 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import { Link, usePathname } from "@/i18n/routing";
-import { ChevronRight } from "lucide-react";
+
 export default function Breadcrumbs({ organisationName }: { organisationName: string }) {
   const pathname = usePathname();
   let list = pathname.split("/");

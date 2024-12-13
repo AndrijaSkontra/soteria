@@ -1,9 +1,10 @@
 import { CgOrganisation } from "react-icons/cg";
-import { MdOutlineTask } from "react-icons/md";
-import { GrTask } from "react-icons/gr";
 import { FaRegNewspaper } from "react-icons/fa";
-import { RxDashboard } from "react-icons/rx";
+import { GrTask } from "react-icons/gr";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import { MdOutlineTask } from "react-icons/md";
+import { RxDashboard } from "react-icons/rx";
+
 import { NavigationLinkType } from "@/types/app-types";
 
 export const allLinks: NavigationLinkType[] = [

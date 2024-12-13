@@ -1,11 +1,12 @@
-import SubjectTableActions from "@/components/subject/table-actions";
-import { RouteParams, SubjectSearchParams } from "@/types/app-types";
 import { Role } from "@prisma/client";
-import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 import { Suspense } from "react";
+
 import TableSkeletonTenRows from "@/components/generic-table/table-skeleton-10-rows";
-import { DEFAULT_PAGE, DEFAULT_ROWS } from "@/lib/constants/app-constants";
 import SubjectTableAndPagination from "@/components/subject/subject-table-and-pagination";
+import SubjectTableActions from "@/components/subject/table-actions";
+import { DEFAULT_PAGE, DEFAULT_ROWS } from "@/lib/constants/app-constants";
+import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
+import { RouteParams, SubjectSearchParams } from "@/types/app-types";
 
 export default async function SubjectPage({
   searchParams,

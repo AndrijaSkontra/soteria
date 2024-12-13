@@ -1,16 +1,17 @@
+import { Role } from "@prisma/client";
+
+import Header from "@/components/header/header";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { allLinks } from "@/lib/constants/links";
 import {
   checkIsOrganisationValid,
-  getUserOrganisationRoles,
   getOrganisationById,
+  getUserOrganisationRoles,
   getUserOrganisationsWithRoles,
 } from "@/lib/services/organisation-service";
-import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import { Organisation, OrganisationWithRoles, RouteParams } from "@/types/app-types";
-import { allLinks } from "@/lib/constants/links";
-import Header from "@/components/header/header";
 import { linksToShowOnUI } from "@/lib/utils";
-import { Role } from "@prisma/client";
+import { Organisation, OrganisationWithRoles, RouteParams } from "@/types/app-types";
 
 export default async function OrganisationLayout({
   children,

@@ -1,7 +1,8 @@
+import { User } from "next-auth";
+
 import prisma from "@/index";
 import { getUserId } from "@/lib/get-user-id";
 import { UserInformationType } from "@/types/app-types";
-import { User } from "next-auth";
 
 export async function isUserInOrganisation(organisationId: string): Promise<boolean> {
   const org = await prisma.organisationUser.findFirst({

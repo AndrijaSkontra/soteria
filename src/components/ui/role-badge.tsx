@@ -1,5 +1,5 @@
-import { Role } from "@prisma/client";
 import { Badge } from "./badge";
+import { Role } from "@prisma/client";
 import clsx from "clsx";
 
 export default function RoleBadge({ role }: { role: Role }) {

@@ -1,8 +1,10 @@
 "use client";
-import { disableSubject } from "@/lib/server-actions/subject-actions";
+
+import { useParams } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { useParams } from "next/navigation";
+import { disableSubject } from "@/lib/server-actions/subject-actions";
 
 export default function DeleteSubject({ setIsDeleteOpen, subject }) {
   const { toast } = useToast();

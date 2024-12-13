@@ -1,8 +1,8 @@
 import { Role } from "@prisma/client";
-import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
+
 import AdminDashboardElements from "@/components/dashboard/admin-dashboard-elements";
-import ManagerDashboardElements from "@/components/dashboard/manager-dashboard-elements";
 import InspectorDashboardElements from "@/components/dashboard/inspector-dashboard-elements";
+import ManagerDashboardElements from "@/components/dashboard/manager-dashboard-elements";
 import {
   Select,
   SelectContent,
@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getUserOrganisationRolesFromDB } from "@/lib/services/organisation-service";
 
 export default async function DashboardPage({
   params,

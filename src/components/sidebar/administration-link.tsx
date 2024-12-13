@@ -1,9 +1,11 @@
 "use client";
-import { Link } from "@/i18n/routing";
+
 import { SidebarMenuSubButton, SidebarMenuSubItem } from "../ui/sidebar";
+import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import clsx from "clsx";
+
+import { Link } from "@/i18n/routing";
 
 export default function AdministrationLink({ title, url }: { title: string; url: string }) {
   const t = useTranslations("NavigationLinks");
