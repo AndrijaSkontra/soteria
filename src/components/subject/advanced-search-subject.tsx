@@ -130,7 +130,6 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
                     <Input
                       className="col-span-2"
                       name="contact"
-                      type="number"
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
                     />
@@ -141,7 +140,6 @@ export default function AdvancedSearchSubject({ isOn, setIsOn }) {
                     <Input
                       className="col-span-2"
                       name="oib"
-                      type="number"
                       value={oib}
                       onChange={(e) => setOib(e.target.value)}
                     />
